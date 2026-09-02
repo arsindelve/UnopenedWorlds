@@ -30,7 +30,7 @@ export default function Home() {
           <span>&gt;</span> Unopened Worlds<i>_</i>
         </a>
         <div className="header-right">
-          <a className="header-live-link" href="#living-archive"><span /> Play a world</a>
+          <a className="header-live-link" href="#collection"><span /> 2 worlds online</a>
           <div className="collection-tally" aria-label="Collection status">
             <span><strong>30</strong> sealed</span><b /><span><strong>2</strong> sought</span>
           </div>
@@ -44,47 +44,27 @@ export default function Home() {
         </div>
         <div className="intro-copy">
           <p>Thirty-two physical portals into the company that taught computers how to tell stories.</p>
+          <p className="intro-live-note"><span /> Two of those worlds are answering back.</p>
           <a href="#collection"><ArrowDown size={15} /> Enter the collection</a>
-        </div>
-      </section>
-
-      <section className="living-archive" id="living-archive" aria-labelledby="living-title">
-        <div className="living-heading">
-          <div>
-            <p className="room-number">ROOM 00 / THE LIVING ARCHIVE</p>
-            <h2 id="living-title">Two worlds are still <em>answering.</em></h2>
-          </div>
-          <p>The collection preserves what Infocom made. These experiments preserve what playing it felt like.</p>
-        </div>
-
-        <div className="live-grid">
-          <ZorkExhibit />
-          <article className="live-exhibit live-exhibit--planetfall" aria-labelledby="planetfall-exhibit-title">
-            <div>
-              <p className="live-kicker"><span /> Full experience online</p>
-              <p className="planetfall-prompt">&gt; LOOK</p>
-              <h3 id="planetfall-exhibit-title">Planetfall,<br />re-awakened.</h3>
-              <p className="planetfall-copy">Floyd is waiting. A painstakingly rebuilt world now listens with a more human understanding of what you type.</p>
-            </div>
-            <a href="https://planetfall.ai/">Enter Planetfall.ai <ArrowUpRight size={15} /></a>
-          </article>
         </div>
       </section>
 
       <section className="gallery-room" id="collection" aria-labelledby="wall-title">
         <div className="room-heading">
           <div><p className="room-number">ROOM 01 / THE WALL</p><h2 id="wall-title">The collector’s wall.</h2></div>
-          <p>The real arrangement, lightly curated. Thirty-one text-led worlds and one magnificent exception.</p>
+          <p>The real arrangement, lightly curated. Two boxes carry a signal: their worlds can be entered.</p>
         </div>
 
         <div className="shadowbox-wall">
           <div className="game-grid">
-            {games.map((game, index) => (
+            {games.map((game, index) => {
+              const isLivingWorld = game.slug === 'zork-i' || game.slug === 'planetfall';
+              return (
               <button
-                className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''}`}
+                className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''} ${isLivingWorld ? 'shadowbox--living' : ''}`}
                 key={game.slug}
                 onClick={() => setSelected(game)}
-                aria-label={`Examine ${game.title}${game.sealed === false ? ', sealed copy sought' : ''}`}
+                aria-label={`${isLivingWorld ? 'Enter the living exhibit for' : 'Examine'} ${game.title}${game.sealed === false ? ', sealed copy sought' : ''}`}
                 style={{ '--index': index } as CSSProperties}
               >
                 <span className="frame-lip"><span className="frame-mat">
@@ -93,13 +73,15 @@ export default function Home() {
                 </span></span>
                 <span className="object-label"><span>{String(index + 1).padStart(2, '0')} · {game.year}</span><strong>{game.shortTitle ?? game.title}</strong></span>
                 {game.sealed === false && <span className="sought-tab"><Search size={10} /> sealed copy sought</span>}
+                {isLivingWorld && <span className="living-tab"><i /> world online</span>}
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         <div className="wall-caption">
-          <p><span>i</span> Select any box to bring the world closer.</p>
+          <p><span>i</span> Select any box to bring the world closer. Follow the green signal to enter one.</p>
           <p>Archival scans temporarily stand in for Michael’s collection photography.</p>
         </div>
       </section>
@@ -110,8 +92,33 @@ export default function Home() {
       </footer>
 
       <Dialog open={selected !== null} onOpenChange={(open) => !open && setSelected(null)}>
-        <DialogContent className="exhibit-dialog" showCloseButton>
-          {selected && <article className="exhibit">
+        <DialogContent className={`exhibit-dialog ${selected?.slug === 'zork-i' ? 'living-dialog living-dialog--zork' : ''} ${selected?.slug === 'planetfall' ? 'living-dialog living-dialog--planetfall' : ''}`} showCloseButton>
+          {selected?.slug === 'zork-i' ? <>
+            <DialogTitle className="sr-only">Playable Zork I exhibit</DialogTitle>
+            <DialogDescription className="sr-only">Learn about NewZork and open a playable Zork I session.</DialogDescription>
+            <ZorkExhibit />
+          </> : selected?.slug === 'planetfall' ? <>
+            <DialogTitle className="sr-only">Planetfall living exhibit</DialogTitle>
+            <DialogDescription className="sr-only">Learn about the Planetfall AI project and enter the full experience.</DialogDescription>
+            <article className="planetfall-gateway">
+              <a className="gateway-cover" href="https://planetfall.ai/" aria-label="Enter Planetfall AI">
+                <span className="gateway-frame"><img src={`/archive/${selected.image}`} alt={`${selected.title} grey-box cover`} /></span>
+                <span><i /> World online</span>
+              </a>
+              <div className="gateway-story">
+                <p className="live-kicker"><span /> A living Infocom experiment</p>
+                <p className="gateway-command">&gt; EXAMINE PLANETFALL</p>
+                <h2>Preserved worlds should still feel <em>alive.</em></h2>
+                <p className="gateway-lede">Planetfall.ai rebuilds the world room by room, object by object, while giving the parser a more human understanding of what you mean.</p>
+                <div className="gateway-principle">
+                  <span>THE POINT</span>
+                  <p>The AI does not replace Steve Meretzky’s world. It helps remove the machine-shaped friction between your intention and his creation.</p>
+                </div>
+                <blockquote>Because Floyd deserves more than preservation. He deserves to be met again.</blockquote>
+                <a className="gateway-launch" href="https://planetfall.ai/">Enter Planetfall.ai <ArrowUpRight size={15} /></a>
+              </div>
+            </article>
+          </> : selected && <article className="exhibit">
             <div className="exhibit-visual">
               <div className="exhibit-cover"><img src={`/archive/${selected.image}`} alt={`${selected.title} box cover`} /></div>
               <div className="photo-status"><Camera size={16} /><span>Your collection photograph will replace this archival scan.</span></div>
