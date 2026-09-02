@@ -2,8 +2,6 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowUpRight, LoaderCircle, RotateCcw } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 
 const ZORK_API = 'https://bxqzfka0hc.execute-api.us-east-1.amazonaws.com/Prod/ZorkOne';
 const SESSION_KEY = 'UnopenedWorldsZorkSessionId';
@@ -159,7 +157,7 @@ export function ZorkExhibit() {
 
         <form className="terminal-input" onSubmit={submitCommand}>
           <label htmlFor="zork-command">&gt;</label>
-          <Input
+          <input
             id="zork-command"
             value={command}
             onChange={(event) => setCommand(event.target.value)}
@@ -169,7 +167,7 @@ export function ZorkExhibit() {
             disabled={status === 'loading' || status === 'sending' || exhibitComplete}
             aria-label="Enter a Zork command"
           />
-          <Button type="submit" disabled={!command.trim() || status === 'loading' || status === 'sending' || exhibitComplete}>Enter</Button>
+          <button type="submit" disabled={!command.trim() || status === 'loading' || status === 'sending' || exhibitComplete}>Enter</button>
         </form>
       </div>
 
