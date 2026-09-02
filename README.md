@@ -33,8 +33,11 @@ and mystery/adventure rows a clearer rhythm.
 
 This repository contains the first interactive design: the complete collection
 wall, responsive layouts, individual game exhibits, collection status, and
-links to preserved archival material. Detailed photography of the actual copies
-and deeper game-by-game exhibits will replace the temporary reference imagery.
+links to preserved archival material. It also contains a playable Zork I exhibit
+powered by the NewZork engine. Visitors can carry the same live session—location,
+inventory, score, and transcript—into the complete experience at NewZork.ai.
+Detailed photography of the actual copies and deeper game-by-game exhibits will
+replace the temporary reference imagery.
 
 ## Architecture
 
@@ -44,7 +47,8 @@ The site is deliberately static:
 - Vinext/Vite
 - CSS and small client-side interactions
 - Static export suitable for S3 and CloudFront
-- No application backend
+- No application backend; the playable exhibit talks directly to the existing
+  NewZork API
 
 ## Local development
 

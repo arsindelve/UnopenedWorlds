@@ -4,6 +4,7 @@ import { useState, type CSSProperties } from 'react';
 import { ArrowDown, ArrowUpRight, Camera, PackageOpen, Search } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { games, type Game } from './games';
+import { ZorkExhibit } from './ZorkExhibit';
 
 const galleryPages: Record<string, string> = {
   enchanter: 'enchanter/enchanter.html', sorcerer: 'sorcerer/sorcerer.html', spellbreaker: 'spellbreaker/spellbreaker.html',
@@ -28,8 +29,11 @@ export default function Home() {
         <a className="wordmark" href="#top" aria-label="Unopened Worlds, home">
           <span>&gt;</span> Unopened Worlds<i>_</i>
         </a>
-        <div className="collection-tally" aria-label="Collection status">
-          <span><strong>30</strong> sealed</span><b /><span><strong>2</strong> sought</span>
+        <div className="header-right">
+          <a className="header-live-link" href="#living-archive"><span /> Play a world</a>
+          <div className="collection-tally" aria-label="Collection status">
+            <span><strong>30</strong> sealed</span><b /><span><strong>2</strong> sought</span>
+          </div>
         </div>
       </header>
 
@@ -41,6 +45,29 @@ export default function Home() {
         <div className="intro-copy">
           <p>Thirty-two physical portals into the company that taught computers how to tell stories.</p>
           <a href="#collection"><ArrowDown size={15} /> Enter the collection</a>
+        </div>
+      </section>
+
+      <section className="living-archive" id="living-archive" aria-labelledby="living-title">
+        <div className="living-heading">
+          <div>
+            <p className="room-number">ROOM 00 / THE LIVING ARCHIVE</p>
+            <h2 id="living-title">Two worlds are still <em>answering.</em></h2>
+          </div>
+          <p>The collection preserves what Infocom made. These experiments preserve what playing it felt like.</p>
+        </div>
+
+        <div className="live-grid">
+          <ZorkExhibit />
+          <article className="live-exhibit live-exhibit--planetfall" aria-labelledby="planetfall-exhibit-title">
+            <div>
+              <p className="live-kicker"><span /> Full experience online</p>
+              <p className="planetfall-prompt">&gt; LOOK</p>
+              <h3 id="planetfall-exhibit-title">Planetfall,<br />re-awakened.</h3>
+              <p className="planetfall-copy">Floyd is waiting. A painstakingly rebuilt world now listens with a more human understanding of what you type.</p>
+            </div>
+            <a href="https://planetfall.ai/">Enter Planetfall.ai <ArrowUpRight size={15} /></a>
+          </article>
         </div>
       </section>
 
