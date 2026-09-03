@@ -40,7 +40,14 @@ export default function Home() {
       <section className="wall-intro" id="top">
         <div>
           <p className="eyebrow">Infocom · The Grey-Box Collection · 1980–1988</p>
-          <h1>Thirty Two Worlds<br /><em>Unopened.</em></h1>
+          <h1>
+            <span className="hero-type">
+              <span className="hero-type-text">Thirty Two Worlds</span>
+              <span className="hero-type-cursor" aria-hidden="true" />
+            </span>
+            <br />
+            <em className="hero-unopened">Unopened.</em>
+          </h1>
         </div>
         <div className="intro-copy">
           <p className="intro-orientation">In the 1980s, Infocom created some of the most literate and imaginative computer games ever made: text adventures that turned words into explorable worlds.</p>
