@@ -30,7 +30,7 @@ export default function Home() {
           <span>&gt;</span> Unopened Worlds<i>_</i>
         </a>
         <div className="header-right">
-          <a className="header-live-link" href="#collection"><span /> 2 worlds online</a>
+          <a className="header-live-link" href="#living-worlds"><span /> 2 worlds online</a>
           <div className="collection-tally" aria-label="Collection status">
             <span><strong>31</strong> sealed</span><b /><span><strong>1</strong> sought</span>
           </div>
@@ -39,23 +39,24 @@ export default function Home() {
 
       <section className="wall-intro" id="top">
         <div>
-          <p className="eyebrow">A private Infocom collection · 1980–1988</p>
+          <p className="eyebrow">Infocom · The Grey-Box Collection · 1980–1988</p>
           <h1>Thirty-two doors.<br /><em>Unopened.</em></h1>
         </div>
         <div className="intro-copy">
-          <p>Thirty-two physical portals into the company that taught computers how to tell stories.</p>
-          <p className="intro-live-note"><span /> Two of those worlds are answering back.</p>
+          <p className="intro-orientation">In the 1980s, Infocom created some of the most literate and imaginative computer games ever made: text adventures that turned words into explorable worlds.</p>
+          <p className="intro-collection">This is my collection of all 32 releases in the company’s iconic grey-box format: 31 still sealed, one left to find.</p>
+          <p className="intro-live-note"><span /> Two of those original worlds are being brought back to life with AI.</p>
           <a href="#collection"><ArrowDown size={15} /> Enter the collection</a>
         </div>
       </section>
 
-      <section className="work-room" aria-labelledby="work-title">
+      <section className="work-room" id="living-worlds" aria-labelledby="work-title">
         <div className="work-heading">
           <div>
             <p className="room-number">THE WORK / PRESERVATION IN MOTION</p>
             <h2 id="work-title">The boxes stay closed.<br /><em>The worlds do not.</em></h2>
           </div>
-          <p>Collecting preserves the things Infocom made. NewZork and Planetfall.ai are an attempt to preserve something harder: the feeling that a world on the other side of a prompt is listening.</p>
+          <p>Collecting preserves the things Infocom made. NewZork and Planetfall.ai are my attempt to preserve something harder: the feeling that a world on the other side of a prompt is listening.</p>
         </div>
 
         <div className="work-grid">
@@ -124,7 +125,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <p>Built as an act of preservation, gratitude, and unreasonable affection.</p>
+        <p>Collected, preserved, and reimagined by Michael Lane—with gratitude and unreasonable affection.</p>
         <a href="https://gallery.guetech.org/" target="_blank" rel="noreferrer">Archival imagery: The Infocom Gallery <ArrowUpRight size={14} /></a>
       </footer>
 

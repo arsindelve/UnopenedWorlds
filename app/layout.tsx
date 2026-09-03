@@ -7,8 +7,8 @@ const sans = Inter({ variable: '--font-sans-custom', subsets: ['latin'] });
 const mono = IBM_Plex_Mono({ variable: '--font-mono-custom', subsets: ['latin'], weight: ['400', '500'] });
 
 export const metadata: Metadata = {
-  title: 'Unopened Worlds — An Infocom Collection',
-  description: 'Thirty-two Infocom worlds, preserved unopened and brought to life.',
+  title: 'Unopened Worlds — Infocom, Preserved and Reimagined',
+  description: 'A personal collection of Infocom’s 32 grey-box text adventures—31 sealed, one sought—and two AI projects bringing their worlds back to life.',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

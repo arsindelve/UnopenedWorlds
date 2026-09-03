@@ -44,9 +44,10 @@ a { color: inherit; }
 .eyebrow, .room-number, .drawer-label { margin: 0 0 20px; color: var(--brass); font: 500 10px/1.4 var(--font-mono-custom), monospace; letter-spacing: .19em; text-transform: uppercase; }
 .wall-intro h1 { margin: 0; max-width: 930px; font: 500 clamp(62px, 9.2vw, 142px)/.78 var(--font-display), serif; letter-spacing: -.045em; }
 .wall-intro h1 em { color: var(--brass); font-weight: 400; }
-.intro-copy { max-width: 410px; padding-bottom: 7px; }
-.intro-copy p { margin: 0 0 34px; color: #b8ae9e; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.75; }
-.intro-copy .intro-live-note { display: flex; align-items: center; gap: 9px; margin: -13px 0 31px; color: #839d70; font: 500 8px/1.4 var(--font-mono-custom), monospace; letter-spacing: .12em; text-transform: uppercase; }
+.intro-copy { max-width: 480px; padding-bottom: 7px; }
+.intro-copy p { margin: 0 0 21px; color: #b8ae9e; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.7; }
+.intro-copy .intro-collection { color: #91897d; font-size: clamp(12px, .95vw, 14px); line-height: 1.7; }
+.intro-copy .intro-live-note { display: flex; align-items: flex-start; gap: 9px; margin: 4px 0 31px; color: #839d70; font: 500 8px/1.65 var(--font-mono-custom), monospace; letter-spacing: .12em; text-transform: uppercase; }
 .intro-live-note span { width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--terminal); box-shadow: 0 0 12px rgb(167 203 124 / 70%); }
 .intro-copy a { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: var(--paper); font: 500 10px/1 var(--font-mono-custom), monospace; text-transform: uppercase; letter-spacing: .15em; border-bottom: 1px solid var(--brass); padding-bottom: 8px; }
 
