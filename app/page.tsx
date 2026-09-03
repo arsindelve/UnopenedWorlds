@@ -49,6 +49,42 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="work-room" aria-labelledby="work-title">
+        <div className="work-heading">
+          <div>
+            <p className="room-number">THE WORK / PRESERVATION IN MOTION</p>
+            <h2 id="work-title">The boxes stay closed.<br /><em>The worlds do not.</em></h2>
+          </div>
+          <p>Collecting preserves the things Infocom made. NewZork and Planetfall.ai are an attempt to preserve something harder: the feeling that a world on the other side of a prompt is listening.</p>
+        </div>
+
+        <div className="work-grid">
+          <article className="work-card work-card--zork">
+            <div>
+              <p className="work-number">EXPERIMENT 01 / NEWZORK.AI</p>
+              <h3>A faithful world<br />with a more <em>generous ear.</em></h3>
+              <p className="work-copy">The original rooms, objects, puzzles, and consequences remain deliberately authored. AI helps the parser understand the command you meant without inventing a different Zork around you.</p>
+            </div>
+            <div className="work-invitation">
+              <p>Preserve the astonishing feeling—not only the source.</p>
+              <a href="#game-zork-i">Find Zork I on the wall <ArrowDown size={14} /></a>
+            </div>
+          </article>
+
+          <article className="work-card work-card--planetfall">
+            <div>
+              <p className="work-number">EXPERIMENT 02 / PLANETFALL.AI</p>
+              <h3>A beloved world<br /><em>waiting to meet you again.</em></h3>
+              <p className="work-copy">Planetfall is being rebuilt room by room and object by object, joining a carefully engineered world to a more human understanding of what the player is trying to do.</p>
+            </div>
+            <div className="work-invitation">
+              <p>Because Floyd deserves more than preservation.</p>
+              <a href="#game-planetfall">Find Planetfall on the wall <ArrowDown size={14} /></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section className="gallery-room" id="collection" aria-labelledby="wall-title">
         <div className="room-heading">
           <div><p className="room-number">ROOM 01 / THE WALL</p><h2 id="wall-title">The collector’s wall.</h2></div>
@@ -61,6 +97,7 @@ export default function Home() {
               const isLivingWorld = game.slug === 'zork-i' || game.slug === 'planetfall';
               return (
               <button
+                id={isLivingWorld ? `game-${game.slug}` : undefined}
                 className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''} ${isLivingWorld ? 'shadowbox--living' : ''}`}
                 key={game.slug}
                 onClick={() => setSelected(game)}
