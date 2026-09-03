@@ -32,7 +32,7 @@ export default function Home() {
         <div className="header-right">
           <a className="header-live-link" href="#collection"><span /> 2 worlds online</a>
           <div className="collection-tally" aria-label="Collection status">
-            <span><strong>30</strong> sealed</span><b /><span><strong>2</strong> sought</span>
+            <span><strong>31</strong> sealed</span><b /><span><strong>1</strong> sought</span>
           </div>
         </div>
       </header>
