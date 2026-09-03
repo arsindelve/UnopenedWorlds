@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, IBM_Plex_Mono, Inter } from 'next/font/google';
+import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
 
 const display = Cormorant_Garamond({ variable: '--font-display', subsets: ['latin'], weight: ['400', '500', '600'], style: ['normal', 'italic'] });
-const sans = Inter({ variable: '--font-sans-custom', subsets: ['latin'] });
+const sans = IBM_Plex_Sans({ variable: '--font-sans-custom', subsets: ['latin'], weight: ['300', '400', '500'] });
 const mono = IBM_Plex_Mono({ variable: '--font-mono-custom', subsets: ['latin'], weight: ['400', '500'] });
 
 export const metadata: Metadata = {

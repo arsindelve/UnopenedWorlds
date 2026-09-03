@@ -141,14 +141,14 @@ export function ZorkExhibit() {
         <div className="exhibit-explanation">
           <div className="explanation-statement">
             <p>&gt; WHY OPEN THIS WORLD?</p>
-            <blockquote>Infocom made a computer feel less like a machine and more like a place. NewZork asks what that place can become when the parser finally understands you.</blockquote>
+            <blockquote>Infocom made a computer feel less like a machine and more like a place. NewZork asks what that place can become when an intelligent narrator understands your intent and brings the authored world to life.</blockquote>
           </div>
 
           <div className="explanation-points">
             <div>
               <span>01 / WHAT</span>
-              <h4>The original world,<br />newly listening.</h4>
-              <p>The rooms, objects, puzzles, and consequences remain deliberately authored. A modern language layer makes the world more fluent without giving it permission to invent a different Zork.</p>
+              <h4>The original world,<br />intelligently narrated.</h4>
+              <p>The rooms, objects, puzzles, and consequences remain deliberately authored. An intelligent narrator interprets intent, describes consequences, and gives the world a responsive voice without permission to invent a different Zork.</p>
             </div>
             <div>
               <span>02 / WHY</span>

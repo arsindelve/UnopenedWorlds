@@ -40,7 +40,7 @@ export default function Home() {
       <section className="wall-intro" id="top">
         <div>
           <p className="eyebrow">Infocom · The Grey-Box Collection · 1980–1988</p>
-          <h1><span>Thirty-two doors.</span><em>Unopened.</em></h1>
+          <h1>Thirty Two Worlds<br /><em>Unopened.</em></h1>
         </div>
         <div className="intro-copy">
           <p className="intro-orientation">In the 1980s, Infocom created some of the most literate and imaginative computer games ever made: text adventures that turned words into explorable worlds.</p>
@@ -63,8 +63,8 @@ export default function Home() {
           <article className="work-card work-card--zork">
             <div>
               <p className="work-number">EXPERIMENT 01 / NEWZORK.AI</p>
-              <h3>A faithful world<br />with a more <em>generous ear.</em></h3>
-              <p className="work-copy">The original rooms, objects, puzzles, and consequences remain deliberately authored. AI helps the parser understand the command you meant without inventing a different Zork around you.</p>
+              <h3>The world that<br /><em>started it all.</em></h3>
+              <p className="work-copy">Zork I opened Infocom’s first door. Its authored rooms, objects, puzzles, and consequences remain intact while an intelligent narrator understands your intent, describes what happens, and keeps the world alive around you.</p>
             </div>
             <div className="work-invitation">
               <p>Preserve the astonishing feeling—not only the source.</p>
@@ -76,7 +76,7 @@ export default function Home() {
             <div>
               <p className="work-number">EXPERIMENT 02 / PLANETFALL.AI</p>
               <h3>A beloved world<br /><em>waiting to meet you again.</em></h3>
-              <p className="work-copy">Planetfall is being rebuilt room by room and object by object, joining a carefully engineered world to a more human understanding of what the player is trying to do.</p>
+              <p className="work-copy">Planetfall has been rebuilt room by room and object by object. Its intelligent narrator gives the completed world a voice—and lets you meet Floyd, Blather, and the Ambassador as characters who feel present, responsive, and alive.</p>
             </div>
             <div className="work-invitation">
               <p>Because Floyd deserves more than preservation.</p>
@@ -147,10 +147,10 @@ export default function Home() {
                 <p className="live-kicker"><span /> A living Infocom experiment</p>
                 <p className="gateway-command">&gt; EXAMINE PLANETFALL</p>
                 <h2>Preserved worlds should still feel <em>alive.</em></h2>
-                <p className="gateway-lede">Planetfall.ai rebuilds the world room by room, object by object, while giving the parser a more human understanding of what you mean.</p>
+                <p className="gateway-lede">Planetfall.ai is a complete room-by-room, object-by-object reconstruction of the original world, performed by an intelligent narrator that understands your intent and brings Floyd, Blather, and the Ambassador to life.</p>
                 <div className="gateway-principle">
                   <span>THE POINT</span>
-                  <p>The AI does not replace Steve Meretzky’s world. It helps remove the machine-shaped friction between your intention and his creation.</p>
+                  <p>The AI does not replace Steve Meretzky’s world. It inhabits the role of narrator—interpreting your intent, voicing the world, and making its characters responsive while preserving the authored game beneath it.</p>
                 </div>
                 <blockquote>Because Floyd deserves more than preservation. He deserves to be met again.</blockquote>
                 <a className="gateway-launch" href="https://planetfall.ai/">Enter Planetfall.ai <ArrowUpRight size={15} /></a>
