@@ -216,9 +216,6 @@ export default function Home() {
                   </span>
                   <strong>{game.shortTitle ?? game.title}</strong>
                 </span>
-                {game.sealed === false && <span className="sought-tab"><Search size={10} /> sealed copy sought</span>}
-                {isLivingWorld && <span className="living-tab"><i /> world online</span>}
-                {hasCollectionPhotos && <span className="photo-tab"><Camera size={9} /> collection photos</span>}
               </button>
               );
             })}

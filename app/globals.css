@@ -177,16 +177,12 @@ a { color: inherit; }
 .badge-marks--expanded .collection-badge > span { color: #a49b8e; font: 500 7px/1.25 var(--font-mono-custom), monospace; letter-spacing: .05em; text-transform: uppercase; }
 .shadowbox--sought .frame-lip { box-shadow: 0 12px 22px rgb(0 0 0 / 52%), 0 0 0 1px rgb(217 164 65 / 52%); }
 .shadowbox--sought .frame-mat img { filter: saturate(.52) contrast(1.03); }
-.sought-tab { position: absolute; right: 6px; top: 6px; display: flex; align-items: center; gap: 4px; padding: 5px 6px; background: rgb(10 9 7 / 90%); color: var(--brass); font: 500 6px/1 var(--font-mono-custom), monospace; letter-spacing: .08em; text-transform: uppercase; }
 .shadowbox--living .frame-lip { transform: translateY(-7px); box-shadow: 0 19px 30px rgb(0 0 0 / 68%), 0 0 0 1px rgb(167 203 124 / 62%), 0 0 24px rgb(127 171 91 / 9%); }
 .shadowbox--living { scroll-margin-top: 120px; }
 .shadowbox--living .object-label strong { color: #e2dbc9; }
 .shadowbox--living:hover .frame-lip, .shadowbox--living:focus-visible .frame-lip { transform: translateY(-12px) scale(1.025); box-shadow: 0 27px 36px rgb(0 0 0 / 78%), 0 0 0 1px rgb(167 203 124 / 92%), 0 0 32px rgb(127 171 91 / 18%); }
 .shadowbox--living:target .frame-lip { animation: signal-pulse 1.1s ease-out; }
 @keyframes signal-pulse { 35% { box-shadow: 0 24px 36px rgb(0 0 0 / 75%), 0 0 0 2px rgb(167 203 124 / 95%), 0 0 40px rgb(127 171 91 / 32%); } }
-.living-tab { position: absolute; right: 6px; top: 6px; display: flex; align-items: center; gap: 5px; padding: 5px 6px; background: rgb(7 10 6 / 92%); color: #a9ca89; font: 500 6px/1 var(--font-mono-custom), monospace; letter-spacing: .08em; text-transform: uppercase; }
-.living-tab i { width: 4px; height: 4px; border-radius: 50%; background: var(--terminal); box-shadow: 0 0 7px rgb(167 203 124 / 80%); }
-.photo-tab { position: absolute; right: 6px; top: 6px; display: flex; align-items: center; gap: 4px; padding: 5px 6px; background: rgb(13 12 10 / 92%); color: #d8bb78; font: 500 6px/1 var(--font-mono-custom), monospace; letter-spacing: .08em; text-transform: uppercase; }
 .wall-caption { max-width: 1840px; margin: 22px auto 0; display: flex; justify-content: space-between; gap: 20px; color: #80776b; font: 10px/1.5 var(--font-mono-custom), monospace; letter-spacing: .05em; }
 .wall-caption p { margin: 0; }
 .wall-caption p:first-child span { display: inline-grid; place-items: center; width: 17px; height: 17px; margin-right: 6px; border: 1px solid #5d5548; color: var(--brass); border-radius: 50%; }
