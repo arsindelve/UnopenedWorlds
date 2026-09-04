@@ -74,23 +74,23 @@ aws s3 sync dist/client s3://unopenedworlds-site-576431164672/ \
   --profile delve --delete
 ```
 
+For scale, a deploy of the whole site is about 100 objects and 36 MiB, and
+finishes in well under a minute. If the object count is far off that, the
+build is wrong—stop rather than letting `--delete` act on it.
+
 Then invalidate CloudFront. HTML and the RSC payload must not be served stale,
 and `_next/` assets are content-hashed so they do not need it, but a full
 invalidation is cheap at this size and avoids reasoning about which paths
-changed:
+changed. It usually completes in well under a minute. This creates one and
+waits on it — run it instead of a bare `create-invalidation`, not as well as,
+or you will fire two:
 
 ```bash
-aws cloudfront create-invalidation \
-  --distribution-id E35YERO8DMUUWV --paths '/*' --profile delve
+ID=$(aws cloudfront create-invalidation --distribution-id E35YERO8DMUUWV --paths '/*' --profile delve --query 'Invalidation.Id' --output text); until [ "$(aws cloudfront get-invalidation --distribution-id E35YERO8DMUUWV --id "$ID" --profile delve --query 'Invalidation.Status' --output text)" = Completed ]; do sleep 20; done; echo "$ID Completed"
 ```
 
-Invalidations take a few minutes. Check one with:
-
-```bash
-aws cloudfront get-invalidation \
-  --distribution-id E35YERO8DMUUWV --id <InvalidationId> --profile delve \
-  --query 'Invalidation.Status'
-```
+Do not verify the site until this reports `Completed`. Before that you are
+reading the old build and will conclude the deploy failed when it did not.
 
 ## Verify the live site
 
@@ -104,13 +104,28 @@ Not the local dev server — the real one, after the invalidation completes.
   and no box edge is clipped.
 - The archive drawer's links open.
 
+Check the bytes the CDN is actually serving, not the ones on disk. Pulling an
+image back down catches a stale cache and confirms the metadata rules held:
+
+```bash
+curl -s -o /tmp/live.jpg https://unopenedworlds.com/collection/seastalker-front.jpg && python3 -c "from PIL import Image; ex=Image.open('/tmp/live.jpg').getexif(); print('exif tags:', len(ex), '| gps tags:', len(ex.get_ifd(0x8825)))"
+```
+
+Both counts must be zero. Published photographs carry no location data.
+
 ## Permissions
 
 Deploy commands mutate a public website, so an agent running them may be
 blocked by a permission prompt or an auto-approval classifier. That is working
-as intended. Either approve the specific commands, or hand the four commands
-above to Michael to run. Do not route around a denial by reaching for a
-different tool to perform the same write.
+as intended.
+
+This blocked once already, and the failure is easy to misread: credentials,
+profile, and permissions were all correct, and the dry run had already
+succeeded. Only the write was refused. So do not respond by switching profiles,
+re-checking `sts get-caller-identity`, or reaching for a different AWS client to
+perform the same write—none of that is the problem, and the last one is
+circumventing the denial rather than resolving it. Say plainly what was blocked,
+and let Michael either approve it or run the commands himself.
 
 ## Rollback
 

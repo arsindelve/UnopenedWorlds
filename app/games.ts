@@ -28,7 +28,7 @@ export const games: Game[] = [
   { slug: 'beyond-zork', title: 'Beyond Zork', year: 1987, author: 'Brian Moriarty', image: 'beyond.jpg', tribute: 'Parser fiction meets role-playing game, complete with statistics, combat, and a living map.' },
   { slug: 'suspended', title: 'Suspended', year: 1983, author: 'Michael Berlyn', image: 'suspended.jpg', sealed: false, tribute: 'Six robots, six kinds of perception, and one of interactive fiction’s most audacious physical packages.' },
   { slug: 'infidel', title: 'Infidel', year: 1983, author: 'Michael Berlyn', image: 'infidel.jpg', tribute: 'An archaeological adventure unafraid to make its player character the sharpest trap of all.' },
-  { slug: 'hollywood-hijinx', title: 'Hollywood Hijinx', year: 1987, author: 'Dave Anderson', image: 'hollywood.jpg', tribute: 'One eccentric estate, ten hidden treasures, and old Hollywood rebuilt as a puzzle box.' },
+  { slug: 'hollywood-hijinx', title: 'Hollywood Hijinx', year: 1986, author: 'Dave Anderson', image: 'hollywood.jpg', tribute: 'One eccentric estate, ten hidden treasures, and old Hollywood rebuilt as a puzzle box.' },
 
   { slug: 'lurking-horror', title: 'The Lurking Horror', year: 1987, author: 'Dave Lebling', image: 'lurking.jpg', tribute: 'A blizzard, a university network, and something ancient moving beneath the machine room.' },
   { slug: 'leather-goddesses', title: 'Leather Goddesses of Phobos', shortTitle: 'Leather Goddesses', year: 1986, author: 'Steve Meretzky', image: 'leather.jpg', tribute: 'Pulp science fiction with three naughtiness settings and absolutely no shortage of nerve. Should Michael have owned this as a kid? Probably not. But he didn’t get the jokes anyway.' },
