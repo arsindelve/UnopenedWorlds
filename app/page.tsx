@@ -77,6 +77,17 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/bureaucracy-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Commodore 128 copy—including the taut shrink-wrap and its glare across Douglas Adams’s name, the platform banner naming the 1541/1571 disk and 80-column monitor, and the intact ISBN panel on the back. Historical materials remain with the preservation projects that made them available.',
   },
+  trinity: {
+    edition: 'Michael’s sealed IBM PC copy',
+    front: '/collection/trinity-front.jpg',
+    back: '/collection/trinity-back.jpg',
+    thumbnail: '/collection/trinity-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/trinity/trinity.html',
+    feelies: 'https://gallery.guetech.org/trinity/trinity.html',
+    map: 'https://www.mocagh.org/infocom/trinity-map-front.pdf',
+    manual: 'https://www.mocagh.org/infocom/trinity-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed IBM PC copy—including the original $23.00 store sticker still riding the corner of the title, the shrink-wrap seams along the spine, and the intact ISBN panel on the back. Trinity shipped with a map of the test site, The Illustrated Story of the Atom Bomb, a decorated sundial, and instructions for folding a paper crane. Historical materials remain with the preservation projects that made them available.',
+  },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
     front: '/collection/hollywood-hijinx-front.jpg',
