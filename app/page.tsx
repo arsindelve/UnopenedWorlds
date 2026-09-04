@@ -20,9 +20,36 @@ const galleryPages: Record<string, string> = {
   'plundered-hearts': 'plundered/plundered.html', suspect: 'suspect/suspect.html',
 };
 
+type CollectionPhotography = {
+  edition: string;
+  front: string;
+  back: string;
+  thumbnail: string;
+  archivePage: string;
+  feelies: string;
+  map: string;
+  manual: string;
+  note: string;
+};
+
+const collectionPhotography: Record<string, CollectionPhotography> = {
+  seastalker: {
+    edition: 'Michael’s sealed Apple II copy',
+    front: '/collection/seastalker-front.jpg',
+    back: '/collection/seastalker-back.jpg',
+    thumbnail: '/collection/seastalker-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/seastalker/seastalker.html',
+    feelies: 'https://gallery.guetech.org/seastalker/seastalker.html',
+    map: 'https://gallery.guetech.org/seastalker/nautical-chart.jpg',
+    manual: 'https://infodoc.plover.net/manuals/temp/seastalk.pdf',
+    note: 'Front and back photographs document Michael’s sealed Apple II copy—including its original store sticker and the beautifully imperfect shrink-wrap that kept this world unopened. Historical materials remain with the preservation projects that made them available.',
+  },
+};
+
 export default function Home() {
   const [selected, setSelected] = useState<Game | null>(null);
   const [photoSide, setPhotoSide] = useState<'front' | 'back'>('front');
+  const selectedPhotography = selected ? collectionPhotography[selected.slug] : undefined;
 
   return (
     <main>
@@ -104,7 +131,8 @@ export default function Home() {
           <div className="game-grid">
             {games.map((game, index) => {
               const isLivingWorld = game.slug === 'zork-i' || game.slug === 'planetfall';
-              const hasCollectionPhotos = game.slug === 'seastalker';
+              const photography = collectionPhotography[game.slug];
+              const hasCollectionPhotos = Boolean(photography);
               return (
               <button
                 id={isLivingWorld ? `game-${game.slug}` : undefined}
@@ -115,7 +143,7 @@ export default function Home() {
                 style={{ '--index': index } as CSSProperties}
               >
                 <span className="frame-lip"><span className="frame-mat">
-                  <img src={`/archive/${game.image}`} alt={`${game.title} grey-box cover`} />
+                  <img src={photography?.thumbnail ?? `/archive/${game.image}`} alt={`${game.title} grey-box cover`} />
                   <span className="glass-sheen" aria-hidden="true" />
                 </span></span>
                 <span className="object-label"><span>{String(index + 1).padStart(2, '0')} · {game.year}</span><strong>{game.shortTitle ?? game.title}</strong></span>
@@ -140,7 +168,7 @@ export default function Home() {
       </footer>
 
       <Dialog open={selected !== null} onOpenChange={(open) => !open && setSelected(null)}>
-        <DialogContent className={`exhibit-dialog ${selected?.slug === 'zork-i' ? 'living-dialog living-dialog--zork' : ''} ${selected?.slug === 'planetfall' ? 'living-dialog living-dialog--planetfall' : ''} ${selected?.slug === 'seastalker' ? 'photographed-dialog' : ''}`} showCloseButton>
+        <DialogContent className={`exhibit-dialog ${selected?.slug === 'zork-i' ? 'living-dialog living-dialog--zork' : ''} ${selected?.slug === 'planetfall' ? 'living-dialog living-dialog--planetfall' : ''} ${selectedPhotography ? 'photographed-dialog' : ''}`} showCloseButton>
           {selected?.slug === 'zork-i' ? <>
             <DialogTitle className="sr-only">Playable Zork I exhibit</DialogTitle>
             <DialogDescription className="sr-only">Learn about NewZork and open a playable Zork I session.</DialogDescription>
@@ -166,40 +194,40 @@ export default function Home() {
                 <a className="gateway-launch" href="https://planetfall.ai/">Enter Planetfall.ai <ArrowUpRight size={15} /></a>
               </div>
             </article>
-          </> : selected?.slug === 'seastalker' ? <article className="photographed-exhibit">
+          </> : selected && selectedPhotography ? <article className="photographed-exhibit">
             <div className="collection-photo-panel">
               <div className="collection-photo-frame">
                 <img
-                  className={`collection-photo collection-photo--${photoSide}`}
-                  src={`/collection/seastalker-${photoSide}.jpg`}
-                  alt={`${photoSide === 'front' ? 'Front' : 'Back'} of Michael’s sealed Seastalker box`}
+                  className={`collection-photo collection-photo--${selected.slug} collection-photo--${photoSide}`}
+                  src={selectedPhotography[photoSide]}
+                  alt={`${photoSide === 'front' ? 'Front' : 'Back'} of ${selectedPhotography.edition}`}
                 />
               </div>
               <div className="collection-photo-controls">
-                <p><Camera size={15} /><span>Michael’s sealed Apple II copy</span></p>
-                <div role="group" aria-label="Choose a side of the Seastalker box">
+                <p><Camera size={15} /><span>{selectedPhotography.edition}</span></p>
+                <div role="group" aria-label={`Choose a side of the ${selected.title} box`}>
                   <button type="button" aria-pressed={photoSide === 'front'} onClick={() => setPhotoSide('front')}>Front</button>
                   <button type="button" aria-pressed={photoSide === 'back'} onClick={() => setPhotoSide('back')}>Back</button>
                 </div>
               </div>
             </div>
             <div className="exhibit-story photographed-story">
-              <p className="terminal-line">&gt; EXAMINE SEASTALKER</p>
+              <p className="terminal-line">&gt; EXAMINE {selected.title.toUpperCase()}</p>
               <p className="exhibit-year">INFOCOM · {selected.year}</p>
               <DialogTitle className="exhibit-title">{selected.title}</DialogTitle>
-              <DialogDescription className="sr-only">Front and back photographs of Michael’s sealed Seastalker box.</DialogDescription>
+              <DialogDescription className="sr-only">Front and back photographs of {selectedPhotography.edition}.</DialogDescription>
               <p className="byline">A work by {selected.author}</p>
               <p className="tribute">{selected.tribute}</p>
               <div className="exhibit-divider" />
               <div className="archive-drawer">
                 <div><p className="drawer-label">THE ARCHIVE DRAWER</p><h3>The world beyond the box.</h3></div>
                 <div className="archive-items">
-                  <a href={`https://gallery.guetech.org/${galleryPages[selected.slug]}`} target="_blank" rel="noreferrer"><PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} /></a>
-                  <a href="https://gallery.guetech.org/seastalker/seastalker.html" target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>
-                  <a href="https://gallery.guetech.org/seastalker/nautical-chart.jpg" target="_blank" rel="noreferrer">Nautical chart <ArrowUpRight size={13} /></a>
-                  <a href="https://infodoc.plover.net/manuals/temp/seastalk.pdf" target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>
+                  <a href={selectedPhotography.archivePage} target="_blank" rel="noreferrer"><PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} /></a>
+                  <a href={selectedPhotography.feelies} target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>
+                  <a href={selectedPhotography.map} target="_blank" rel="noreferrer">Map <ArrowUpRight size={13} /></a>
+                  <a href={selectedPhotography.manual} target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>
                 </div>
-                <p className="drawer-note">Front and back photographs document Michael’s sealed Apple II copy—including its original store sticker and the beautifully imperfect shrink-wrap that kept this world unopened. Historical materials remain with the preservation projects that made them available.</p>
+                <p className="drawer-note">{selectedPhotography.note}</p>
               </div>
             </div>
           </article> : selected && <article className="exhibit">

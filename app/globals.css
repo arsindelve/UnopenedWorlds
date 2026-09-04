@@ -183,9 +183,9 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 .photographed-dialog { width: min(1380px, calc(100vw - 40px)); }
 .photographed-exhibit { display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(390px, .72fr); min-height: 720px; }
 .collection-photo-panel { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 21px; padding: clamp(38px, 4vw, 64px); border-right: 1px solid #383127; background: radial-gradient(circle at 50% 42%, #373025, #13110e 70%); }
-.collection-photo-frame { width: 100%; aspect-ratio: 1.55; overflow: hidden; border: 1px solid #4e4538; background: #ddd8cf; box-shadow: 0 34px 55px rgb(0 0 0 / 68%); }
-.collection-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 52%; }
-.collection-photo--front { object-position: center 53%; }
+.collection-photo-frame { width: 100%; aspect-ratio: 5 / 6; overflow: hidden; border: 1px solid #4e4538; background: #ddd8cf; box-shadow: 0 34px 55px rgb(0 0 0 / 68%); }
+.collection-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; transform: scale(1.2); }
+.collection-photo--seastalker.collection-photo--back { object-position: center 50%; transform: scaleX(1.2) scaleY(1.15); }
 .collection-photo-controls { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
 .collection-photo-controls > p { display: flex; align-items: center; gap: 8px; margin: 0; color: #8e8577; font: 500 8px/1.4 var(--font-mono-custom), monospace; letter-spacing: .09em; text-transform: uppercase; }
 .collection-photo-controls > p svg { color: var(--brass); }
