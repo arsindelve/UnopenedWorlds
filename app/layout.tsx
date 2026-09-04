@@ -6,9 +6,28 @@ const display = Cormorant_Garamond({ variable: '--font-display', subsets: ['lati
 const sans = IBM_Plex_Sans({ variable: '--font-sans-custom', subsets: ['latin'], weight: ['300', '400', '500'] });
 const mono = IBM_Plex_Mono({ variable: '--font-mono-custom', subsets: ['latin'], weight: ['400', '500'] });
 
+const title = 'Unopened Worlds — Infocom, Preserved and Reimagined';
+const description = 'All thirty-two of Infocom’s grey-box adventures on one wall—thirty-one still sealed, one still sought—photographed copy by copy, with two of their worlds brought back to life by AI.';
+const siteUrl = 'https://unopenedworlds.com';
+
 export const metadata: Metadata = {
-  title: 'Unopened Worlds — Infocom, Preserved and Reimagined',
-  description: 'A personal collection of Infocom’s 32 grey-box text adventures—31 sealed, one sought—and two AI projects bringing their worlds back to life.',
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    siteName: 'Unopened Worlds',
+    title,
+    description,
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'The thirty-two Infocom grey boxes arranged on a collector’s wall' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: ['/og-image.jpg'],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
