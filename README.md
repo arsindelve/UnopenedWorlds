@@ -40,7 +40,8 @@ Detailed photography of the actual copies and deeper game-by-game exhibits will
 replace the temporary reference imagery.
 
 The repeatable ingestion and presentation process is documented in the
-[Collection Photography Runbook](COLLECTION_PHOTOGRAPHY_RUNBOOK.md).
+[Collection Photography Runbook](COLLECTION_PHOTOGRAPHY_RUNBOOK.md), and
+publishing is documented in the [Deployment Runbook](DEPLOYMENT_RUNBOOK.md).
 
 ## Architecture
 
