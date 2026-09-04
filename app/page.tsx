@@ -88,6 +88,16 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/trinity-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed IBM PC copy—including the original $23.00 store sticker still riding the corner of the title, the shrink-wrap seams along the spine, and the intact ISBN panel on the back. Trinity shipped with a map of the test site, The Illustrated Story of the Atom Bomb, a decorated sundial, and instructions for folding a paper crane. Historical materials remain with the preservation projects that made them available.',
   },
+  hitchhiker: {
+    edition: 'Michael’s sealed Apple II copy',
+    front: '/collection/hitchhiker-front.jpg',
+    back: '/collection/hitchhiker-back.jpg',
+    thumbnail: '/collection/hitchhiker-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/hhgttg/hhgttg.html',
+    feelies: 'https://gallery.guetech.org/hhgttg/hhgttg.html',
+    manual: 'https://www.mocagh.org/infocom/hhgtg-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed Apple II copy—including the Software Publishers Association platinum seal, the bonus-checks sticker that expired in March 1988, and the later Mediagenic distribution label applied to the back. The package shipped with a Don’t Panic! button, authentic fluff, peril-sensitive sunglasses, a microscopic space fleet, and no tea; it needed no map. Historical materials remain with the preservation projects that made them available.',
+  },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
     front: '/collection/hollywood-hijinx-front.jpg',
