@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type CSSProperties } from 'react';
-import { ArrowDown, ArrowUpRight, Camera, PackageOpen, Search } from 'lucide-react';
+import { Archive, ArrowDown, ArrowUpRight, Bot, Camera, Check, Copy, Gamepad2, Heart, PackageOpen, Search } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { games, type Game } from './games';
 import { ZorkExhibit } from './ZorkExhibit';
@@ -44,12 +44,74 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://infodoc.plover.net/manuals/temp/seastalk.pdf',
     note: 'Front and back photographs document Michael’s sealed Apple II copy—including its original store sticker and the beautifully imperfect shrink-wrap that kept this world unopened. Historical materials remain with the preservation projects that made them available.',
   },
+  moonmist: {
+    edition: 'Michael’s sealed IBM PC copy',
+    front: '/collection/moonmist-front.jpg',
+    back: '/collection/moonmist-back.jpg',
+    thumbnail: '/collection/moonmist-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/moonmist/moonmist.html',
+    feelies: 'https://gallery.guetech.org/moonmist/moonmist.html',
+    map: 'https://www.mocagh.org/infocom/moonmist-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/moonmist-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed IBM PC copy—including two layers of original store pricing and the creases, glare, and shrink-wrap seams that make this particular unopened world unmistakably its own. Historical materials remain with the preservation projects that made them available.',
+  },
 };
+
+const collectionBadgeDefinitions = [
+  { id: 'played-as-kid', label: 'Owned and played as a kid', Icon: Gamepad2 },
+  { id: 'childhood-box', label: 'Still has the childhood box', Icon: Archive },
+  { id: 'unsealed-copy', label: 'Has an unsealed intact copy', Icon: PackageOpen },
+  { id: 'childhood-favorite', label: 'Favorite as a kid', Icon: Heart },
+  { id: 'finished-as-kid', label: 'Finished as a kid', Icon: Check },
+  { id: 'ai-recreation', label: 'AI-enhanced recreation', Icon: Bot },
+  { id: 'second-sealed-copy', label: 'Second sealed copy — lesser condition', Icon: Copy },
+] as const;
+
+type CollectionBadgeId = (typeof collectionBadgeDefinitions)[number]['id'];
+
+const collectionBadges: Partial<Record<string, CollectionBadgeId[]>> = {
+  enchanter: ['unsealed-copy'],
+  sorcerer: ['unsealed-copy'],
+  wishbringer: ['played-as-kid'],
+  ballyhoo: ['childhood-box', 'finished-as-kid'],
+  bureaucracy: ['played-as-kid'],
+  'zork-zero': ['played-as-kid'],
+  'zork-i': ['played-as-kid', 'finished-as-kid', 'ai-recreation'],
+  'beyond-zork': ['played-as-kid', 'finished-as-kid'],
+  'lurking-horror': ['played-as-kid', 'unsealed-copy', 'childhood-favorite', 'finished-as-kid'],
+  'leather-goddesses': ['played-as-kid', 'unsealed-copy', 'finished-as-kid'],
+  planetfall: ['played-as-kid', 'childhood-box', 'unsealed-copy', 'childhood-favorite', 'ai-recreation'],
+  stationfall: ['unsealed-copy'],
+  amfv: ['unsealed-copy', 'childhood-favorite', 'finished-as-kid', 'second-sealed-copy'],
+  hitchhiker: ['played-as-kid', 'finished-as-kid'],
+  trinity: ['played-as-kid', 'unsealed-copy', 'childhood-favorite', 'finished-as-kid', 'second-sealed-copy'],
+  starcross: ['second-sealed-copy'],
+  seastalker: [],
+  moonmist: ['played-as-kid', 'childhood-box', 'finished-as-kid'],
+  'the-witness': ['unsealed-copy'],
+  sherlock: ['unsealed-copy'],
+  'plundered-hearts': ['played-as-kid', 'finished-as-kid'],
+};
+
+function BadgeMarks({ badges, expanded = false }: { badges: CollectionBadgeId[]; expanded?: boolean }) {
+  const definitions = collectionBadgeDefinitions.filter(({ id }) => badges.includes(id));
+  return (
+    <span className={`badge-marks ${expanded ? 'badge-marks--expanded' : ''}`} aria-label={definitions.map(({ label }) => label).join(', ')}>
+      {definitions.map(({ id, label, Icon }) => (
+        <span className={`collection-badge collection-badge--${id}`} title={label} key={id}>
+          <Icon size={expanded ? 13 : 8} aria-hidden="true" />
+          {expanded && <span>{label}</span>}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export default function Home() {
   const [selected, setSelected] = useState<Game | null>(null);
   const [photoSide, setPhotoSide] = useState<'front' | 'back'>('front');
   const selectedPhotography = selected ? collectionPhotography[selected.slug] : undefined;
+  const selectedBadges = selected ? collectionBadges[selected.slug] ?? [] : [];
 
   return (
     <main>
@@ -133,6 +195,7 @@ export default function Home() {
               const isLivingWorld = game.slug === 'zork-i' || game.slug === 'planetfall';
               const photography = collectionPhotography[game.slug];
               const hasCollectionPhotos = Boolean(photography);
+              const badges = collectionBadges[game.slug] ?? [];
               return (
               <button
                 id={isLivingWorld ? `game-${game.slug}` : undefined}
@@ -146,13 +209,29 @@ export default function Home() {
                   <img src={photography?.thumbnail ?? `/archive/${game.image}`} alt={`${game.title} grey-box cover`} />
                   <span className="glass-sheen" aria-hidden="true" />
                 </span></span>
-                <span className="object-label"><span>{String(index + 1).padStart(2, '0')} · {game.year}</span><strong>{game.shortTitle ?? game.title}</strong></span>
+                <span className="object-label">
+                  <span className="object-label-meta">
+                    <span>{String(index + 1).padStart(2, '0')} · {game.year}</span>
+                    {badges.length > 0 && <BadgeMarks badges={badges} />}
+                  </span>
+                  <strong>{game.shortTitle ?? game.title}</strong>
+                </span>
                 {game.sealed === false && <span className="sought-tab"><Search size={10} /> sealed copy sought</span>}
                 {isLivingWorld && <span className="living-tab"><i /> world online</span>}
                 {hasCollectionPhotos && <span className="photo-tab"><Camera size={9} /> collection photos</span>}
               </button>
               );
             })}
+          </div>
+        </div>
+
+        <div className="badge-key" aria-label="Collector badge key">
+          <div className="badge-key-heading">
+            <p>THE COLLECTOR’S KEY / PERSONAL HISTORY</p>
+            <span>Each mark records Michael’s history without touching the cover art.</span>
+          </div>
+          <div className="badge-key-items">
+            {collectionBadgeDefinitions.map(({ id }) => <BadgeMarks badges={[id]} expanded key={id} />)}
           </div>
         </div>
 
@@ -217,6 +296,10 @@ export default function Home() {
               <DialogTitle className="exhibit-title">{selected.title}</DialogTitle>
               <DialogDescription className="sr-only">Front and back photographs of {selectedPhotography.edition}.</DialogDescription>
               <p className="byline">A work by {selected.author}</p>
+              {selectedBadges.length > 0 && <div className="personal-history">
+                <p>MICHAEL’S HISTORY WITH THIS WORLD</p>
+                <BadgeMarks badges={selectedBadges} expanded />
+              </div>}
               <p className="tribute">{selected.tribute}</p>
               <div className="exhibit-divider" />
               <div className="archive-drawer">
@@ -241,6 +324,10 @@ export default function Home() {
               <DialogTitle className="exhibit-title">{selected.title}</DialogTitle>
               <DialogDescription className="sr-only">Collection exhibit for {selected.title}</DialogDescription>
               <p className="byline">A work by {selected.author}</p>
+              {selectedBadges.length > 0 && <div className="personal-history">
+                <p>MICHAEL’S HISTORY WITH THIS WORLD</p>
+                <BadgeMarks badges={selectedBadges} expanded />
+              </div>}
               <p className="tribute">{selected.tribute}</p>
               <div className="exhibit-divider" />
               <div className="archive-drawer">
