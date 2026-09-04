@@ -22,6 +22,7 @@ const galleryPages: Record<string, string> = {
 
 export default function Home() {
   const [selected, setSelected] = useState<Game | null>(null);
+  const [photoSide, setPhotoSide] = useState<'front' | 'back'>('front');
 
   return (
     <main>
@@ -103,13 +104,14 @@ export default function Home() {
           <div className="game-grid">
             {games.map((game, index) => {
               const isLivingWorld = game.slug === 'zork-i' || game.slug === 'planetfall';
+              const hasCollectionPhotos = game.slug === 'seastalker';
               return (
               <button
                 id={isLivingWorld ? `game-${game.slug}` : undefined}
-                className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''} ${isLivingWorld ? 'shadowbox--living' : ''}`}
+                className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''} ${isLivingWorld ? 'shadowbox--living' : ''} ${hasCollectionPhotos ? 'shadowbox--photographed' : ''}`}
                 key={game.slug}
-                onClick={() => setSelected(game)}
-                aria-label={`${isLivingWorld ? 'Enter the living exhibit for' : 'Examine'} ${game.title}${game.sealed === false ? ', sealed copy sought' : ''}`}
+                onClick={() => { setPhotoSide('front'); setSelected(game); }}
+                aria-label={`${isLivingWorld ? 'Enter the living exhibit for' : 'Examine'} ${game.title}${game.sealed === false ? ', sealed copy sought' : ''}${hasCollectionPhotos ? ', collection photographs available' : ''}`}
                 style={{ '--index': index } as CSSProperties}
               >
                 <span className="frame-lip"><span className="frame-mat">
@@ -119,6 +121,7 @@ export default function Home() {
                 <span className="object-label"><span>{String(index + 1).padStart(2, '0')} · {game.year}</span><strong>{game.shortTitle ?? game.title}</strong></span>
                 {game.sealed === false && <span className="sought-tab"><Search size={10} /> sealed copy sought</span>}
                 {isLivingWorld && <span className="living-tab"><i /> world online</span>}
+                {hasCollectionPhotos && <span className="photo-tab"><Camera size={9} /> collection photos</span>}
               </button>
               );
             })}
@@ -127,7 +130,7 @@ export default function Home() {
 
         <div className="wall-caption">
           <p><span>i</span> Select any box to bring the world closer. Follow the green signal to enter one.</p>
-          <p>Archival scans temporarily stand in for Michael’s collection photography.</p>
+          <p>Archival scans stand in while Michael’s collection photography is added, box by box.</p>
         </div>
       </section>
 
@@ -137,7 +140,7 @@ export default function Home() {
       </footer>
 
       <Dialog open={selected !== null} onOpenChange={(open) => !open && setSelected(null)}>
-        <DialogContent className={`exhibit-dialog ${selected?.slug === 'zork-i' ? 'living-dialog living-dialog--zork' : ''} ${selected?.slug === 'planetfall' ? 'living-dialog living-dialog--planetfall' : ''}`} showCloseButton>
+        <DialogContent className={`exhibit-dialog ${selected?.slug === 'zork-i' ? 'living-dialog living-dialog--zork' : ''} ${selected?.slug === 'planetfall' ? 'living-dialog living-dialog--planetfall' : ''} ${selected?.slug === 'seastalker' ? 'photographed-dialog' : ''}`} showCloseButton>
           {selected?.slug === 'zork-i' ? <>
             <DialogTitle className="sr-only">Playable Zork I exhibit</DialogTitle>
             <DialogDescription className="sr-only">Learn about NewZork and open a playable Zork I session.</DialogDescription>
@@ -163,7 +166,43 @@ export default function Home() {
                 <a className="gateway-launch" href="https://planetfall.ai/">Enter Planetfall.ai <ArrowUpRight size={15} /></a>
               </div>
             </article>
-          </> : selected && <article className="exhibit">
+          </> : selected?.slug === 'seastalker' ? <article className="photographed-exhibit">
+            <div className="collection-photo-panel">
+              <div className="collection-photo-frame">
+                <img
+                  className={`collection-photo collection-photo--${photoSide}`}
+                  src={`/collection/seastalker-${photoSide}.jpg`}
+                  alt={`${photoSide === 'front' ? 'Front' : 'Back'} of Michael’s sealed Seastalker box`}
+                />
+              </div>
+              <div className="collection-photo-controls">
+                <p><Camera size={15} /><span>Michael’s sealed Apple II copy</span></p>
+                <div role="group" aria-label="Choose a side of the Seastalker box">
+                  <button type="button" aria-pressed={photoSide === 'front'} onClick={() => setPhotoSide('front')}>Front</button>
+                  <button type="button" aria-pressed={photoSide === 'back'} onClick={() => setPhotoSide('back')}>Back</button>
+                </div>
+              </div>
+            </div>
+            <div className="exhibit-story photographed-story">
+              <p className="terminal-line">&gt; EXAMINE SEASTALKER</p>
+              <p className="exhibit-year">INFOCOM · {selected.year}</p>
+              <DialogTitle className="exhibit-title">{selected.title}</DialogTitle>
+              <DialogDescription className="sr-only">Front and back photographs of Michael’s sealed Seastalker box.</DialogDescription>
+              <p className="byline">A work by {selected.author}</p>
+              <p className="tribute">{selected.tribute}</p>
+              <div className="exhibit-divider" />
+              <div className="archive-drawer">
+                <div><p className="drawer-label">THE ARCHIVE DRAWER</p><h3>The world beyond the box.</h3></div>
+                <div className="archive-items">
+                  <a href={`https://gallery.guetech.org/${galleryPages[selected.slug]}`} target="_blank" rel="noreferrer"><PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} /></a>
+                  <a href="https://gallery.guetech.org/seastalker/seastalker.html" target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>
+                  <a href="https://gallery.guetech.org/seastalker/nautical-chart.jpg" target="_blank" rel="noreferrer">Nautical chart <ArrowUpRight size={13} /></a>
+                  <a href="https://infodoc.plover.net/manuals/temp/seastalk.pdf" target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>
+                </div>
+                <p className="drawer-note">Front and back photographs document Michael’s sealed Apple II copy—including its original store sticker and the beautifully imperfect shrink-wrap that kept this world unopened. Historical materials remain with the preservation projects that made them available.</p>
+              </div>
+            </div>
+          </article> : selected && <article className="exhibit">
             <div className="exhibit-visual">
               <div className="exhibit-cover"><img src={`/archive/${selected.image}`} alt={`${selected.title} box cover`} /></div>
               <div className="photo-status"><Camera size={16} /><span>Your collection photograph will replace this archival scan.</span></div>
