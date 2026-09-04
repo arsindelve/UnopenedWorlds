@@ -98,6 +98,17 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/hhgtg-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Apple II copy—including the Software Publishers Association platinum seal, the bonus-checks sticker that expired in March 1988, and the later Mediagenic distribution label applied to the back. The package shipped with a Don’t Panic! button, authentic fluff, peril-sensitive sunglasses, a microscopic space fleet, and no tea; it needed no map. Historical materials remain with the preservation projects that made them available.',
   },
+  amfv: {
+    edition: 'Michael’s sealed Amiga copy',
+    front: '/collection/amfv-front.jpg',
+    back: '/collection/amfv-back.jpg',
+    thumbnail: '/collection/amfv-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/amfv/amfv.html',
+    feelies: 'https://gallery.guetech.org/amfv/amfv.html',
+    map: 'https://www.mocagh.org/infocom/amfv-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/amfv-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed Amiga copy—including the shrink-wrap sheen drawn across Perry Simm’s face and the intact ISBN panel on the back. The package shipped with the latest hardcopy issue of Dakota Online, a full-colour map of Rockvil, South Dakota, a 21st-century plastic pen, and a Class One Security Mode Access Decoder. Historical materials remain with the preservation projects that made them available.',
+  },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
     front: '/collection/hollywood-hijinx-front.jpg',
@@ -115,8 +126,8 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     thumbnail: '/collection/leather-goddesses-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/leather/leather.html',
     feelies: 'https://gallery.guetech.org/leather/leather.html',
-    map: 'https://www.mocagh.org/infocom/leathergoddesses-map.pdf',
-    manual: 'https://www.mocagh.org/infocom/leathergoddesses-manual.pdf',
+    map: 'https://www.mocagh.org/infocom/lgop-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/lgop-manual.pdf',
     note: 'Front and back photographs document Michael’s Amiga copy—with its fluorescent-striped border, original shrink-wrap, and exuberant promise of three playing modes. Historical materials remain with the preservation projects that made them available.',
   },
 };
@@ -392,7 +403,7 @@ export default function Home() {
                 <p>MICHAEL’S HISTORY WITH THIS WORLD</p>
                 <BadgeMarks badges={selectedBadges} expanded />
               </div>}
-              <p className="tribute">{selected.tribute}</p>
+              <p className={`tribute ${selected.tribute.length > 240 ? 'tribute--long' : ''}`}>{selected.tribute}</p>
               <div className="exhibit-divider" />
               <div className="archive-drawer">
                 <div><p className="drawer-label">THE ARCHIVE DRAWER</p><h3>The world beyond the box.</h3></div>
@@ -420,7 +431,7 @@ export default function Home() {
                 <p>MICHAEL’S HISTORY WITH THIS WORLD</p>
                 <BadgeMarks badges={selectedBadges} expanded />
               </div>}
-              <p className="tribute">{selected.tribute}</p>
+              <p className={`tribute ${selected.tribute.length > 240 ? 'tribute--long' : ''}`}>{selected.tribute}</p>
               <div className="exhibit-divider" />
               <div className="archive-drawer">
                 <div><p className="drawer-label">THE ARCHIVE DRAWER</p><h3>The world beyond the box.</h3></div>
