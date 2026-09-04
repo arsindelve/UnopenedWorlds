@@ -55,6 +55,17 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/moonmist-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed IBM PC copy—including two layers of original store pricing and the creases, glare, and shrink-wrap seams that make this particular unopened world unmistakably its own. Historical materials remain with the preservation projects that made them available.',
   },
+  'lurking-horror': {
+    edition: 'Michael’s sealed Commodore 64/128 copy',
+    front: '/collection/lurking-horror-front.jpg',
+    back: '/collection/lurking-horror-back.jpg',
+    thumbnail: '/collection/lurking-horror-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/lurking/lurking.html',
+    feelies: 'https://gallery.guetech.org/lurking/lurking.html',
+    map: 'https://www.mocagh.org/infocom/lurkinghorror-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/lurkinghorror-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed Commodore 64/128 copy—including its visible shrink-wrap seams and original ISBN label. Historical materials remain with the preservation projects that made them available.',
+  },
 };
 
 const collectionBadgeDefinitions = [
@@ -235,6 +246,18 @@ export default function Home() {
         <div className="wall-caption">
           <p><span>i</span> Select any box to bring the world closer. Follow the green signal to enter one.</p>
           <p>Archival scans stand in while Michael’s collection photography is added, box by box.</p>
+        </div>
+      </section>
+
+      <section className="survivors-note" aria-labelledby="survivors-heading">
+        <div className="survivors-note-inner">
+          <div>
+            <p className="room-number">A PERSONAL FOOTNOTE / OUTSIDE THE GREY BOXES</p>
+            <h2 id="survivors-heading">Four boxes that never left.</h2>
+          </div>
+          <p>
+            Beyond the thirty-two worlds on the wall, I still have my original boxes of <em>Lane Mastodon vs. the Blubbermen</em>, <em>Journey: The Quest Begins</em>, and the two <em>Lost Treasures of Infocom</em> anthologies—four more survivors from my Infocom years.
+          </p>
         </div>
       </section>
 
