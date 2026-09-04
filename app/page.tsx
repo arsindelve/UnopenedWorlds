@@ -27,7 +27,7 @@ type CollectionPhotography = {
   thumbnail: string;
   archivePage: string;
   feelies: string;
-  map: string;
+  map?: string;
   manual: string;
   note: string;
 };
@@ -65,6 +65,16 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     map: 'https://www.mocagh.org/infocom/lurkinghorror-map.pdf',
     manual: 'https://www.mocagh.org/infocom/lurkinghorror-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Commodore 64/128 copy—including its visible shrink-wrap seams and original ISBN label. Historical materials remain with the preservation projects that made them available.',
+  },
+  'hollywood-hijinx': {
+    edition: 'Michael’s sealed Atari ST copy',
+    front: '/collection/hollywood-hijinx-front.jpg',
+    back: '/collection/hollywood-hijinx-back.jpg',
+    thumbnail: '/collection/hollywood-hijinx-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/hollywood/hollywood.html',
+    feelies: 'https://gallery.guetech.org/hollywood/hollywood.html',
+    manual: 'https://www.mocagh.org/infocom/hhijinx-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed Atari ST copy—including the taut shrink-wrap and its glare across the cover, the platform banner naming the 3½-inch Atari ST release, and the intact ISBN panel on the back. Hollywood Hijinx shipped without a map; its feelies were a copy of TinselWorld, Aunt Hildegarde’s will, an autographed photo of Uncle Buddy, and a lucky palm tree swizzle stick. Historical materials remain with the preservation projects that made them available.',
   },
   'leather-goddesses': {
     edition: 'Michael’s Amiga copy',
@@ -357,7 +367,7 @@ export default function Home() {
                 <div className="archive-items">
                   <a href={selectedPhotography.archivePage} target="_blank" rel="noreferrer"><PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} /></a>
                   <a href={selectedPhotography.feelies} target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>
-                  <a href={selectedPhotography.map} target="_blank" rel="noreferrer">Map <ArrowUpRight size={13} /></a>
+                  {selectedPhotography.map && <a href={selectedPhotography.map} target="_blank" rel="noreferrer">Map <ArrowUpRight size={13} /></a>}
                   <a href={selectedPhotography.manual} target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>
                 </div>
                 <p className="drawer-note">{selectedPhotography.note}</p>
