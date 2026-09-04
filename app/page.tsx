@@ -66,7 +66,25 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/lurkinghorror-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Commodore 64/128 copy—including its visible shrink-wrap seams and original ISBN label. Historical materials remain with the preservation projects that made them available.',
   },
+  'leather-goddesses': {
+    edition: 'Michael’s Amiga copy',
+    front: '/collection/leather-goddesses-front.jpg',
+    back: '/collection/leather-goddesses-back.jpg',
+    thumbnail: '/collection/leather-goddesses-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/leather/leather.html',
+    feelies: 'https://gallery.guetech.org/leather/leather.html',
+    map: 'https://www.mocagh.org/infocom/leathergoddesses-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/leathergoddesses-manual.pdf',
+    note: 'Front and back photographs document Michael’s Amiga copy—with its fluorescent-striped border, original shrink-wrap, and exuberant promise of three playing modes. Historical materials remain with the preservation projects that made them available.',
+  },
 };
+
+const keptBoxes = [
+  { title: 'Journey: The Quest Begins', label: 'Role-Play Chronicles', image: '/kept-boxes/journey.jpg' },
+  { title: 'ZorkQuest II: The Crystal of Doom', label: 'Infocomics / No. 2', image: '/kept-boxes/zorkquest-2.jpg' },
+  { title: 'The Lost Treasures of Infocom', label: 'Classic anthology / 20 games', image: '/kept-boxes/lost-treasures-1.jpg' },
+  { title: 'The Lost Treasures of Infocom II', label: 'Classic anthology / 11 games', image: '/kept-boxes/lost-treasures-2.jpg' },
+] as const;
 
 const collectionBadgeDefinitions = [
   { id: 'played-as-kid', label: 'Owned and played as a kid', Icon: Gamepad2 },
@@ -88,7 +106,7 @@ const collectionBadges: Partial<Record<string, CollectionBadgeId[]>> = {
   bureaucracy: ['played-as-kid'],
   'zork-zero': ['played-as-kid'],
   'zork-i': ['played-as-kid', 'finished-as-kid', 'ai-recreation'],
-  'beyond-zork': ['played-as-kid', 'finished-as-kid'],
+  'beyond-zork': ['played-as-kid', 'unsealed-copy', 'finished-as-kid'],
   'lurking-horror': ['played-as-kid', 'unsealed-copy', 'childhood-favorite', 'finished-as-kid'],
   'leather-goddesses': ['played-as-kid', 'unsealed-copy', 'finished-as-kid'],
   planetfall: ['played-as-kid', 'childhood-box', 'unsealed-copy', 'childhood-favorite', 'ai-recreation'],
@@ -256,8 +274,19 @@ export default function Home() {
             <h2 id="survivors-heading">Four boxes that never left.</h2>
           </div>
           <p>
-            Beyond the thirty-two worlds on the wall, I still have my original boxes of <em>Lane Mastodon vs. the Blubbermen</em>, <em>Journey: The Quest Begins</em>, and the two <em>Lost Treasures of Infocom</em> anthologies—four more survivors from my Infocom years.
+            Beyond the thirty-two worlds on the wall, I still have the original boxes of <em>Journey: The Quest Begins</em>, <em>ZorkQuest II: The Crystal of Doom</em>, and both <em>Lost Treasures of Infocom</em> anthologies—four more survivors from my Infocom years.
           </p>
+        </div>
+        <div className="kept-box-grid" aria-label="Other original Infocom boxes Michael still has">
+          {keptBoxes.map((box) => (
+            <figure className="kept-box-card" key={box.title}>
+              <div className="kept-box-photo"><img src={box.image} alt={box.title} /></div>
+              <figcaption>
+                <span>{box.label}</span>
+                <strong>{box.title}</strong>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 

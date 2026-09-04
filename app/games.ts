@@ -31,7 +31,7 @@ export const games: Game[] = [
   { slug: 'hollywood-hijinx', title: 'Hollywood Hijinx', year: 1987, author: 'Dave Anderson', image: 'hollywood.jpg', tribute: 'One eccentric estate, ten hidden treasures, and old Hollywood rebuilt as a puzzle box.' },
 
   { slug: 'lurking-horror', title: 'The Lurking Horror', year: 1987, author: 'Dave Lebling', image: 'lurking.jpg', tribute: 'A blizzard, a university network, and something ancient moving beneath the machine room.' },
-  { slug: 'leather-goddesses', title: 'Leather Goddesses of Phobos', shortTitle: 'Leather Goddesses', year: 1986, author: 'Steve Meretzky', image: 'leather.jpg', tribute: 'Pulp science fiction with three naughtiness settings and absolutely no shortage of nerve.' },
+  { slug: 'leather-goddesses', title: 'Leather Goddesses of Phobos', shortTitle: 'Leather Goddesses', year: 1986, author: 'Steve Meretzky', image: 'leather.jpg', tribute: 'Pulp science fiction with three naughtiness settings and absolutely no shortage of nerve. Should Michael have owned this as a kid? Probably not. But he didn’t get the jokes anyway.' },
   { slug: 'planetfall', title: 'Planetfall', year: 1983, author: 'Steve Meretzky', image: 'planetfall.jpg', tribute: 'A mop, a doomed planet, and Floyd—the moment a parser made thousands of players feel loss.' },
   { slug: 'stationfall', title: 'Stationfall', year: 1987, author: 'Steve Meretzky', image: 'stationfall.jpg', tribute: 'Floyd returns to a station full of paperwork, peril, and one deeply suspicious ostrich.' },
   { slug: 'amfv', title: 'A Mind Forever Voyaging', shortTitle: 'A Mind Forever Voyaging', year: 1985, author: 'Steve Meretzky', image: 'amfv.jpg', tribute: 'Interactive fiction grew up, looked decades ahead, and returned with a warning.' },
