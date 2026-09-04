@@ -212,7 +212,7 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 .collection-photo-frame { width: 100%; aspect-ratio: 5 / 6; overflow: hidden; border: 1px solid #4e4538; background: #ddd8cf; box-shadow: 0 34px 55px rgb(0 0 0 / 68%); }
 .collection-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; transform: scale(1.2); }
 .collection-photo--seastalker.collection-photo--back { object-position: center 50%; transform: scaleX(1.2) scaleY(1.15); }
-.collection-photo--moonmist, .collection-photo--lurking-horror, .collection-photo--hollywood-hijinx, .collection-photo--bureaucracy, .collection-photo--trinity, .collection-photo--hitchhiker { object-position: center; transform: none; }
+.collection-photo--moonmist, .collection-photo--lurking-horror, .collection-photo--hollywood-hijinx, .collection-photo--bureaucracy, .collection-photo--trinity, .collection-photo--hitchhiker, .collection-photo--amfv { object-position: center; transform: none; }
 .collection-photo--leather-goddesses { object-fit: contain; object-position: center; transform: none; }
 .collection-photo-controls { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
 .collection-photo-controls > p { display: flex; align-items: center; gap: 8px; margin: 0; color: #8e8577; font: 500 8px/1.4 var(--font-mono-custom), monospace; letter-spacing: .09em; text-transform: uppercase; }
@@ -261,6 +261,8 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 .personal-history { max-width: 600px; margin: -12px 0 32px; padding: 15px 0 17px; border-top: 1px solid #3b342a; border-bottom: 1px solid #3b342a; }
 .personal-history > p { margin: 0 0 11px; color: #71695e; font: 500 7px/1 var(--font-mono-custom), monospace; letter-spacing: .14em; }
 .tribute { max-width: 600px; margin: 0; color: #d7cdbc; font: 400 clamp(21px, 2.1vw, 30px)/1.35 var(--font-display), serif; }
+/* A tribute long enough to be an essay steps down so the drawer stays reachable. */
+.tribute--long { font-size: clamp(16px, 1.35vw, 21px); line-height: 1.5; }
 .exhibit-divider { width: 42px; height: 1px; margin: 42px 0 32px; background: var(--brass); }
 .archive-drawer { max-width: 590px; display: grid; grid-template-columns: 1fr auto; gap: 18px 32px; }
 .archive-drawer h3 { margin: 0; font: 500 23px/1.1 var(--font-display), serif; }
