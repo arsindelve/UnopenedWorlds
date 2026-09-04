@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, type CSSProperties } from 'react';
+import { useSyncExternalStore, useState, type CSSProperties } from 'react';
 import { Archive, ArrowDown, ArrowUpRight, Bot, Camera, Check, Copy, Gamepad2, Heart, PackageOpen, Search } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
-import { games, type Game } from './games';
+import { games } from './games';
 import { ZorkExhibit } from './ZorkExhibit';
 
 const galleryPages: Record<string, string> = {
@@ -189,9 +189,31 @@ function BadgeMarks({ badges, expanded = false }: { badges: CollectionBadgeId[];
   );
 }
 
+// Which exhibit is open lives in the URL, so any box can be linked to directly
+// and the browser's Back button closes the one you opened.
+const GAME_PARAM = 'game';
+const urlListeners = new Set<() => void>();
+
+function subscribeToUrl(onChange: () => void) {
+  urlListeners.add(onChange);
+  window.addEventListener('popstate', onChange);
+  return () => { urlListeners.delete(onChange); window.removeEventListener('popstate', onChange); };
+}
+
+function navigate(search: string) {
+  window.history.pushState(null, '', search || window.location.pathname);
+  urlListeners.forEach((notify) => notify());
+}
+
 export default function Home() {
-  const [selected, setSelected] = useState<Game | null>(null);
-  const [photoSide, setPhotoSide] = useState<'front' | 'back'>('front');
+  const search = useSyncExternalStore(subscribeToUrl, () => window.location.search, () => '');
+  const selected = games.find((game) => game.slug === new URLSearchParams(search).get(GAME_PARAM)) ?? null;
+
+  // Keyed by slug so navigating between exhibits always opens on the front.
+  const [photo, setPhoto] = useState<{ slug: string; side: 'front' | 'back' }>({ slug: '', side: 'front' });
+  const photoSide = selected && photo.slug === selected.slug ? photo.side : 'front';
+  const setPhotoSide = (side: 'front' | 'back') => setPhoto({ slug: selected?.slug ?? '', side });
+
   const selectedPhotography = selected ? collectionPhotography[selected.slug] : undefined;
   const selectedBadges = selected ? collectionBadges[selected.slug] ?? [] : [];
 
@@ -283,7 +305,7 @@ export default function Home() {
                 id={isLivingWorld ? `game-${game.slug}` : undefined}
                 className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''} ${isLivingWorld ? 'shadowbox--living' : ''} ${hasCollectionPhotos ? 'shadowbox--photographed' : ''}`}
                 key={game.slug}
-                onClick={() => { setPhotoSide('front'); setSelected(game); }}
+                onClick={() => navigate(`?${GAME_PARAM}=${game.slug}`)}
                 aria-label={`${isLivingWorld ? 'Enter the living exhibit for' : 'Examine'} ${game.title}${game.sealed === false ? ', sealed copy sought' : ''}${hasCollectionPhotos ? ', collection photographs available' : ''}`}
                 style={{ '--index': index } as CSSProperties}
               >
@@ -348,7 +370,7 @@ export default function Home() {
         <a href="https://gallery.guetech.org/" target="_blank" rel="noreferrer">Archival imagery: The Infocom Gallery <ArrowUpRight size={14} /></a>
       </footer>
 
-      <Dialog open={selected !== null} onOpenChange={(open) => !open && setSelected(null)}>
+      <Dialog open={selected !== null} onOpenChange={(open) => !open && navigate('')}>
         <DialogContent className={`exhibit-dialog ${selected?.slug === 'zork-i' ? 'living-dialog living-dialog--zork' : ''} ${selected?.slug === 'planetfall' ? 'living-dialog living-dialog--planetfall' : ''} ${selectedPhotography ? 'photographed-dialog' : ''}`} showCloseButton>
           {selected?.slug === 'zork-i' ? <>
             <DialogTitle className="sr-only">Playable Zork I exhibit</DialogTitle>
