@@ -46,8 +46,14 @@ writes no EXIF unless asked, so saving through it is enough — but confirm it:
 len(Image.open(out).getexif())    # must be 0
 ```
 
+Strip metadata only after the rotation is in the pixels. An orientation tag is
+an instruction to the browser, so removing it from a file whose pixels are
+still sideways silently turns that image on its side on the live site. Files
+prepared through `exif_transpose` above are already upright and safe.
+
 ImageMagick is not installed on this machine. Use Pillow, with `sips` only for
-the HEIC-to-JPEG conversion.
+the HEIC-to-JPEG conversion, and `jpegtran -copy none` when metadata has to
+come off a finished file without re-encoding it.
 
 ## Finding the box edges
 
