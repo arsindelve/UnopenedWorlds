@@ -66,6 +66,17 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/lurkinghorror-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Commodore 64/128 copy—including its visible shrink-wrap seams and original ISBN label. Historical materials remain with the preservation projects that made them available.',
   },
+  bureaucracy: {
+    edition: 'Michael’s sealed Commodore 128 copy',
+    front: '/collection/bureaucracy-front.jpg',
+    back: '/collection/bureaucracy-back.jpg',
+    thumbnail: '/collection/bureaucracy-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/bureaucracy/bureaucracy.html',
+    feelies: 'https://gallery.guetech.org/bureaucracy/bureaucracy.html',
+    map: 'https://www.mocagh.org/infocom/bureaucracy-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/bureaucracy-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed Commodore 128 copy—including the taut shrink-wrap and its glare across Douglas Adams’s name, the platform banner naming the 1541/1571 disk and 80-column monitor, and the intact ISBN panel on the back. Historical materials remain with the preservation projects that made them available.',
+  },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
     front: '/collection/hollywood-hijinx-front.jpg',
