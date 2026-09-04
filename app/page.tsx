@@ -190,8 +190,8 @@ export default function Home() {
           </h1>
         </div>
         <div className="intro-copy">
-          <p className="intro-orientation">In the 1980s, Infocom created some of the most literate and imaginative computer games ever made: text adventures that turned words into explorable worlds.</p>
-          <p className="intro-collection">This is my collection of all 32 releases in the company’s iconic grey-box format: 31 still sealed, one left to find.</p>
+          <p className="intro-orientation">In the 1980s, Infocom shipped worlds with no pictures in them. You typed a sentence, and the machine wrote back—in prose so good the pictures arrived anyway.</p>
+          <p className="intro-collection">All 32 grey-box releases are here. 31 are still sealed. One is still out there.</p>
           <p className="intro-live-note"><span /> Two of those original worlds are being brought back to life with AI.</p>
           <a href="#collection"><ArrowDown size={15} /> Enter the collection</a>
         </div>
