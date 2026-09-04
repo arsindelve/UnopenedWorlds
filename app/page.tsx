@@ -235,7 +235,7 @@ export default function Home() {
                 style={{ '--index': index } as CSSProperties}
               >
                 <span className="frame-lip"><span className="frame-mat">
-                  <img src={photography?.thumbnail ?? `/archive/${game.image}`} alt={`${game.title} grey-box cover`} />
+                  <img src={photography?.thumbnail ?? `/archive/${game.image}`} alt={`${game.title} grey-box cover`} loading="lazy" decoding="async" />
                   <span className="glass-sheen" aria-hidden="true" />
                 </span></span>
                 <span className="object-label">
@@ -280,7 +280,7 @@ export default function Home() {
         <div className="kept-box-grid" aria-label="Other original Infocom boxes Michael still has">
           {keptBoxes.map((box) => (
             <figure className="kept-box-card" key={box.title}>
-              <div className="kept-box-photo"><img src={box.image} alt={box.title} /></div>
+              <div className="kept-box-photo"><img src={box.image} alt={box.title} loading="lazy" decoding="async" /></div>
               <figcaption>
                 <span>{box.label}</span>
                 <strong>{box.title}</strong>
@@ -306,7 +306,7 @@ export default function Home() {
             <DialogDescription className="sr-only">Learn about the Planetfall AI project and enter the full experience.</DialogDescription>
             <article className="planetfall-gateway">
               <a className="gateway-cover" href="https://planetfall.ai/" aria-label="Enter Planetfall AI">
-                <span className="gateway-frame"><img src={`/archive/${selected.image}`} alt={`${selected.title} grey-box cover`} /></span>
+                <span className="gateway-frame"><img src={`/archive/${selected.image}`} alt={`${selected.title} grey-box cover`} decoding="async" /></span>
                 <span><i /> World online</span>
               </a>
               <div className="gateway-story">
@@ -329,6 +329,7 @@ export default function Home() {
                   className={`collection-photo collection-photo--${selected.slug} collection-photo--${photoSide}`}
                   src={selectedPhotography[photoSide]}
                   alt={`${photoSide === 'front' ? 'Front' : 'Back'} of ${selectedPhotography.edition}`}
+                  decoding="async"
                 />
               </div>
               <div className="collection-photo-controls">
@@ -364,7 +365,7 @@ export default function Home() {
             </div>
           </article> : selected && <article className="exhibit">
             <div className="exhibit-visual">
-              <div className="exhibit-cover"><img src={`/archive/${selected.image}`} alt={`${selected.title} box cover`} /></div>
+              <div className="exhibit-cover"><img src={`/archive/${selected.image}`} alt={`${selected.title} box cover`} decoding="async" /></div>
               <div className="photo-status"><Camera size={16} /><span>Your collection photograph will replace this archival scan.</span></div>
             </div>
             <div className="exhibit-story">
