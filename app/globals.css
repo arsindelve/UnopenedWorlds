@@ -217,7 +217,7 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 .collection-photo-controls { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
 .collection-photo-controls > p { display: flex; align-items: center; gap: 8px; margin: 0; color: #8e8577; font: 500 8px/1.4 var(--font-mono-custom), monospace; letter-spacing: .09em; text-transform: uppercase; }
 .collection-photo-controls > p svg { color: var(--brass); }
-.collection-photo-controls > div { display: flex; border: 1px solid #51483a; }
+.collection-photo-controls > div { display: flex; flex-wrap: wrap; border: 1px solid #51483a; }
 .collection-photo-controls button { min-width: 70px; height: 36px; padding: 0 15px; border: 0; background: transparent; color: #898174; cursor: pointer; font: 500 8px/1 var(--font-mono-custom), monospace; letter-spacing: .12em; text-transform: uppercase; }
 .collection-photo-controls button + button { border-left: 1px solid #51483a; }
 .collection-photo-controls button[aria-pressed='true'] { background: var(--brass); color: #100e0b; }

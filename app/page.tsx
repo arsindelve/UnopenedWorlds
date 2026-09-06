@@ -20,10 +20,17 @@ const galleryPages: Record<string, string> = {
   'plundered-hearts': 'plundered/plundered.html', suspect: 'suspect/suspect.html',
 };
 
+type Photograph = {
+  id: string;
+  label: string;
+  src: string;
+};
+
 type CollectionPhotography = {
   edition: string;
-  front: string;
-  back: string;
+  // Ordered; the first is what opens. Front and back today, and whatever else
+  // the copy has—folio, spine, feelies—as they are photographed.
+  photos: Photograph[];
   thumbnail: string;
   archivePage: string;
   feelies: string;
@@ -35,8 +42,10 @@ type CollectionPhotography = {
 const collectionPhotography: Record<string, CollectionPhotography> = {
   seastalker: {
     edition: 'Michael’s sealed Apple II copy',
-    front: '/collection/seastalker-front.jpg',
-    back: '/collection/seastalker-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/seastalker-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/seastalker-back.jpg' },
+    ],
     thumbnail: '/collection/seastalker-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/seastalker/seastalker.html',
     feelies: 'https://gallery.guetech.org/seastalker/seastalker.html',
@@ -46,8 +55,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   moonmist: {
     edition: 'Michael’s sealed IBM PC copy',
-    front: '/collection/moonmist-front.jpg',
-    back: '/collection/moonmist-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/moonmist-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/moonmist-back.jpg' },
+    ],
     thumbnail: '/collection/moonmist-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/moonmist/moonmist.html',
     feelies: 'https://gallery.guetech.org/moonmist/moonmist.html',
@@ -57,8 +68,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   'lurking-horror': {
     edition: 'Michael’s sealed Commodore 64/128 copy',
-    front: '/collection/lurking-horror-front.jpg',
-    back: '/collection/lurking-horror-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/lurking-horror-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/lurking-horror-back.jpg' },
+    ],
     thumbnail: '/collection/lurking-horror-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/lurking/lurking.html',
     feelies: 'https://gallery.guetech.org/lurking/lurking.html',
@@ -68,8 +81,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   bureaucracy: {
     edition: 'Michael’s sealed Commodore 128 copy',
-    front: '/collection/bureaucracy-front.jpg',
-    back: '/collection/bureaucracy-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/bureaucracy-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/bureaucracy-back.jpg' },
+    ],
     thumbnail: '/collection/bureaucracy-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/bureaucracy/bureaucracy.html',
     feelies: 'https://gallery.guetech.org/bureaucracy/bureaucracy.html',
@@ -79,8 +94,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   trinity: {
     edition: 'Michael’s sealed IBM PC copy',
-    front: '/collection/trinity-front.jpg',
-    back: '/collection/trinity-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/trinity-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/trinity-back.jpg' },
+    ],
     thumbnail: '/collection/trinity-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/trinity/trinity.html',
     feelies: 'https://gallery.guetech.org/trinity/trinity.html',
@@ -90,8 +107,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   hitchhiker: {
     edition: 'Michael’s sealed Apple II copy',
-    front: '/collection/hitchhiker-front.jpg',
-    back: '/collection/hitchhiker-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/hitchhiker-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/hitchhiker-back.jpg' },
+    ],
     thumbnail: '/collection/hitchhiker-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/hhgttg/hhgttg.html',
     feelies: 'https://gallery.guetech.org/hhgttg/hhgttg.html',
@@ -100,8 +119,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   amfv: {
     edition: 'Michael’s sealed Amiga copy',
-    front: '/collection/amfv-front.jpg',
-    back: '/collection/amfv-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/amfv-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/amfv-back.jpg' },
+    ],
     thumbnail: '/collection/amfv-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/amfv/amfv.html',
     feelies: 'https://gallery.guetech.org/amfv/amfv.html',
@@ -111,8 +132,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   planetfall: {
     edition: 'Michael’s sealed IBM PC copy',
-    front: '/collection/planetfall-front.jpg',
-    back: '/collection/planetfall-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/planetfall-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/planetfall-back.jpg' },
+    ],
     thumbnail: '/collection/planetfall-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/planetfall/planetfall.html',
     feelies: 'https://gallery.guetech.org/planetfall/planetfall.html',
@@ -122,8 +145,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
-    front: '/collection/hollywood-hijinx-front.jpg',
-    back: '/collection/hollywood-hijinx-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/hollywood-hijinx-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/hollywood-hijinx-back.jpg' },
+    ],
     thumbnail: '/collection/hollywood-hijinx-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/hollywood/hollywood.html',
     feelies: 'https://gallery.guetech.org/hollywood/hollywood.html',
@@ -132,8 +157,10 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
   },
   'leather-goddesses': {
     edition: 'Michael’s Amiga copy',
-    front: '/collection/leather-goddesses-front.jpg',
-    back: '/collection/leather-goddesses-back.jpg',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/leather-goddesses-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/leather-goddesses-back.jpg' },
+    ],
     thumbnail: '/collection/leather-goddesses-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/leather/leather.html',
     feelies: 'https://gallery.guetech.org/leather/leather.html',
@@ -220,12 +247,15 @@ export default function Home() {
   const search = useSyncExternalStore(subscribeToUrl, () => window.location.search, () => '');
   const selected = games.find((game) => game.slug === new URLSearchParams(search).get(GAME_PARAM)) ?? null;
 
-  // Keyed by slug so navigating between exhibits always opens on the front.
-  const [photo, setPhoto] = useState<{ slug: string; side: 'front' | 'back' }>({ slug: '', side: 'front' });
-  const photoSide = selected && photo.slug === selected.slug ? photo.side : 'front';
-  const setPhotoSide = (side: 'front' | 'back') => setPhoto({ slug: selected?.slug ?? '', side });
+  // Keyed by slug so moving between exhibits always opens on the first photograph.
+  const [photo, setPhoto] = useState<{ slug: string; id: string }>({ slug: '', id: '' });
 
   const selectedPhotography = selected ? collectionPhotography[selected.slug] : undefined;
+  const photos = selectedPhotography?.photos ?? [];
+  const activePhoto = (selected && photo.slug === selected.slug
+    ? photos.find(({ id }) => id === photo.id)
+    : undefined) ?? photos[0];
+  const showPhoto = (id: string) => setPhoto({ slug: selected?.slug ?? '', id });
   const selectedBadges = selected ? collectionBadges[selected.slug] ?? [] : [];
 
   return (
@@ -413,17 +443,18 @@ export default function Home() {
             <div className="collection-photo-panel">
               <div className="collection-photo-frame">
                 <img
-                  className={`collection-photo collection-photo--${selected.slug} collection-photo--${photoSide}`}
-                  src={selectedPhotography[photoSide]}
-                  alt={`${photoSide === 'front' ? 'Front' : 'Back'} of ${selectedPhotography.edition}`}
+                  className={`collection-photo collection-photo--${selected.slug} collection-photo--${activePhoto.id}`}
+                  src={activePhoto.src}
+                  alt={`${activePhoto.label} of ${selectedPhotography.edition}`}
                   decoding="async"
                 />
               </div>
               <div className="collection-photo-controls">
                 <p><Camera size={15} /><span>{selectedPhotography.edition}</span></p>
-                <div role="group" aria-label={`Choose a side of the ${selected.title} box`}>
-                  <button type="button" aria-pressed={photoSide === 'front'} onClick={() => setPhotoSide('front')}>Front</button>
-                  <button type="button" aria-pressed={photoSide === 'back'} onClick={() => setPhotoSide('back')}>Back</button>
+                <div role="group" aria-label={`Choose a photograph of ${selected.title}`}>
+                  {photos.map(({ id, label }) => (
+                    <button type="button" key={id} aria-pressed={id === activePhoto.id} onClick={() => showPhoto(id)}>{label}</button>
+                  ))}
                 </div>
               </div>
             </div>
