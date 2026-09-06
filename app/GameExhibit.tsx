@@ -21,9 +21,14 @@ export function GameExhibit({ slug }: { slug: string }) {
   const front = photos.find(({ id }) => id === 'front');
   const back = photos.find(({ id }) => id === 'back');
   const others = photos.filter(({ id }) => id !== 'front' && id !== 'back');
+  const ownMap = photos.find(({ role }) => role === 'map');
+  const ownManual = photos.find(({ role }) => role === 'manual');
 
   const [view, setView] = useState<'front' | 'back' | 'other'>('front');
   const [zoomed, setZoomed] = useState<Photograph | null>(null);
+  // Opens whole, so a map or an opened manual is legible at a glance; one click
+  // goes to actual pixels, which is where the shrink-wrap and the print live.
+  const [actualSize, setActualSize] = useState(false);
   const active = view === 'back' ? back ?? front : front ?? photos[0];
   const caption = view === 'other'
     ? `${others.length} more ${others.length === 1 ? 'photograph' : 'photographs'} of this world`
@@ -53,7 +58,7 @@ export function GameExhibit({ slug }: { slug: string }) {
                       type="button"
                       key={photo.id}
                       className="photo-gallery-item"
-                      onClick={() => setZoomed(photo)}
+                      onClick={() => { setActualSize(false); setZoomed(photo); }}
                       aria-label={`Look closely at ${photo.label} of ${game.title}`}
                     >
                       <span className="photo-gallery-frame">
@@ -67,7 +72,7 @@ export function GameExhibit({ slug }: { slug: string }) {
                 <button
                   type="button"
                   className="collection-photo-frame collection-photo-frame--zoomable"
-                  onClick={() => setZoomed(active)}
+                  onClick={() => { setActualSize(false); setZoomed(active); }}
                   aria-label={`Look closely at the ${active.label.toLowerCase()} of ${game.title}`}
                 >
                   <img
@@ -123,8 +128,12 @@ export function GameExhibit({ slug }: { slug: string }) {
               </a>
               {photography ? <>
                 <a href={photography.feelies} target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>
-                {photography.map && <a href={photography.map} target="_blank" rel="noreferrer">Map <ArrowUpRight size={13} /></a>}
-                <a href={photography.manual} target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>
+                {ownMap
+                  ? <button type="button" onClick={() => { setActualSize(false); setZoomed(ownMap); }}>Map <Maximize2 size={13} /></button>
+                  : photography.map && <a href={photography.map} target="_blank" rel="noreferrer">Map <ArrowUpRight size={13} /></a>}
+                {ownManual
+                  ? <button type="button" onClick={() => { setActualSize(false); setZoomed(ownManual); }}>Manual <Maximize2 size={13} /></button>
+                  : <a href={photography.manual} target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>}
               </> : <><span>Feelies</span><span>Map</span><span>Manual</span></>}
             </div>
             <p className="drawer-note">
@@ -168,9 +177,17 @@ export function GameExhibit({ slug }: { slug: string }) {
 
       {zoomed && (
         <div className="photo-zoom" role="dialog" aria-modal="true" aria-label={`${zoomed.label} of ${game.title}, full size`}>
-          <div className="photo-zoom-scroll">
-            <img src={zoomed.src} alt={`${zoomed.label} of ${photography.edition}, full size`} />
+          <div className={`photo-zoom-scroll ${actualSize ? 'photo-zoom-scroll--actual' : ''}`}>
+            <img
+              src={zoomed.src}
+              alt={`${zoomed.label} of ${photography.edition}, full size`}
+              onClick={() => setActualSize((on) => !on)}
+              role="presentation"
+            />
           </div>
+          <button type="button" className="photo-zoom-size" onClick={() => setActualSize((on) => !on)}>
+            {actualSize ? 'Fit to screen' : 'Actual size'}
+          </button>
           <button type="button" className="photo-zoom-close" onClick={() => setZoomed(null)} aria-label="Close the full-size photograph">
             <X size={16} />
           </button>

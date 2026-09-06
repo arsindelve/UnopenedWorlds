@@ -24,6 +24,9 @@ export type Photograph = {
   // the folio, the reissues and the feelies arrive, and they are not all "the
   // sealed copy".
   caption?: string;
+  // Once Michael has photographed his own map or manual, the archive drawer
+  // should open that rather than sending people to someone else's scan.
+  role?: 'map' | 'manual';
 };
 
 export type CollectionPhotography = {
@@ -139,8 +142,10 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'folio-back', label: 'Folio back', src: '/collection/planetfall-folio-back.jpg', caption: 'The 1983 folio edition' },
       { id: 'solid-gold-front', label: 'Solid Gold front', src: '/collection/planetfall-solid-gold-front.jpg', caption: 'The Solid Gold reissue, Apple II' },
       { id: 'solid-gold-back', label: 'Solid Gold back', src: '/collection/planetfall-solid-gold-back.jpg', caption: 'The Solid Gold reissue, Apple II' },
-      { id: 'stellar-patrol', label: 'Brochure', src: '/collection/planetfall-stellar-patrol.jpg', caption: 'Today’s Stellar Patrol, the recruitment brochure from the package' },
-      { id: 'invisiclues-map', label: 'InvisiClues map', src: '/collection/planetfall-invisiclues-map.jpg', caption: 'The official InvisiClues map of Complex One and Complex Two' },
+      { id: 'manual-cover', label: 'Manual, cover', src: '/collection/planetfall-stellar-patrol.jpg', caption: 'The folio manual — Today’s Stellar Patrol', role: 'manual' },
+      { id: 'manual-spread', label: 'Manual, spread', src: '/collection/planetfall-manual-spread.jpg', caption: 'The folio manual, opened — talking to Planetfall' },
+      { id: 'manual-back', label: 'Manual, back', src: '/collection/planetfall-manual-back.jpg', caption: 'The folio manual, closing pages' },
+      { id: 'invisiclues-map', label: 'InvisiClues map', src: '/collection/planetfall-invisiclues-map.jpg', caption: 'The official InvisiClues map of Complex One and Complex Two', role: 'map' },
       { id: 'will', label: 'Will', src: '/collection/planetfall-will.jpg', caption: 'The Emergency Last Will and Testament — Infocom’s joke, printed on the reverse of the map' },
       { id: 'will-inside', label: 'Will, inside', src: '/collection/planetfall-will-inside.jpg', caption: 'The Emergency Last Will and Testament, opened' },
       { id: 'postcard-ramos', label: 'Ramos II postcard', src: '/collection/planetfall-postcard-ramos.jpg', caption: 'Postcard from Ramos II, from the package' },
@@ -152,7 +157,7 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     feelies: 'https://gallery.guetech.org/planetfall/planetfall.html',
     map: 'https://www.mocagh.org/infocom/planetfall-map-front.pdf',
     manual: 'https://www.mocagh.org/infocom/planetfall-manual.pdf',
-    note: 'Thirteen photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; and the contents of the package—Today’s Stellar Patrol, the InvisiClues map of Complex One and Complex Two, and postcards from Ramos II and Nebulon. The map carries Infocom’s own joke on its reverse: an Emergency Last Will and Testament, which solemnly warns that the document is definitely not to be used for drawing a map of unauthorized terrain following successful Planetfall. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive. Historical materials remain with the preservation projects that made them available.',
+    note: 'Fifteen photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; and the contents of the package—the folio manual, Today’s Stellar Patrol, across three of its pages; the InvisiClues map of Complex One and Complex Two; and postcards from Ramos II and Nebulon. The map carries Infocom’s own joke on its reverse: an Emergency Last Will and Testament, which solemnly warns that the document is definitely not to be used for drawing a map of unauthorized terrain following successful Planetfall. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive. Historical materials remain with the preservation projects that made them available.',
   },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
