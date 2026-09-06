@@ -168,6 +168,17 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     thumbnail: '/collection/planetfall-thumbnail.jpg',
     note: 'Twenty-eight photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; the folio manual across six of its pages; Michael’s Planetfall map; and fifteen feelies from Michael’s own package: the Special Assignment Task Force I.D. card, postcards from Nebulon, Accardia, and Ramos II, and Michael’s seven-page Stellar Patrol diary. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive.',
   },
+  'zork-zero': {
+    edition: 'Michael’s Amiga copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/zork-zero-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/zork-zero-back.jpg' },
+    ],
+    thumbnail: '/collection/zork-zero-front.jpg',
+    archivePage: 'https://gallery.guetech.org/zork0/zork0.html',
+    feelies: 'https://gallery.guetech.org/zork0/zork0.html',
+    note: 'Front and back photographs document Michael’s Amiga copy of Zork Zero—the 1988 graphic adventure edition, with its stone-cut title treatment, on-screen hints, and the Infocom Graphic mark on the back panel.',
+  },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
     photos: [
