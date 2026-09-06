@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, ChevronLeft, ChevronRight, Maximize2, PackageOpen, Search, X } from 'lucide-react';
-import Link from 'next/link';
 import { games } from './games';
 import { collectionBadges, collectionPhotography, galleryPages, type Photograph } from './collection';
 import { BadgeMarks } from './BadgeMarks';
@@ -45,10 +44,10 @@ export function GameExhibit({ slug }: { slug: string }) {
   return (
     <main className="exhibit-page">
       <header className="site-header">
-        <Link className="wordmark" href="/" aria-label="Unopened Worlds, home">
+        <a className="wordmark" href="/" aria-label="Unopened Worlds, home">
           <span>&gt;</span> Unopened Worlds<i>_</i>
-        </Link>
-        <Link className="exhibit-back" href="/#collection"><ArrowLeft size={13} /> Back to the wall</Link>
+        </a>
+        <a className="exhibit-back" href="/#collection"><ArrowLeft size={13} /> Back to the wall</a>
       </header>
 
       <article className="exhibit-layout">
@@ -175,9 +174,9 @@ export function GameExhibit({ slug }: { slug: string }) {
       )}
 
       <nav className="exhibit-nav" aria-label="Move along the wall">
-        <Link href={`/${previous.slug}`}><ArrowLeft size={14} /><span><i>Previous on the wall</i><strong>{previous.shortTitle ?? previous.title}</strong></span></Link>
-        <Link href="/#collection">All thirty-two</Link>
-        <Link href={`/${next.slug}`}><span><i>Next on the wall</i><strong>{next.shortTitle ?? next.title}</strong></span><ArrowRight size={14} /></Link>
+        <a href={`/${previous.slug}`}><ArrowLeft size={14} /><span><i>Previous on the wall</i><strong>{previous.shortTitle ?? previous.title}</strong></span></a>
+        <a href="/#collection">All thirty-two</a>
+        <a href={`/${next.slug}`}><span><i>Next on the wall</i><strong>{next.shortTitle ?? next.title}</strong></span><ArrowRight size={14} /></a>
       </nav>
 
       {zoomed && (
