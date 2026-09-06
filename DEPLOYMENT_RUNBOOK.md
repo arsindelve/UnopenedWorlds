@@ -19,6 +19,7 @@ None of this is recorded in the code, so it is recorded here.
 | AWS CLI profile | `delve` — **not** `default`, which is an unrelated account |
 | S3 bucket | `unopenedworlds-site-576431164672` |
 | CloudFront distribution | `E35YERO8DMUUWV` |
+| CloudFront function | `unopenedworlds-html-rewrite` (viewer-request) |
 | Aliases | `unopenedworlds.com`, `www.unopenedworlds.com` |
 | Region | `us-east-1` |
 
@@ -44,8 +45,35 @@ rm -rf dist && pnpm build
 ```
 
 The static export lands in `dist/client`. It should contain `index.html`,
-`404.html`, `favicon.svg`, and the `_next/`, `archive/`, `collection/`, and
-`kept-boxes/` directories.
+`404.html`, `favicon.svg`, `og-image.jpg`, one `<slug>.html` and `<slug>.rsc`
+per game, and the `_next/`, `archive/`, `collection/`, and `kept-boxes/`
+directories. A healthy build prerenders 34 routes: the wall, 404, and the
+thirty-two games.
+
+## The URL rewrite
+
+Every game prerenders to a flat file, `planetfall.html`, but its URL is
+`/planetfall`. The S3 REST origin has no index-document or extension fallback,
+and the distribution answers a miss with `/index.html` and a 200, so without a
+rewrite every game URL silently serves the wall and gets indexed that way.
+
+`unopenedworlds-html-rewrite` (source in `infra/cloudfront-rewrite.js`) runs on
+viewer-request and appends `.html` to extensionless paths, leaving the root and
+anything with an extension alone. It is already published and attached; it only
+needs attention if the source changes:
+
+```bash
+aws cloudfront publish-function --name unopenedworlds-html-rewrite --if-match "$(aws cloudfront describe-function --name unopenedworlds-html-rewrite --profile delve --query ETag --output text)" --profile delve
+```
+
+Test before publishing, and note that the event object must be complete. A
+payload missing `version`, `context` or `viewer` fails with `ServiceUnavailable`
+and an internal-error message, which reads exactly like an AWS outage and is
+not one:
+
+```bash
+printf '{"version":"1.0","context":{"eventType":"viewer-request"},"viewer":{"ip":"1.2.3.4"},"request":{"method":"GET","uri":"/planetfall","querystring":{},"headers":{"host":{"value":"unopenedworlds.com"}},"cookies":{}}}' > /tmp/ev.json && aws cloudfront test-function --name unopenedworlds-html-rewrite --if-match "$(aws cloudfront describe-function --name unopenedworlds-html-rewrite --profile delve --query ETag --output text)" --stage DEVELOPMENT --event-object fileb:///tmp/ev.json --profile delve
+```
 
 ## Dry run first, every time
 
@@ -74,7 +102,7 @@ aws s3 sync dist/client s3://unopenedworlds-site-576431164672/ \
   --profile delve --delete
 ```
 
-For scale, a deploy of the whole site is about 100 objects and 36 MiB, and
+For scale, a deploy of the whole site is about 190 objects and 41 MiB, and
 finishes in well under a minute. If the object count is far off that, the
 build is wrong—stop rather than letting `--delete` act on it.
 
@@ -103,6 +131,13 @@ Not the local dev server — the real one, after the invalidation completes.
 - Open one photographed exhibit: front and back both load, the toggle works,
   and no box edge is clipped.
 - The archive drawer's links open.
+- Every game URL serves that game rather than the wall. The rewrite failing
+  looks like success from a browser, because the wall renders and returns 200,
+  so check the titles rather than the status codes:
+
+```bash
+for slug in planetfall zork-i trinity amfv; do curl -s "https://unopenedworlds.com/$slug" | grep -oE '<title>[^<]*' | sed 's/<title>/  /'; done
+```
 
 Check the bytes the CDN is actually serving, not the ones on disk. Pulling an
 image back down catches a stale cache and confirms the metadata rules held:
