@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, Maximize2, PackageOpen, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { games } from './games';
-import { collectionBadges, collectionPhotography, galleryPages } from './collection';
+import { collectionBadges, collectionPhotography, galleryPages, type Photograph } from './collection';
 import { BadgeMarks } from './BadgeMarks';
 import { ZorkExhibit } from './ZorkExhibit';
 
@@ -15,9 +15,19 @@ export function GameExhibit({ slug }: { slug: string }) {
   const badges = collectionBadges[slug] ?? [];
   const photos = photography?.photos ?? [];
 
-  const [activeId, setActiveId] = useState(photos[0]?.id ?? '');
-  const [zoomed, setZoomed] = useState(false);
-  const active = photos.find(({ id }) => id === activeId) ?? photos[0];
+  // Front and back are the sealed copy. Everything else the game has—other
+  // editions, feelies, books—lives behind "Other" as a gallery, so the plate
+  // stays legible however much material arrives.
+  const front = photos.find(({ id }) => id === 'front');
+  const back = photos.find(({ id }) => id === 'back');
+  const others = photos.filter(({ id }) => id !== 'front' && id !== 'back');
+
+  const [view, setView] = useState<'front' | 'back' | 'other'>('front');
+  const [zoomed, setZoomed] = useState<Photograph | null>(null);
+  const active = view === 'back' ? back ?? front : front ?? photos[0];
+  const caption = view === 'other'
+    ? `${others.length} more ${others.length === 1 ? 'photograph' : 'photographs'} of this world`
+    : active?.caption ?? photography?.edition;
 
   const previous = games[(index - 1 + games.length) % games.length];
   const next = games[(index + 1) % games.length];
@@ -34,28 +44,47 @@ export function GameExhibit({ slug }: { slug: string }) {
 
       <article className="exhibit-layout">
         <div className="exhibit-plate">
-          {active ? (
+          {photos.length > 0 && active ? (
             <>
-              <button
-                type="button"
-                className="collection-photo-frame collection-photo-frame--zoomable"
-                onClick={() => setZoomed(true)}
-                aria-label={`Look closely at the ${active.label.toLowerCase()} of ${game.title}`}
-              >
-                <img
-                  className={`collection-photo collection-photo--${slug} collection-photo--${active.id}`}
-                  src={active.src}
-                  alt={`${active.label} of ${photography.edition}`}
-                  decoding="async"
-                />
-                <span className="zoom-hint"><Maximize2 size={13} /> Look closer</span>
-              </button>
-              <div className="collection-photo-controls">
-                <p><Camera size={15} /><span>{active.caption ?? photography.edition}</span></p>
-                <div role="group" aria-label={`Choose a photograph of ${game.title}`}>
-                  {photos.map(({ id, label }) => (
-                    <button type="button" key={id} aria-pressed={id === activeId} onClick={() => setActiveId(id)}>{label}</button>
+              {view === 'other' ? (
+                <div className="photo-gallery">
+                  {others.map((photo) => (
+                    <button
+                      type="button"
+                      key={photo.id}
+                      className="photo-gallery-item"
+                      onClick={() => setZoomed(photo)}
+                      aria-label={`Look closely at ${photo.label} of ${game.title}`}
+                    >
+                      <span className="photo-gallery-frame">
+                        <img src={photo.src} alt={photo.caption ?? `${photo.label} of ${game.title}`} loading="lazy" decoding="async" />
+                      </span>
+                      <span className="photo-gallery-label">{photo.label}</span>
+                    </button>
                   ))}
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="collection-photo-frame collection-photo-frame--zoomable"
+                  onClick={() => setZoomed(active)}
+                  aria-label={`Look closely at the ${active.label.toLowerCase()} of ${game.title}`}
+                >
+                  <img
+                    className={`collection-photo collection-photo--${slug} collection-photo--${active.id}`}
+                    src={active.src}
+                    alt={`${active.label} of ${photography.edition}`}
+                    decoding="async"
+                  />
+                  <span className="zoom-hint"><Maximize2 size={13} /> Look closer</span>
+                </button>
+              )}
+              <div className="collection-photo-controls">
+                <p><Camera size={15} /><span>{caption}</span></p>
+                <div role="group" aria-label={`Choose what to look at for ${game.title}`}>
+                  {front && <button type="button" aria-pressed={view === 'front'} onClick={() => setView('front')}>Front</button>}
+                  {back && <button type="button" aria-pressed={view === 'back'} onClick={() => setView('back')}>Back</button>}
+                  {others.length > 0 && <button type="button" aria-pressed={view === 'other'} onClick={() => setView('other')}>Other</button>}
                 </div>
               </div>
             </>
@@ -137,15 +166,15 @@ export function GameExhibit({ slug }: { slug: string }) {
         <Link href={`/${next.slug}`}><span><i>Next on the wall</i><strong>{next.shortTitle ?? next.title}</strong></span><ArrowRight size={14} /></Link>
       </nav>
 
-      {zoomed && active && (
-        <div className="photo-zoom" role="dialog" aria-modal="true" aria-label={`${active.label} of ${game.title}, full size`}>
+      {zoomed && (
+        <div className="photo-zoom" role="dialog" aria-modal="true" aria-label={`${zoomed.label} of ${game.title}, full size`}>
           <div className="photo-zoom-scroll">
-            <img src={active.src} alt={`${active.label} of ${photography.edition}, full size`} />
+            <img src={zoomed.src} alt={`${zoomed.label} of ${photography.edition}, full size`} />
           </div>
-          <button type="button" className="photo-zoom-close" onClick={() => setZoomed(false)} aria-label="Close the full-size photograph">
+          <button type="button" className="photo-zoom-close" onClick={() => setZoomed(null)} aria-label="Close the full-size photograph">
             <X size={16} />
           </button>
-          <p className="photo-zoom-caption">{active.caption ?? photography.edition} · {active.label}</p>
+          <p className="photo-zoom-caption">{zoomed.caption ?? photography.edition} · {zoomed.label}</p>
         </div>
       )}
     </main>
