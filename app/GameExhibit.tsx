@@ -20,15 +20,19 @@ export function GameExhibit({ slug }: { slug: string }) {
   // stays legible however much material arrives.
   const front = photos.find(({ id }) => id === 'front');
   const back = photos.find(({ id }) => id === 'back');
-  const others = photos.filter(({ id }) => id !== 'front' && id !== 'back');
+  const others = photos.filter(({ id, role }) => id !== 'front' && id !== 'back' && !role);
   const ownMap = photos.find(({ role }) => role === 'map');
   const ownManual = photos.find(({ role }) => role === 'manual');
+  const ownFeelies = photos.find(({ role }) => role === 'feelies');
 
   const [view, setView] = useState<'front' | 'back' | 'other'>('front');
   const [zoomed, setZoomed] = useState<Photograph | null>(null);
   // Opens whole, so a map or an opened manual is legible at a glance; one click
   // goes to actual pixels, which is where the shrink-wrap and the print live.
   const [actualSize, setActualSize] = useState(false);
+  const zoomSet = zoomed?.role ? photos.filter(({ role }) => role === zoomed.role) : [];
+  const zoomAt = zoomSet.findIndex(({ id }) => id === zoomed?.id);
+  const stepZoom = (by: number) => { setActualSize(false); setZoomed(zoomSet[(zoomAt + by + zoomSet.length) % zoomSet.length]); };
   const active = view === 'back' ? back ?? front : front ?? photos[0];
   const caption = view === 'other'
     ? `${others.length} more ${others.length === 1 ? 'photograph' : 'photographs'} of this world`
@@ -127,7 +131,9 @@ export function GameExhibit({ slug }: { slug: string }) {
                 <PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} />
               </a>
               {photography ? <>
-                <a href={photography.feelies} target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>
+                {ownFeelies
+                  ? <button type="button" onClick={() => { setActualSize(false); setZoomed(ownFeelies); }}>Feelies <Maximize2 size={13} /></button>
+                  : <a href={photography.feelies} target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>}
                 {ownMap
                   ? <button type="button" onClick={() => { setActualSize(false); setZoomed(ownMap); }}>Map <Maximize2 size={13} /></button>
                   : photography.map && <a href={photography.map} target="_blank" rel="noreferrer">Map <ArrowUpRight size={13} /></a>}
@@ -188,6 +194,13 @@ export function GameExhibit({ slug }: { slug: string }) {
           <button type="button" className="photo-zoom-size" onClick={() => setActualSize((on) => !on)}>
             {actualSize ? 'Fit to screen' : 'Actual size'}
           </button>
+          {zoomSet.length > 1 && (
+            <div className="photo-zoom-pager">
+              <button type="button" onClick={() => stepZoom(-1)} aria-label="Previous page"><ArrowLeft size={14} /></button>
+              <span>{zoomAt + 1} / {zoomSet.length}</span>
+              <button type="button" onClick={() => stepZoom(1)} aria-label="Next page"><ArrowRight size={14} /></button>
+            </div>
+          )}
           <button type="button" className="photo-zoom-close" onClick={() => setZoomed(null)} aria-label="Close the full-size photograph">
             <X size={16} />
           </button>
