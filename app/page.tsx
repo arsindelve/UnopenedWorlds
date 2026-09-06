@@ -2,7 +2,6 @@
 
 import type { CSSProperties } from 'react';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
 import { games } from './games';
 import { collectionBadgeDefinitions, collectionBadges, collectionPhotography } from './collection';
 import { BadgeMarks } from './BadgeMarks';
@@ -101,7 +100,7 @@ export default function Home() {
               const hasCollectionPhotos = Boolean(photography);
               const badges = collectionBadges[game.slug] ?? [];
               return (
-              <Link
+              <a
                 id={isLivingWorld ? `game-${game.slug}` : undefined}
                 href={`/${game.slug}`}
                 className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''} ${isLivingWorld ? 'shadowbox--living' : ''} ${hasCollectionPhotos ? 'shadowbox--photographed' : ''}`}
@@ -120,7 +119,7 @@ export default function Home() {
                   </span>
                   <strong>{game.shortTitle ?? game.title}</strong>
                 </span>
-              </Link>
+              </a>
               );
             })}
           </div>
