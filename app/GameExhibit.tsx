@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, Maximize2, PackageOpen, Search, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, ChevronLeft, ChevronRight, Maximize2, PackageOpen, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { games } from './games';
 import { collectionBadges, collectionPhotography, galleryPages, type Photograph } from './collection';
@@ -127,19 +127,19 @@ export function GameExhibit({ slug }: { slug: string }) {
           <div className="archive-drawer">
             <div><p className="drawer-label">THE ARCHIVE DRAWER</p><h2>The world beyond the box.</h2></div>
             <div className="archive-items">
-              <a href={photography?.archivePage ?? `https://gallery.guetech.org/${galleryPages[slug]}`} target="_blank" rel="noreferrer">
-                <PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} />
-              </a>
+              {photography?.archivePage
+                ? <a href={photography.archivePage} target="_blank" rel="noreferrer"><PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} /></a>
+                : !photography && <a href={`https://gallery.guetech.org/${galleryPages[slug]}`} target="_blank" rel="noreferrer"><PackageOpen size={15} /> Open archival scans <ArrowUpRight size={13} /></a>}
               {photography ? <>
                 {ownFeelies
                   ? <button type="button" onClick={() => { setActualSize(false); setZoomed(ownFeelies); }}>Feelies <Maximize2 size={13} /></button>
-                  : <a href={photography.feelies} target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>}
+                  : photography.feelies && <a href={photography.feelies} target="_blank" rel="noreferrer">Feelies <ArrowUpRight size={13} /></a>}
                 {ownMap
                   ? <button type="button" onClick={() => { setActualSize(false); setZoomed(ownMap); }}>Map <Maximize2 size={13} /></button>
                   : photography.map && <a href={photography.map} target="_blank" rel="noreferrer">Map <ArrowUpRight size={13} /></a>}
                 {ownManual
                   ? <button type="button" onClick={() => { setActualSize(false); setZoomed(ownManual); }}>Manual <Maximize2 size={13} /></button>
-                  : <a href={photography.manual} target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>}
+                  : photography.manual && <a href={photography.manual} target="_blank" rel="noreferrer">Manual <ArrowUpRight size={13} /></a>}
               </> : <><span>Feelies</span><span>Map</span><span>Manual</span></>}
             </div>
             <p className="drawer-note">
@@ -168,7 +168,6 @@ export function GameExhibit({ slug }: { slug: string }) {
                   <p>The AI does not replace Steve Meretzky&rsquo;s world. It inhabits the role of narrator&mdash;interpreting your intent, voicing the world, and making its characters responsive while preserving the authored game beneath it.</p>
                 </div>
                 <blockquote>Because Floyd deserves more than preservation. He deserves to be met again.</blockquote>
-                <a className="gateway-launch" href="https://planetfall.ai/">Enter Planetfall.ai <ArrowUpRight size={15} /></a>
               </div>
             </article>
           )}
@@ -195,11 +194,13 @@ export function GameExhibit({ slug }: { slug: string }) {
             {actualSize ? 'Fit to screen' : 'Actual size'}
           </button>
           {zoomSet.length > 1 && (
-            <div className="photo-zoom-pager">
-              <button type="button" onClick={() => stepZoom(-1)} aria-label="Previous page"><ArrowLeft size={14} /></button>
-              <span>{zoomAt + 1} / {zoomSet.length}</span>
-              <button type="button" onClick={() => stepZoom(1)} aria-label="Next page"><ArrowRight size={14} /></button>
-            </div>
+            <>
+              <button type="button" className="photo-zoom-nav photo-zoom-nav--previous" onClick={() => stepZoom(-1)} aria-label="Previous page"><ChevronLeft aria-hidden="true" /></button>
+              <button type="button" className="photo-zoom-nav photo-zoom-nav--next" onClick={() => stepZoom(1)} aria-label="Next page"><ChevronRight aria-hidden="true" /></button>
+              <div className="photo-zoom-pager" aria-label={`Page ${zoomAt + 1} of ${zoomSet.length}`}>
+                <span>{zoomAt + 1} / {zoomSet.length}</span>
+              </div>
+            </>
           )}
           <button type="button" className="photo-zoom-close" onClick={() => setZoomed(null)} aria-label="Close the full-size photograph">
             <X size={16} />

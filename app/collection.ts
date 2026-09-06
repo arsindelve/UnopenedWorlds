@@ -35,10 +35,10 @@ export type CollectionPhotography = {
   // the copy has—folio, spine, feelies—as they are photographed.
   photos: Photograph[];
   thumbnail: string;
-  archivePage: string;
-  feelies: string;
+  archivePage?: string;
+  feelies?: string;
   map?: string;
-  manual: string;
+  manual?: string;
   note: string;
 };
 
@@ -142,18 +142,31 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'folio-back', label: 'Folio back', src: '/collection/planetfall-folio-back.jpg', caption: 'The 1983 folio edition' },
       { id: 'solid-gold-front', label: 'Solid Gold front', src: '/collection/planetfall-solid-gold-front.jpg', caption: 'The Solid Gold reissue, Apple II' },
       { id: 'solid-gold-back', label: 'Solid Gold back', src: '/collection/planetfall-solid-gold-back.jpg', caption: 'The Solid Gold reissue, Apple II' },
+      { id: 'manual', label: 'Manual', src: '/collection/planetfall-manual.jpg', caption: 'Michael’s Planetfall manual — command guide', role: 'manual' },
       { id: 'manual-cover', label: 'Manual, cover', src: '/collection/planetfall-stellar-patrol.jpg', caption: 'The folio manual — Today’s Stellar Patrol', role: 'manual' },
       { id: 'manual-spread', label: 'Manual, spread', src: '/collection/planetfall-manual-spread.jpg', caption: 'The folio manual, opened — talking to Planetfall', role: 'manual' },
       { id: 'manual-skills', label: 'Manual, skills', src: '/collection/planetfall-manual-skills.jpg', caption: 'The folio manual — learn valuable skills and see the galaxy', role: 'manual' },
       { id: 'manual-command', label: 'Manual, command', src: '/collection/planetfall-manual-command.jpg', caption: 'The folio manual — take command of your tomorrow today', role: 'manual' },
       { id: 'manual-back', label: 'Manual, back', src: '/collection/planetfall-manual-back.jpg', caption: 'The folio manual, closing pages', role: 'manual' },
+      { id: 'map', label: 'Map', src: '/collection/planetfall-map.jpg', caption: 'Michael’s Planetfall map — printed guidance for navigating the Galactic Union', role: 'map' },
+      { id: 'id-card', label: 'I.D. card', src: '/collection/planetfall-id-card.jpg', caption: 'Special Assignment Task Force I.D. card', role: 'feelies' },
+      { id: 'id-card-back', label: 'I.D. card, back', src: '/collection/planetfall-id-card-back.jpg', caption: 'The I.D. card’s reverse — Ensign 7th Class, and a warning that mutilating it is punishable by death', role: 'feelies' },
+      { id: 'postcard-nebulon', label: 'Nebulon postcard', src: '/collection/planetfall-postcard-nebulon.jpg', caption: 'Postcard from Nebulon', role: 'feelies' },
+      { id: 'postcard-nebulon-back', label: 'Nebulon, back', src: '/collection/planetfall-postcard-nebulon-back.jpg', caption: 'Postcard from Nebulon, reverse', role: 'feelies' },
+      { id: 'postcard-accardia', label: 'Accardia postcard', src: '/collection/planetfall-postcard-accardia.jpg', caption: 'Postcard from Accardia', role: 'feelies' },
+      { id: 'postcard-accardia-back', label: 'Accardia, back', src: '/collection/planetfall-postcard-accardia-back.jpg', caption: 'Postcard from Accardia, reverse', role: 'feelies' },
+      { id: 'postcard-ramos', label: 'Ramos II postcard', src: '/collection/planetfall-postcard-ramos.jpg', caption: 'Postcard from Ramos II', role: 'feelies' },
+      { id: 'postcard-ramos-back', label: 'Ramos II, back', src: '/collection/planetfall-postcard-ramos-back.jpg', caption: 'Postcard from Ramos II, reverse', role: 'feelies' },
+      { id: 'diary-01', label: 'Diary, page 1', src: '/collection/planetfall-diary-01.jpg', caption: 'Michael’s Stellar Patrol diary — page 1', role: 'feelies' },
+      { id: 'diary-02', label: 'Diary, page 2', src: '/collection/planetfall-diary-02.jpg', caption: 'Michael’s Stellar Patrol diary — page 2', role: 'feelies' },
+      { id: 'diary-03', label: 'Diary, page 3', src: '/collection/planetfall-diary-03.jpg', caption: 'Michael’s Stellar Patrol diary — page 3', role: 'feelies' },
+      { id: 'diary-04', label: 'Diary, page 4', src: '/collection/planetfall-diary-04.jpg', caption: 'Michael’s Stellar Patrol diary — page 4', role: 'feelies' },
+      { id: 'diary-05', label: 'Diary, page 5', src: '/collection/planetfall-diary-05.jpg', caption: 'Michael’s Stellar Patrol diary — page 5', role: 'feelies' },
+      { id: 'diary-06', label: 'Diary, page 6', src: '/collection/planetfall-diary-06.jpg', caption: 'Michael’s Stellar Patrol diary — page 6', role: 'feelies' },
+      { id: 'diary-07', label: 'Diary, page 7', src: '/collection/planetfall-diary-07.jpg', caption: 'Michael’s Stellar Patrol diary — page 7', role: 'feelies' },
     ],
     thumbnail: '/collection/planetfall-thumbnail.jpg',
-    archivePage: 'https://gallery.guetech.org/planetfall/planetfall.html',
-    feelies: 'https://gallery.guetech.org/planetfall/planetfall.html',
-    map: 'https://www.mocagh.org/infocom/planetfall-map-front.pdf',
-    manual: 'https://www.mocagh.org/infocom/planetfall-manual.pdf',
-    note: 'Eleven photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; and the folio manual across five of its pages. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive. The map and the feelies are being rescanned; until they are here, the archive drawer points at the preservation projects that made them available.',
+    note: 'Twenty-eight photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; the folio manual across six of its pages; Michael’s Planetfall map; and fifteen feelies from Michael’s own package: the Special Assignment Task Force I.D. card, postcards from Nebulon, Accardia, and Ramos II, and Michael’s seven-page Stellar Patrol diary. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive.',
   },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
