@@ -51,7 +51,7 @@ export function GameExhibit({ slug }: { slug: string }) {
                 <span className="zoom-hint"><Maximize2 size={13} /> Look closer</span>
               </button>
               <div className="collection-photo-controls">
-                <p><Camera size={15} /><span>{photography.edition}</span></p>
+                <p><Camera size={15} /><span>{active.caption ?? photography.edition}</span></p>
                 <div role="group" aria-label={`Choose a photograph of ${game.title}`}>
                   {photos.map(({ id, label }) => (
                     <button type="button" key={id} aria-pressed={id === activeId} onClick={() => setActiveId(id)}>{label}</button>
@@ -145,7 +145,7 @@ export function GameExhibit({ slug }: { slug: string }) {
           <button type="button" className="photo-zoom-close" onClick={() => setZoomed(false)} aria-label="Close the full-size photograph">
             <X size={16} />
           </button>
-          <p className="photo-zoom-caption">{photography.edition} · {active.label}</p>
+          <p className="photo-zoom-caption">{active.caption ?? photography.edition} · {active.label}</p>
         </div>
       )}
     </main>

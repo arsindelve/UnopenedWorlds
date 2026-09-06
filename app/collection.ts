@@ -20,6 +20,10 @@ export type Photograph = {
   id: string;
   label: string;
   src: string;
+  // Overrides the game's edition line. A game holds more than one object once
+  // the folio, the reissues and the feelies arrive, and they are not all "the
+  // sealed copy".
+  caption?: string;
 };
 
 export type CollectionPhotography = {
@@ -131,13 +135,18 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     photos: [
       { id: 'front', label: 'Front', src: '/collection/planetfall-front.jpg' },
       { id: 'back', label: 'Back', src: '/collection/planetfall-back.jpg' },
+      { id: 'folio-front', label: 'Folio front', src: '/collection/planetfall-folio-front.jpg', caption: 'The 1983 folio edition' },
+      { id: 'folio-back', label: 'Folio back', src: '/collection/planetfall-folio-back.jpg', caption: 'The 1983 folio edition' },
+      { id: 'solid-gold-front', label: 'Solid Gold front', src: '/collection/planetfall-solid-gold-front.jpg', caption: 'The Solid Gold reissue, Apple II' },
+      { id: 'solid-gold-back', label: 'Solid Gold back', src: '/collection/planetfall-solid-gold-back.jpg', caption: 'The Solid Gold reissue, Apple II' },
+      { id: 'stellar-patrol', label: 'Brochure', src: '/collection/planetfall-stellar-patrol.jpg', caption: 'Today’s Stellar Patrol, the recruitment brochure from the package' },
     ],
     thumbnail: '/collection/planetfall-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/planetfall/planetfall.html',
     feelies: 'https://gallery.guetech.org/planetfall/planetfall.html',
     map: 'https://www.mocagh.org/infocom/planetfall-map-front.pdf',
     manual: 'https://www.mocagh.org/infocom/planetfall-manual.pdf',
-    note: 'Front and back photographs document Michael’s sealed IBM PC copy—including the heavy shrink-wrap sheen across the Stellar Patrol recruitment poster and, on the back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive. The package shipped with a Stellar Patrol recruitment brochure, a Special Assignment Task Force I.D. card, a personal diary, and three postcards from the Universe’s swankiest tourist traps. Historical materials remain with the preservation projects that made them available.',
+    note: 'Seven photographs: Michael’s sealed IBM PC grey box front and back, the 1983 folio edition that preceded it, the Solid Gold reissue for the Apple II, and Today’s Stellar Patrol, the recruitment brochure that shipped inside. The grey box carries a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive. The package also held a Special Assignment Task Force I.D. card, a personal diary, and three postcards from the Universe’s swankiest tourist traps. Historical materials remain with the preservation projects that made them available.',
   },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
