@@ -109,6 +109,17 @@ const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/amfv-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Amiga copy—including the shrink-wrap sheen drawn across Perry Simm’s face and the intact ISBN panel on the back. The package shipped with the latest hardcopy issue of Dakota Online, a full-colour map of Rockvil, South Dakota, a 21st-century plastic pen, and a Class One Security Mode Access Decoder. Historical materials remain with the preservation projects that made them available.',
   },
+  planetfall: {
+    edition: 'Michael’s sealed IBM PC copy',
+    front: '/collection/planetfall-front.jpg',
+    back: '/collection/planetfall-back.jpg',
+    thumbnail: '/collection/planetfall-thumbnail.jpg',
+    archivePage: 'https://gallery.guetech.org/planetfall/planetfall.html',
+    feelies: 'https://gallery.guetech.org/planetfall/planetfall.html',
+    map: 'https://www.mocagh.org/infocom/planetfall-map-front.pdf',
+    manual: 'https://www.mocagh.org/infocom/planetfall-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed IBM PC copy—including the heavy shrink-wrap sheen across the Stellar Patrol recruitment poster and, on the back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive. The package shipped with a Stellar Patrol recruitment brochure, a Special Assignment Task Force I.D. card, a personal diary, and three postcards from the Universe’s swankiest tourist traps. Historical materials remain with the preservation projects that made them available.',
+  },
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
     front: '/collection/hollywood-hijinx-front.jpg',
@@ -382,7 +393,7 @@ export default function Home() {
             <DialogDescription className="sr-only">Learn about the Planetfall AI project and enter the full experience.</DialogDescription>
             <article className="planetfall-gateway">
               <a className="gateway-cover" href="https://planetfall.ai/" aria-label="Enter Planetfall AI">
-                <span className="gateway-frame"><img src={`/archive/${selected.image}`} alt={`${selected.title} grey-box cover`} decoding="async" /></span>
+                <span className="gateway-frame"><img src={selectedPhotography?.thumbnail ?? `/archive/${selected.image}`} alt={`${selected.title} grey-box cover`} decoding="async" /></span>
                 <span><i /> World online</span>
               </a>
               <div className="gateway-story">
