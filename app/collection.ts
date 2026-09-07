@@ -143,8 +143,8 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   hitchhiker: {
     edition: 'Michael’s sealed Apple II copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/hitchhiker-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/hitchhiker-back.jpg' },
+    { id: 'front', label: 'Front', src: '/collection/hitchhiker-front.jpg', aspectRatio: '4424 / 5360' },
+    { id: 'back', label: 'Back', src: '/collection/hitchhiker-back.jpg', aspectRatio: '4424 / 5360' },
     ],
     thumbnail: '/collection/hitchhiker-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/hhgttg/hhgttg.html',
@@ -155,8 +155,8 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   amfv: {
     edition: 'Michael’s sealed Amiga copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/amfv-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/amfv-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/amfv-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/amfv-back.jpg', aspectRatio: '4424 / 5360' },
     ],
     thumbnail: '/collection/amfv-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/amfv/amfv.html',
@@ -356,6 +356,12 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
 // Recorded separately so a condition assessment can exist before a copy has
 // been photographed for its exhibit.
 export const collectionConditionAssessments: Partial<Record<string, CollectionConditionAssessment>> = {
+  hitchhiker: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
+  },
   trinity: {
     grade: 'NM',
     label: 'Near Mint',
