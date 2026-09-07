@@ -211,13 +211,12 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 .photographed-exhibit { display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(390px, .72fr); min-height: 720px; }
 .collection-photo-panel { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 21px; padding: clamp(38px, 4vw, 64px); border-right: 1px solid #383127; background: radial-gradient(circle at 50% 42%, #373025, #13110e 70%); }
 .collection-photo-frame { width: 100%; aspect-ratio: 5 / 6; overflow: hidden; border: 1px solid #4e4538; background: #ddd8cf; box-shadow: 0 34px 55px rgb(0 0 0 / 68%); }
-/* Photographs cropped to the frame's own 5:6 need no adjustment, so that is the
-   default and a newly photographed game needs no CSS at all. Only the two early
-   landscape sources still have to be zoomed to fill it. */
+/* Most photographs use the standard 5:6 frame. Only scans with a materially
+   different native shape receive a matching frame of their own. */
 .collection-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .collection-photo--front { box-sizing: border-box; border: 6px solid var(--paper); outline: 3px solid var(--brass); outline-offset: -8px; }
-.collection-photo--seastalker { object-position: center 60%; transform: scale(1.2); }
 .collection-photo--seastalker.collection-photo--back { object-position: center 50%; transform: scaleX(1.2) scaleY(1.15); }
+.collection-photo-frame--seastalker { aspect-ratio: 4448 / 5314; }
 .collection-photo--leather-goddesses { object-fit: contain; }
 .collection-photo--starcross { object-fit: contain; }
 .collection-photo-frame--starcross { aspect-ratio: 4345 / 5324; }
