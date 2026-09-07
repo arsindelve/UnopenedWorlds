@@ -75,11 +75,12 @@ export function GameExhibit({ slug }: { slug: string }) {
                 <button
                   type="button"
                   className={`collection-photo-frame collection-photo-frame--zoomable collection-photo-frame--${slug}`}
+                  style={active.aspectRatio ? { aspectRatio: active.aspectRatio } : undefined}
                   onClick={() => { setActualSize(false); setZoomed(active); }}
                   aria-label={`Look closely at the ${active.label.toLowerCase()} of ${game.title}`}
                 >
                   <img
-                    className={`collection-photo collection-photo--${slug} collection-photo--${active.id}`}
+                    className={`collection-photo collection-photo--${slug} collection-photo--${active.id}${active.aspectRatio ? ' collection-photo--native' : ''}`}
                     src={active.src}
                     alt={`${active.label} of ${photography.edition}`}
                     decoding="async"
