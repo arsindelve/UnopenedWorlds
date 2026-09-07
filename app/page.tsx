@@ -88,7 +88,11 @@ export default function Home() {
 
       <section className="gallery-room" id="collection" aria-labelledby="wall-title">
         <div className="room-heading">
-          <div><p className="room-number">ROOM 01 / THE WALL</p><h2 id="wall-title">The collector’s wall.</h2></div>
+          <div>
+            <p className="room-number">ROOM 01 / THE WALL</p>
+            <h2 id="wall-title">The collector’s wall.</h2>
+            <a className="actual-wall-link" href="/collection/actual-wall.jpg" target="_blank" rel="noreferrer">See the actual wall <ArrowUpRight size={13} /></a>
+          </div>
           <p>The real arrangement, lightly curated. Two boxes carry a signal: their worlds can be entered.</p>
         </div>
 

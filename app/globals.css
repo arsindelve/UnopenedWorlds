@@ -144,6 +144,8 @@ a { color: inherit; }
 .room-heading { max-width: 1840px; margin: 0 auto 46px; display: flex; justify-content: space-between; gap: 30px; align-items: end; }
 .room-heading h2 { margin: 0; font: 500 clamp(34px, 4.2vw, 64px)/1 var(--font-display), serif; letter-spacing: -.025em; }
 .room-heading > p { max-width: 330px; margin: 0 0 4px; color: #8f877a; font: 10px/1.6 var(--font-mono-custom), monospace; text-transform: uppercase; letter-spacing: .09em; }
+.actual-wall-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 15px; padding-bottom: 6px; border-bottom: 1px solid #67543a; color: var(--brass); font: 500 8px/1 var(--font-mono-custom), monospace; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+.actual-wall-link:hover, .actual-wall-link:focus-visible { color: var(--paper); border-color: var(--paper); outline: none; }
 .room-number { margin-bottom: 12px; }
 .shadowbox-wall { max-width: 1840px; margin: auto; padding: clamp(22px, 2.5vw, 44px); background: radial-gradient(ellipse at 50% -5%, rgb(255 232 183 / 12%), transparent 40%), linear-gradient(115deg, rgb(255 255 255 / 2%), transparent 27%), #12110f; border: 1px solid #2b271f; box-shadow: inset 0 1px rgb(255 255 255 / 3%), 0 38px 90px rgb(0 0 0 / 34%); }
 .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: clamp(18px, 1.7vw, 30px) clamp(12px, 1.25vw, 22px); }
@@ -160,7 +162,7 @@ a { color: inherit; }
 .object-label-meta > span:first-child { flex: none; color: #70695f; font: 8px/1 var(--font-mono-custom), monospace; letter-spacing: .09em; }
 .object-label strong { display: block; margin-top: 5px; overflow: hidden; color: #cfc5b5; font: 500 clamp(9px, .78vw, 12px)/1.2 var(--font-sans-custom), sans-serif; white-space: nowrap; text-overflow: ellipsis; }
 .badge-marks { display: flex; align-items: center; justify-content: flex-end; gap: 1px; }
-.collection-badge { width: 13px; height: 13px; display: inline-grid; flex: none; place-items: center; border: 1px solid #635b4d; background: #1a1814; color: #9f9687; box-shadow: inset 0 1px rgb(255 255 255 / 4%); }
+.collection-badge { width: 15px; height: 15px; display: inline-grid; flex: none; place-items: center; border: 1px solid #635b4d; background: #1a1814; color: #9f9687; box-shadow: inset 0 1px rgb(255 255 255 / 4%); }
 .collection-badge--played-as-kid { border-color: #596872; color: #91a3ad; }
 .collection-badge--childhood-box { border-color: #79663f; color: #c3a563; }
 .collection-badge--unsealed-copy { border-color: #706c63; color: #b9b2a6; }

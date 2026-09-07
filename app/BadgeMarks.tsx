@@ -8,7 +8,7 @@ export function BadgeMarks({ badges, expanded = false }: { badges: CollectionBad
     <span className={`badge-marks ${expanded ? 'badge-marks--expanded' : ''}`} aria-label={definitions.map(({ label }) => label).join(', ')}>
       {definitions.map(({ id, label, Icon }) => (
         <span className={`collection-badge collection-badge--${id}`} title={label} key={id}>
-          <Icon size={expanded ? 13 : 8} aria-hidden="true" />
+          <Icon size={expanded ? 13 : 9} aria-hidden="true" />
           {expanded && <span>{label}</span>}
         </span>
       ))}
