@@ -265,6 +265,16 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 .byline { margin: 20px 0 36px; color: #8f877b; font: 9px/1.4 var(--font-mono-custom), monospace; text-transform: uppercase; letter-spacing: .12em; }
 .personal-history { max-width: 600px; margin: -12px 0 32px; padding: 15px 0 17px; border-top: 1px solid #3b342a; border-bottom: 1px solid #3b342a; }
 .personal-history > p { margin: 0 0 11px; color: #71695e; font: 500 7px/1 var(--font-mono-custom), monospace; letter-spacing: .14em; }
+.condition-assessment { max-width: 600px; display: grid; grid-template-columns: auto 1fr; gap: 20px; margin: -10px 0 32px; padding: 16px 0 18px; border-top: 1px solid #3b342a; border-bottom: 1px solid #3b342a; }
+.condition-assessment-grade { min-width: 92px; display: grid; grid-template-columns: auto 1fr; align-items: baseline; column-gap: 8px; }
+.condition-assessment-grade > p { grid-column: 1 / -1; margin: 0 0 7px; color: #71695e; font: 500 7px/1 var(--font-mono-custom), monospace; letter-spacing: .14em; }
+.condition-assessment-grade strong { color: var(--brass); font: 500 28px/.9 var(--font-display), serif; letter-spacing: -.04em; }
+.condition-assessment-grade span { color: #d7cdbc; font: 500 9px/1 var(--font-mono-custom), monospace; letter-spacing: .08em; text-transform: uppercase; }
+.condition-assessment-detail { align-self: end; }
+.condition-assessment-modifiers { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
+.condition-assessment-modifiers span { padding: 5px 7px; border: 1px solid rgb(217 164 65 / 38%); color: #c4a36a; font: 500 7px/1 var(--font-mono-custom), monospace; letter-spacing: .1em; text-transform: uppercase; }
+.condition-assessment-detail > p { margin: 0; color: #aaa194; font-size: 12px; line-height: 1.5; }
+.condition-assessment-detail small { display: block; margin-top: 8px; color: #71695e; font: 500 7px/1.4 var(--font-mono-custom), monospace; letter-spacing: .07em; text-transform: uppercase; }
 .tribute { max-width: 600px; margin: 0; color: #d7cdbc; font: 400 clamp(21px, 2.1vw, 30px)/1.35 var(--font-display), serif; }
 /* A tribute long enough to be an essay steps down so the drawer stays reachable. */
 .tribute--long { font-size: clamp(16px, 1.35vw, 21px); line-height: 1.5; }
@@ -325,6 +335,7 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 .photo-gallery-label { display: block; margin-top: 9px; color: #9a9184; font: 500 8px/1.3 var(--font-mono-custom), monospace; letter-spacing: .1em; text-transform: uppercase; }
 @media (max-width: 1240px) { .photo-gallery { columns: 2; } }
 @media (max-width: 620px)  { .photo-gallery { columns: 1; } }
+@media (max-width: 480px) { .condition-assessment { grid-template-columns: 1fr; gap: 14px; } }
 
 .photo-zoom { position: fixed; inset: 0; z-index: 60; background: rgb(7 6 5 / 97%); animation: reveal-terminal .22s ease-out; }
 .photo-zoom-scroll { position: absolute; inset: 0; overflow: auto; display: grid; place-items: center; padding: 26px; }
