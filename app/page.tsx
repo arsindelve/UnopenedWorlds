@@ -24,7 +24,7 @@ export default function Home() {
         <div className="header-right">
           <a className="header-live-link" href="#living-worlds"><span /> 2 worlds online</a>
           <div className="collection-tally" aria-label="Collection status">
-            <span><strong>31</strong> sealed</span><b /><span><strong>1</strong> sought</span>
+            <span><strong>31</strong> sealed</span><b /><span><strong>1</strong> unsealed</span>
           </div>
         </div>
       </header>
@@ -44,7 +44,7 @@ export default function Home() {
         <div className="intro-copy">
           <p className="intro-orientation">In the 1980s, Infocom shipped worlds with no pictures in them. You typed a sentence in plain English, and the machine wrote back—in prose so good the pictures arrived anyway, assembled behind your eyes out of nothing but nouns, verbs, and nerve.</p>
           <p className="intro-collection">Between the ages of ten and twelve I had an Apple IIc, and I did not play these games so much as live in them. The drive would chatter, the screen would put me in an open field west of a white house, and the evening was gone.</p>
-          <p className="intro-collection">Thirty-two grey boxes came out of that company. Every one of them is on this wall—thirty-one still sealed, one still out there.</p>
+          <p className="intro-collection">Thirty-two grey boxes came out of that company. Every one of them is on this wall—thirty-one still sealed, one unsealed.</p>
           <p className="intro-live-note"><span /> Two of those original worlds are being brought back to life with AI.</p>
           <a href="#collection"><ArrowDown size={15} /> Enter the collection</a>
         </div>
@@ -103,9 +103,9 @@ export default function Home() {
               <a
                 id={isLivingWorld ? `game-${game.slug}` : undefined}
                 href={`/${game.slug}`}
-                className={`shadowbox ${game.sealed === false ? 'shadowbox--sought' : ''} ${isLivingWorld ? 'shadowbox--living' : ''} ${hasCollectionPhotos ? 'shadowbox--photographed' : ''}`}
+                className={`shadowbox ${game.unsealed ? 'shadowbox--unsealed' : ''} ${isLivingWorld ? 'shadowbox--living' : ''} ${hasCollectionPhotos ? 'shadowbox--photographed' : ''}`}
                 key={game.slug}
-                aria-label={`${isLivingWorld ? 'Enter the living exhibit for' : 'Examine'} ${game.title}${game.sealed === false ? ', sealed copy sought' : ''}${hasCollectionPhotos ? ', collection photographs available' : ''}`}
+                aria-label={`${isLivingWorld ? 'Enter the living exhibit for' : 'Examine'} ${game.title}${game.unsealed ? ', unsealed copy' : ''}${hasCollectionPhotos ? ', collection photographs available' : ''}`}
                 style={{ '--index': index } as CSSProperties}
               >
                 <span className="frame-lip"><span className="frame-mat">
@@ -114,7 +114,6 @@ export default function Home() {
                     alt={`${game.title} grey-box cover`}
                     loading="lazy"
                     decoding="async"
-                    style={photography?.thumbnailScale ? { '--thumbnail-scale': photography.thumbnailScale } as CSSProperties : undefined}
                   />
                   <span className="glass-sheen" aria-hidden="true" />
                 </span></span>

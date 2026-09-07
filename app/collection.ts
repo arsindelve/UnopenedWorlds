@@ -48,7 +48,6 @@ export type CollectionPhotography = {
   // the copy has—folio, spine, feelies—as they are photographed.
   photos: Photograph[];
   thumbnail: string;
-  thumbnailScale?: number;
   archivePage?: string;
   feelies?: string;
   map?: string;
@@ -103,7 +102,6 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'back', label: 'Back', src: '/collection/lurking-horror-back.jpg', aspectRatio: '4448 / 5314' },
     ],
     thumbnail: '/collection/lurking-horror-front.jpg',
-    thumbnailScale: 1.045,
     archivePage: 'https://gallery.guetech.org/lurking/lurking.html',
     feelies: 'https://gallery.guetech.org/lurking/lurking.html',
     map: 'https://www.mocagh.org/infocom/lurkinghorror-map.pdf',
@@ -119,21 +117,32 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   bureaucracy: {
     edition: 'Michael’s sealed Commodore 128 copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/bureaucracy-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/bureaucracy-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/bureaucracy-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/bureaucracy-back.jpg', aspectRatio: '4424 / 5360' },
     ],
-    thumbnail: '/collection/bureaucracy-thumbnail.jpg',
+    thumbnail: '/collection/bureaucracy-front.jpg',
     archivePage: 'https://gallery.guetech.org/bureaucracy/bureaucracy.html',
     feelies: 'https://gallery.guetech.org/bureaucracy/bureaucracy.html',
     map: 'https://www.mocagh.org/infocom/bureaucracy-map.pdf',
     manual: 'https://www.mocagh.org/infocom/bureaucracy-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Commodore 128 copy—including the taut shrink-wrap and its glare across Douglas Adams’s name, the platform banner naming the 1541/1571 disk and 80-column monitor, and the intact ISBN panel on the back. Historical materials remain with the preservation projects that made them available.',
   },
+  deadline: {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/deadline-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/deadline-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/deadline-front.jpg',
+    archivePage: 'https://gallery.guetech.org/deadline_grey/deadline.html',
+    feelies: 'https://gallery.guetech.org/deadline_grey/deadline.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
   trinity: {
     edition: 'Michael’s sealed IBM PC copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/trinity-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/trinity-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/trinity-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/trinity-back.jpg', aspectRatio: '4424 / 5360' },
     ],
     thumbnail: '/collection/trinity-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/trinity/trinity.html',
@@ -200,7 +209,6 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'diary-07', label: 'Diary, page 7', src: '/collection/planetfall-diary-07.jpg', caption: 'Michael’s Stellar Patrol diary — page 7', role: 'feelies' },
     ],
     thumbnail: '/collection/planetfall-thumbnail.jpg',
-    thumbnailScale: 1.075,
     note: 'Twenty-eight photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; the folio manual across six of its pages; Michael’s Planetfall map; and fifteen feelies from Michael’s own package: the Special Assignment Task Force I.D. card, postcards from Nebulon, Accardia, and Ramos II, and Michael’s seven-page Stellar Patrol diary. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive.',
   },
   stationfall: {
@@ -210,7 +218,6 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'back', label: 'Back', src: '/collection/stationfall-back.jpg' },
     ],
     thumbnail: '/collection/stationfall-front.jpg',
-    thumbnailScale: 1.065,
     archivePage: 'https://gallery.guetech.org/stationfall/stationfall.html',
     feelies: 'https://gallery.guetech.org/stationfall/stationfall.html',
     map: 'https://www.mocagh.org/infocom/stationfall-map.pdf',
@@ -241,6 +248,28 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     feelies: 'https://gallery.guetech.org/beyond/beyond.html',
     note: 'Front and back photographs document Michael’s sealed Macintosh copy—including its intact shrink-wrap, the original Infocom Plus presentation, and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
   },
+  suspended: {
+    edition: 'Michael’s unsealed Atari copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/suspended-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/suspended-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/suspended-front.jpg',
+    archivePage: 'https://gallery.guetech.org/suspended/suspended.html',
+    feelies: 'https://gallery.guetech.org/suspended/suspended.html',
+    note: 'Front and back photographs document Michael’s unsealed Atari copy—including the cyan-striped package border, its dramatic cryogenic cover image, and the illustrated contents panel on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
+  infidel: {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/infidel-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/infidel-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/infidel-front.jpg',
+    archivePage: 'https://gallery.guetech.org/infidel/infidel.html',
+    feelies: 'https://gallery.guetech.org/infidel/infidel.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
   'zork-zero': {
     edition: 'Michael’s Amiga copy',
     photos: [
@@ -255,10 +284,10 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   'hollywood-hijinx': {
     edition: 'Michael’s sealed Atari ST copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/hollywood-hijinx-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/hollywood-hijinx-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/hollywood-hijinx-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/hollywood-hijinx-back.jpg', aspectRatio: '4424 / 5360' },
     ],
-    thumbnail: '/collection/hollywood-hijinx-thumbnail.jpg',
+    thumbnail: '/collection/hollywood-hijinx-front.jpg',
     archivePage: 'https://gallery.guetech.org/hollywood/hollywood.html',
     feelies: 'https://gallery.guetech.org/hollywood/hollywood.html',
     manual: 'https://www.mocagh.org/infocom/hhijinx-manual.pdf',
@@ -277,7 +306,6 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'back', label: 'Back', src: '/collection/leather-goddesses-back.jpg', aspectRatio: '4424 / 5360' },
     ],
     thumbnail: '/collection/leather-goddesses-thumbnail.jpg',
-    thumbnailScale: 1.045,
     archivePage: 'https://gallery.guetech.org/leather/leather.html',
     feelies: 'https://gallery.guetech.org/leather/leather.html',
     map: 'https://www.mocagh.org/infocom/lgop-map.pdf',
@@ -361,6 +389,18 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
 // Recorded separately so a condition assessment can exist before a copy has
 // been photographed for its exhibit.
 export const collectionConditionAssessments: Partial<Record<string, CollectionConditionAssessment>> = {
+  bureaucracy: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
+  },
+  'border-zone': {
+    grade: 'F',
+    label: 'Fine',
+    modifiers: ['Sealed'],
+    note: 'A sealed, attractive, sound copy with moderate visible wear.',
+  },
   hitchhiker: {
     grade: 'NM',
     label: 'Near Mint',
@@ -378,6 +418,24 @@ export const collectionConditionAssessments: Partial<Record<string, CollectionCo
     label: 'Near Mint',
     modifiers: ['Sealed'],
     note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
+  },
+  deadline: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
+  },
+  suspended: {
+    grade: 'G',
+    label: 'Good',
+    modifiers: ['Unsealed'],
+    note: 'A sound, presentable unsealed copy with visible handling and shelf wear.',
+  },
+  infidel: {
+    grade: 'F',
+    label: 'Fine',
+    modifiers: ['Sealed'],
+    note: 'A sealed, attractive, sound copy with moderate visible wear.',
   },
   planetfall: {
     grade: 'F',
@@ -410,10 +468,10 @@ export const collectionConditionAssessments: Partial<Record<string, CollectionCo
     note: 'A well-preserved sealed copy with modest visible wear.',
   },
   suspect: {
-    grade: 'ED',
-    label: 'Excess Defects',
+    grade: 'G',
+    label: 'Good',
     modifiers: ['Sealed'],
-    note: 'Sealed, but condition issues place it one grade below Good.',
+    note: 'A sound, presentable sealed copy with visible handling and shelf wear.',
   },
   cutthroats: {
     grade: 'ED',

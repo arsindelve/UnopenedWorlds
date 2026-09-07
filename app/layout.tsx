@@ -7,7 +7,7 @@ const sans = IBM_Plex_Sans({ variable: '--font-sans-custom', subsets: ['latin'],
 const mono = IBM_Plex_Mono({ variable: '--font-mono-custom', subsets: ['latin'], weight: ['400', '500'] });
 
 const title = 'Unopened Worlds — Infocom, Preserved and Reimagined';
-const description = 'All thirty-two of Infocom’s grey-box adventures on one wall—thirty-one still sealed, one still sought—photographed copy by copy, with two of their worlds brought back to life by AI.';
+const description = 'All thirty-two of Infocom’s grey-box adventures on one wall—thirty-one still sealed and one unsealed—photographed copy by copy, with two of their worlds brought back to life by AI.';
 const siteUrl = 'https://unopenedworlds.com';
 
 export const metadata: Metadata = {

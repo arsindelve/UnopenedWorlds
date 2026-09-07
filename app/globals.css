@@ -151,7 +151,7 @@ a { color: inherit; }
 @keyframes arrive { to { opacity: 1; transform: translateY(0); } }
 .frame-lip { display: block; padding: clamp(4px, .45vw, 8px); aspect-ratio: .83; background: linear-gradient(135deg, #503a27 0%, #23170f 33%, #61462e 54%, #21170f 100%); box-shadow: 0 12px 22px rgb(0 0 0 / 52%), 0 2px 2px #000, inset 0 0 0 1px rgb(231 195 126 / 13%); transition: transform .28s ease, box-shadow .28s ease; }
 .frame-mat { position: relative; display: grid; place-items: center; height: 100%; padding: clamp(5px, .45vw, 8px); overflow: hidden; background: #080807; box-shadow: inset 0 0 17px #000; }
-.frame-mat img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.9) contrast(1.04); transform: scale(var(--thumbnail-scale, 1)); transform-origin: center; }
+.frame-mat img { display: block; width: 100%; height: 100%; object-fit: contain; filter: saturate(.9) contrast(1.04); }
 .glass-sheen { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(117deg, rgb(255 255 255 / 14%) 0%, rgb(255 255 255 / 2%) 15%, transparent 31%, transparent 72%, rgb(255 255 255 / 4%) 100%); mix-blend-mode: screen; }
 .shadowbox:hover .frame-lip, .shadowbox:focus-visible .frame-lip { transform: translateY(-6px) scale(1.018); box-shadow: 0 21px 30px rgb(0 0 0 / 70%), 0 2px 2px #000, 0 0 0 1px rgb(217 164 65 / 45%); }
 .shadowbox:focus-visible { outline: none; }
