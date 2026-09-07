@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, ChevronLeft, ChevronRight, Maximize2, PackageOpen, Search, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, ChevronLeft, ChevronRight, Maximize2, PackageOpen, X } from 'lucide-react';
 import { games } from './games';
 import { collectionBadges, collectionConditionAssessments, collectionPhotography, galleryPages, type Photograph } from './collection';
 import { BadgeMarks } from './BadgeMarks';
@@ -25,7 +25,7 @@ export function GameExhibit({ slug }: { slug: string }) {
   const badges = collectionBadges[slug] ?? [];
   const photos = photography?.photos ?? [];
 
-  // Front and back are the sealed copy. Everything else the game has—other
+  // Front and back are the collection copy. Everything else the game has—other
   // editions, feelies, books—lives behind "Other" as a gallery, so the plate
   // stays legible however much material arrives.
   const front = photos.find(({ id }) => id === 'front');
@@ -147,8 +147,6 @@ export function GameExhibit({ slug }: { slug: string }) {
           )}
 
           <p className={`tribute ${game.tribute.length > 240 ? 'tribute--long' : ''}`}>{game.tribute}</p>
-
-          {game.sealed === false && <p className="hunt-note"><Search size={14} /> The wall has this title. The hunt is for a sealed copy.</p>}
 
           <div className="exhibit-divider" />
 
