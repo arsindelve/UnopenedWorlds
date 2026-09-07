@@ -20,6 +20,9 @@ export type Photograph = {
   id: string;
   label: string;
   src: string;
+  // Full scans should retain their native proportions in the exhibit rather
+  // than being trimmed to the default 5:6 box frame.
+  aspectRatio?: string;
   // Overrides the game's edition line. A game holds more than one object once
   // the folio, the reissues and the feelies arrive, and they are not all "the
   // sealed copy".
@@ -46,8 +49,8 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   seastalker: {
     edition: 'Michael’s sealed Apple II copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/seastalker-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/seastalker-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/seastalker-front.jpg', aspectRatio: '4448 / 5314' },
+      { id: 'back', label: 'Back', src: '/collection/seastalker-back.jpg', aspectRatio: '4448 / 5314' },
     ],
     thumbnail: '/collection/seastalker-front.jpg',
     archivePage: 'https://gallery.guetech.org/seastalker/seastalker.html',
@@ -72,10 +75,10 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   'lurking-horror': {
     edition: 'Michael’s sealed Commodore 64/128 copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/lurking-horror-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/lurking-horror-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/lurking-horror-front.jpg', aspectRatio: '4448 / 5314' },
+      { id: 'back', label: 'Back', src: '/collection/lurking-horror-back.jpg', aspectRatio: '4448 / 5314' },
     ],
-    thumbnail: '/collection/lurking-horror-thumbnail.jpg',
+    thumbnail: '/collection/lurking-horror-front.jpg',
     archivePage: 'https://gallery.guetech.org/lurking/lurking.html',
     feelies: 'https://gallery.guetech.org/lurking/lurking.html',
     map: 'https://www.mocagh.org/infocom/lurkinghorror-map.pdf',
@@ -184,8 +187,8 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   starcross: {
     edition: 'Michael’s sealed IBM PC copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/starcross-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/starcross-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/starcross-front.jpg', aspectRatio: '4345 / 5324' },
+      { id: 'back', label: 'Back', src: '/collection/starcross-back.jpg', aspectRatio: '4345 / 5324' },
     ],
     thumbnail: '/collection/starcross-front.jpg',
     archivePage: 'https://gallery.guetech.org/starcross/starcross.html',
