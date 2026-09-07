@@ -49,7 +49,7 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'front', label: 'Front', src: '/collection/seastalker-front.jpg' },
       { id: 'back', label: 'Back', src: '/collection/seastalker-back.jpg' },
     ],
-    thumbnail: '/collection/seastalker-thumbnail.jpg',
+    thumbnail: '/collection/seastalker-front.jpg',
     archivePage: 'https://gallery.guetech.org/seastalker/seastalker.html',
     feelies: 'https://gallery.guetech.org/seastalker/seastalker.html',
     map: 'https://gallery.guetech.org/seastalker/nautical-chart.jpg',
