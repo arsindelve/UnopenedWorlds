@@ -168,6 +168,32 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     thumbnail: '/collection/planetfall-thumbnail.jpg',
     note: 'Twenty-eight photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; the folio manual across six of its pages; Michael’s Planetfall map; and fifteen feelies from Michael’s own package: the Special Assignment Task Force I.D. card, postcards from Nebulon, Accardia, and Ramos II, and Michael’s seven-page Stellar Patrol diary. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive.',
   },
+  stationfall: {
+    edition: 'Michael’s sealed IBM PC copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/stationfall-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/stationfall-back.jpg' },
+    ],
+    thumbnail: '/collection/stationfall-front.jpg',
+    archivePage: 'https://gallery.guetech.org/stationfall/stationfall.html',
+    feelies: 'https://gallery.guetech.org/stationfall/stationfall.html',
+    map: 'https://www.mocagh.org/infocom/stationfall-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/stationfall-manual.pdf',
+    note: 'Front and back photographs document Michael’s sealed IBM PC copy—the original Infocom wrap still holding the box closed, with Floyd, the station’s paperwork, and the back-panel photograph of the contents all intact. Stationfall shipped with a blueprint of the Gamma-Delta-Gamma Class deep-space station, three bureaucratic forms, and a Stellar Patrol patch. Historical materials remain with the preservation projects that made them available.',
+  },
+  starcross: {
+    edition: 'Michael’s sealed IBM PC copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/starcross-front.jpg' },
+      { id: 'back', label: 'Back', src: '/collection/starcross-back.jpg' },
+    ],
+    thumbnail: '/collection/starcross-front.jpg',
+    archivePage: 'https://gallery.guetech.org/starcross/starcross.html',
+    feelies: 'https://gallery.guetech.org/starcross/starcross.html',
+    map: 'https://www.mocagh.org/infocom/starcross-map.pdf',
+    manual: 'https://www.mocagh.org/infocom/starcross-manual.pdf',
+    note: 'Front photograph of Michael’s sealed IBM PC copy, with its original Babbage’s price label and the bright magenta-striped science-fiction border intact. Historical materials remain with the preservation projects that made them available.',
+  },
   'zork-zero': {
     edition: 'Michael’s Amiga copy',
     photos: [

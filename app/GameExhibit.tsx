@@ -74,7 +74,7 @@ export function GameExhibit({ slug }: { slug: string }) {
               ) : (
                 <button
                   type="button"
-                  className="collection-photo-frame collection-photo-frame--zoomable"
+                  className={`collection-photo-frame collection-photo-frame--zoomable collection-photo-frame--${slug}`}
                   onClick={() => { setActualSize(false); setZoomed(active); }}
                   aria-label={`Look closely at the ${active.label.toLowerCase()} of ${game.title}`}
                 >
