@@ -81,6 +81,30 @@ a { color: inherit; }
 
 .live-exhibit { border: 1px solid #3c352a; background: #15130f; box-shadow: 0 26px 70px rgb(0 0 0 / 30%); }
 .live-exhibit--zork { min-width: 0; padding: clamp(22px, 3vw, 44px); }
+.live-exhibit--planetfall { min-width: 0; padding: clamp(22px, 3vw, 44px); border-color: #5a4131; background: radial-gradient(circle at 86% 0%, rgb(180 73 54 / 12%), transparent 31%), #17110e; }
+.live-exhibit--planetfall .live-kicker { color: #e6ae64; }
+.live-exhibit--planetfall .live-score { border-color: #654633; }
+.live-exhibit--planetfall .live-score span { color: #ead9bd; }
+.live-exhibit--planetfall .exhibit-explanation, .live-exhibit--planetfall .terminal-frame { border-color: #634634; background: linear-gradient(145deg, #160d0a, #0d0907 62%); box-shadow: inset 0 0 70px rgb(202 111 69 / 5%), 0 24px 50px rgb(0 0 0 / 38%); }
+.live-exhibit--planetfall .explanation-statement, .live-exhibit--planetfall .explanation-points > div + div, .live-exhibit--planetfall .explanation-actions, .live-exhibit--planetfall .terminal-bar, .live-exhibit--planetfall .terminal-input { border-color: #3f2c23; }
+.live-exhibit--planetfall .explanation-statement > p, .live-exhibit--planetfall .explanation-points span, .live-exhibit--planetfall .explanation-actions > div:first-child p { color: #cb8960; }
+.live-exhibit--planetfall .explanation-statement blockquote { color: #ead7bd; }
+.live-exhibit--planetfall .explanation-points p { color: #a39081; }
+.live-exhibit--planetfall .explanation-actions { background: #120c09; }
+.live-exhibit--planetfall .explanation-actions button { border-color: #c48659; background: #d79a68; color: #1a0f09; }
+.live-exhibit--planetfall .explanation-actions a { border-color: #5d4130; color: #d5a476; }
+.live-exhibit--planetfall .explanation-actions button:hover, .live-exhibit--planetfall .explanation-actions button:focus-visible { background: #ebb27a; }
+.live-exhibit--planetfall .terminal-bar { background: #120c09; color: #9b7055; }
+.live-exhibit--planetfall .terminal-status { color: #d2aa7e; }
+.live-exhibit--planetfall .terminal-status i { background: #e4a467; box-shadow: 0 0 9px rgb(228 164 103 / 65%); }
+.live-exhibit--planetfall .terminal-transcript { scrollbar-color: #704631 #0e0907; color: #e4c49d; }
+.live-exhibit--planetfall .terminal-command { color: #f0af6f; }
+.live-exhibit--planetfall .terminal-muted { color: #9c7055; }
+.live-exhibit--planetfall .terminal-input { background: #100a08; }
+.live-exhibit--planetfall .terminal-input label { color: #eca766; }
+.live-exhibit--planetfall .terminal-input input { color: #f2d3af; }
+.live-exhibit--planetfall .terminal-input input::placeholder { color: #795747; }
+.live-exhibit--planetfall .terminal-input button { background: #d79a68; color: #1a0f09; }
 .live-exhibit-heading { display: flex; justify-content: space-between; gap: 32px; margin-bottom: 25px; }
 .live-exhibit-heading h3, .live-exhibit--planetfall h3 { margin: 0; font: 500 clamp(34px, 3.5vw, 54px)/.95 var(--font-display), serif; letter-spacing: -.025em; }
 .live-exhibit-heading > div:first-child > p:last-child { max-width: 520px; margin: 13px 0 0; color: #8f877a; font-size: 12px; line-height: 1.6; }

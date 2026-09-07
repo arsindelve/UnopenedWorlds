@@ -1,0 +1,76 @@
+name: Deploy Unopened Worlds to AWS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unopened-worlds-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build the static site
+        run: pnpm build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Confirm the production account
+        run: |
+          test "$(aws sts get-caller-identity --query Account --output text)" = "576431164672"
+
+      - name: Check for unsafe deletions
+        run: |
+          dry_run="$(aws s3 sync dist/client s3://unopenedworlds-site-576431164672/ --delete --dryrun)"
+          printf '%s\n' "$dry_run"
+          if printf '%s\n' "$dry_run" | grep -E '^delete:.*(collection/|archive/|kept-boxes/|favicon\.svg)' >/dev/null; then
+            echo 'Refusing to delete collection content from the production bucket.' >&2
+            exit 1
+          fi
+
+      - name: Publish to S3
+        run: aws s3 sync dist/client s3://unopenedworlds-site-576431164672/ --delete
+
+      - name: Refresh the CloudFront cache
+        run: |
+          invalidation_id="$(aws cloudfront create-invalidation \
+            --distribution-id E35YERO8DMUUWV \
+            --paths '/*' \
+            --query 'Invalidation.Id' \
+            --output text)"
+          aws cloudfront wait invalidation-completed \
+            --distribution-id E35YERO8DMUUWV \
+            --id "$invalidation_id"
+          echo "CloudFront invalidation $invalidation_id completed."

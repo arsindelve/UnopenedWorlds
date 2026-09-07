@@ -36,6 +36,7 @@ tsconfig.tsbuildinfo
 
 # local tooling
 .claude/launch.json
+/.idea/
 /dist/
 /.wrangler/
 /outputs/

@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, ChevronLeft, ChevronRight,
 import { games } from './games';
 import { collectionBadges, collectionConditionAssessments, collectionPhotography, galleryPages, type Photograph } from './collection';
 import { BadgeMarks } from './BadgeMarks';
+import { PlanetfallExhibit } from './PlanetfallExhibit';
 import { ZorkExhibit } from './ZorkExhibit';
 
 export function GameExhibit({ slug }: { slug: string }) {
@@ -183,20 +184,7 @@ export function GameExhibit({ slug }: { slug: string }) {
               <h2 id="living-title">The box stays closed.<br /><em>This world does not.</em></h2>
             </div>
           </div>
-          {slug === 'zork-i' ? <ZorkExhibit /> : (
-            <article className="planetfall-gateway planetfall-gateway--page">
-              <div className="gateway-story">
-                <p className="live-kicker"><span /> A living Infocom experiment</p>
-                <h3>Preserved worlds should still feel <em>alive.</em></h3>
-                <p className="gateway-lede">Planetfall.ai is a complete room-by-room, object-by-object reconstruction of the original world, performed by an intelligent narrator that understands your intent and brings Floyd, Blather, and the Ambassador to life.</p>
-                <div className="gateway-principle">
-                  <span>THE POINT</span>
-                  <p>The AI does not replace Steve Meretzky&rsquo;s world. It inhabits the role of narrator&mdash;interpreting your intent, voicing the world, and making its characters responsive while preserving the authored game beneath it.</p>
-                </div>
-                <blockquote>Because Floyd deserves more than preservation. He deserves to be met again.</blockquote>
-              </div>
-            </article>
-          )}
+          {slug === 'zork-i' ? <ZorkExhibit /> : <PlanetfallExhibit />}
         </section>
       )}
 
