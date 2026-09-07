@@ -57,6 +57,72 @@ export type CollectionPhotography = {
 };
 
 export const collectionPhotography: Record<string, CollectionPhotography> = {
+  enchanter: {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/enchanter-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/enchanter-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/enchanter-front.jpg',
+    archivePage: 'https://gallery.guetech.org/enchanter/enchanter.html',
+    feelies: 'https://gallery.guetech.org/enchanter/enchanter.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
+  sorcerer: {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/sorcerer-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/sorcerer-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/sorcerer-front.jpg',
+    archivePage: 'https://gallery.guetech.org/sorcerer/sorcerer.html',
+    feelies: 'https://gallery.guetech.org/sorcerer/sorcerer.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
+  spellbreaker: {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/spellbreaker-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/spellbreaker-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/spellbreaker-front.jpg',
+    archivePage: 'https://gallery.guetech.org/spellbreaker/spellbreaker.html',
+    feelies: 'https://gallery.guetech.org/spellbreaker/spellbreaker.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
+  wishbringer: {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/wishbringer-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/wishbringer-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/wishbringer-front.jpg',
+    archivePage: 'https://gallery.guetech.org/wishbringer/wishbringer.html',
+    feelies: 'https://gallery.guetech.org/wishbringer/wishbringer.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
+  ballyhoo: {
+    edition: 'Michael’s rewrapped copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/ballyhoo-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/ballyhoo-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/ballyhoo-front.jpg',
+    archivePage: 'https://gallery.guetech.org/ballyhoo/ballyhoo.html',
+    feelies: 'https://gallery.guetech.org/ballyhoo/ballyhoo.html',
+    note: 'Front and back photographs document Michael’s rewrapped copy in its full original proportions; original retail stickers remain beneath the wrap. Historical materials remain with the preservation projects that made them available.',
+  },
+  'nord-and-bert': {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/nord-and-bert-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/nord-and-bert-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/nord-and-bert-front.jpg',
+    archivePage: 'https://gallery.guetech.org/nordbert/nordbert.html',
+    feelies: 'https://gallery.guetech.org/nordbert/nordbert.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
   seastalker: {
     edition: 'Michael’s sealed Apple II copy',
     photos: [
@@ -127,6 +193,17 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/bureaucracy-manual.pdf',
     note: 'Front and back photographs document Michael’s sealed Commodore 128 copy—including the taut shrink-wrap and its glare across Douglas Adams’s name, the platform banner naming the 1541/1571 disk and 80-column monitor, and the intact ISBN panel on the back. Historical materials remain with the preservation projects that made them available.',
   },
+  'border-zone': {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/border-zone-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/border-zone-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/border-zone-front.jpg',
+    archivePage: 'https://gallery.guetech.org/borderzone/borderzone.html',
+    feelies: 'https://gallery.guetech.org/borderzone/borderzone.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
   deadline: {
     edition: 'Michael’s sealed copy',
     photos: [
@@ -136,6 +213,17 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     thumbnail: '/collection/deadline-front.jpg',
     archivePage: 'https://gallery.guetech.org/deadline_grey/deadline.html',
     feelies: 'https://gallery.guetech.org/deadline_grey/deadline.html',
+    note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
+  },
+  'the-witness': {
+    edition: 'Michael’s sealed copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/the-witness-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/the-witness-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/the-witness-front.jpg',
+    archivePage: 'https://gallery.guetech.org/witness/witness.html',
+    feelies: 'https://gallery.guetech.org/witness/witness.html',
     note: 'Front and back photographs document Michael’s sealed copy in its full original proportions. Historical materials remain with the preservation projects that made them available.',
   },
   trinity: {
@@ -389,6 +477,42 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
 // Recorded separately so a condition assessment can exist before a copy has
 // been photographed for its exhibit.
 export const collectionConditionAssessments: Partial<Record<string, CollectionConditionAssessment>> = {
+  enchanter: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
+  },
+  sorcerer: {
+    grade: 'VG',
+    label: 'Very Good',
+    modifiers: ['Sealed'],
+    note: 'A well-preserved sealed copy with modest visible wear.',
+  },
+  spellbreaker: {
+    grade: 'VG',
+    label: 'Very Good',
+    modifiers: ['Sealed'],
+    note: 'A well-preserved sealed copy with modest visible wear.',
+  },
+  wishbringer: {
+    grade: 'VG',
+    label: 'Very Good',
+    modifiers: ['Sealed'],
+    note: 'A well-preserved sealed copy with modest visible wear.',
+  },
+  'nord-and-bert': {
+    grade: 'ED',
+    label: 'Excess Defects',
+    modifiers: ['Sealed'],
+    note: 'A sealed copy whose accumulated visible defects materially affect its presentation.',
+  },
+  ballyhoo: {
+    grade: 'VG',
+    label: 'Very Good',
+    modifiers: ['Sealed', 'Rewrapped'],
+    note: 'A well-preserved copy in an obvious later rewrap; original retail stickers remain beneath the wrap.',
+  },
   bureaucracy: {
     grade: 'NM',
     label: 'Near Mint',
@@ -396,6 +520,12 @@ export const collectionConditionAssessments: Partial<Record<string, CollectionCo
     note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
   },
   'border-zone': {
+    grade: 'F',
+    label: 'Fine',
+    modifiers: ['Sealed'],
+    note: 'A sealed, attractive, sound copy with moderate visible wear.',
+  },
+  'the-witness': {
     grade: 'F',
     label: 'Fine',
     modifiers: ['Sealed'],
