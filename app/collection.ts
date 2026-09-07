@@ -48,6 +48,7 @@ export type CollectionPhotography = {
   // the copy has—folio, spine, feelies—as they are photographed.
   photos: Photograph[];
   thumbnail: string;
+  thumbnailScale?: number;
   archivePage?: string;
   feelies?: string;
   map?: string;
@@ -102,6 +103,7 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'back', label: 'Back', src: '/collection/lurking-horror-back.jpg', aspectRatio: '4448 / 5314' },
     ],
     thumbnail: '/collection/lurking-horror-front.jpg',
+    thumbnailScale: 1.045,
     archivePage: 'https://gallery.guetech.org/lurking/lurking.html',
     feelies: 'https://gallery.guetech.org/lurking/lurking.html',
     map: 'https://www.mocagh.org/infocom/lurkinghorror-map.pdf',
@@ -198,6 +200,7 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'diary-07', label: 'Diary, page 7', src: '/collection/planetfall-diary-07.jpg', caption: 'Michael’s Stellar Patrol diary — page 7', role: 'feelies' },
     ],
     thumbnail: '/collection/planetfall-thumbnail.jpg',
+    thumbnailScale: 1.075,
     note: 'Twenty-eight photographs. The sealed IBM PC grey box front and back; the 1983 folio edition that preceded it; the Solid Gold reissue for the Apple II; the folio manual across six of its pages; Michael’s Planetfall map; and fifteen feelies from Michael’s own package: the Special Assignment Task Force I.D. card, postcards from Nebulon, Accardia, and Ramos II, and Michael’s seven-page Stellar Patrol diary. The grey box shows a heavy shrink-wrap sheen across the poster and, on its back, the 55 Wheeler Street address Infocom used before it moved to CambridgePark Drive.',
   },
   stationfall: {
@@ -207,6 +210,7 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'back', label: 'Back', src: '/collection/stationfall-back.jpg' },
     ],
     thumbnail: '/collection/stationfall-front.jpg',
+    thumbnailScale: 1.065,
     archivePage: 'https://gallery.guetech.org/stationfall/stationfall.html',
     feelies: 'https://gallery.guetech.org/stationfall/stationfall.html',
     map: 'https://www.mocagh.org/infocom/stationfall-map.pdf',
@@ -273,6 +277,7 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
       { id: 'back', label: 'Back', src: '/collection/leather-goddesses-back.jpg', aspectRatio: '4424 / 5360' },
     ],
     thumbnail: '/collection/leather-goddesses-thumbnail.jpg',
+    thumbnailScale: 1.045,
     archivePage: 'https://gallery.guetech.org/leather/leather.html',
     feelies: 'https://gallery.guetech.org/leather/leather.html',
     map: 'https://www.mocagh.org/infocom/lgop-map.pdf',

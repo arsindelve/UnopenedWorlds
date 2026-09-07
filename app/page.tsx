@@ -109,7 +109,13 @@ export default function Home() {
                 style={{ '--index': index } as CSSProperties}
               >
                 <span className="frame-lip"><span className="frame-mat">
-                  <img src={photography?.thumbnail ?? `/archive/${game.image}`} alt={`${game.title} grey-box cover`} loading="lazy" decoding="async" />
+                  <img
+                    src={photography?.thumbnail ?? `/archive/${game.image}`}
+                    alt={`${game.title} grey-box cover`}
+                    loading="lazy"
+                    decoding="async"
+                    style={photography?.thumbnailScale ? { '--thumbnail-scale': photography.thumbnailScale } as CSSProperties : undefined}
+                  />
                   <span className="glass-sheen" aria-hidden="true" />
                 </span></span>
                 <span className="object-label">
