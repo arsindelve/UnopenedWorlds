@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, ChevronLeft, ChevronRight, Maximize2, PackageOpen, Search, X } from 'lucide-react';
 import { games } from './games';
-import { collectionBadges, collectionPhotography, galleryPages, type Photograph } from './collection';
+import { collectionBadges, collectionConditionAssessments, collectionPhotography, galleryPages, type Photograph } from './collection';
 import { BadgeMarks } from './BadgeMarks';
 import { ZorkExhibit } from './ZorkExhibit';
 
@@ -11,6 +11,17 @@ export function GameExhibit({ slug }: { slug: string }) {
   const index = games.findIndex((game) => game.slug === slug);
   const game = games[index];
   const photography = collectionPhotography[slug];
+  const recordedCondition = collectionConditionAssessments[slug] ?? photography?.condition;
+  // Every collection copy is sealed unless it is Suspended. Make that rule a
+  // display default as well, so future assessments cannot silently omit it.
+  const condition = recordedCondition && {
+    ...recordedCondition,
+    modifiers: slug === 'suspended'
+      ? recordedCondition.modifiers.filter((modifier) => modifier !== 'Sealed')
+      : recordedCondition.modifiers.includes('Sealed')
+        ? recordedCondition.modifiers
+        : ['Sealed', ...recordedCondition.modifiers],
+  };
   const badges = collectionBadges[slug] ?? [];
   const photos = photography?.photos ?? [];
 
@@ -116,6 +127,23 @@ export function GameExhibit({ slug }: { slug: string }) {
               <p>MICHAEL&rsquo;S HISTORY WITH THIS WORLD</p>
               <BadgeMarks badges={badges} expanded />
             </div>
+          )}
+
+          {condition && (
+            <section className="condition-assessment" aria-label="Condition assessment">
+              <div className="condition-assessment-grade">
+                <p>CONDITION ASSESSMENT</p>
+                <strong>{condition.grade}</strong>
+                <span>{condition.label}</span>
+              </div>
+              <div className="condition-assessment-detail">
+                <div className="condition-assessment-modifiers">
+                  {condition.modifiers.map((modifier) => <span key={modifier}>{modifier}</span>)}
+                </div>
+                <p>{condition.note}</p>
+                <small>Photo + owner inspection · not third-party certified</small>
+              </div>
+            </section>
           )}
 
           <p className={`tribute ${game.tribute.length > 240 ? 'tribute--long' : ''}`}>{game.tribute}</p>

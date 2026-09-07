@@ -32,6 +32,16 @@ export type Photograph = {
   role?: 'map' | 'manual' | 'feelies';
 };
 
+// A personal, transparent assessment—not a third-party certification or a
+// price signal. The short MobyScale code keeps the record legible on the
+// exhibit while the note preserves the reason for the call.
+export type CollectionConditionAssessment = {
+  grade: 'MS' | 'NM' | 'F' | 'VG' | 'G' | 'ED';
+  label: string;
+  modifiers: string[];
+  note: string;
+};
+
 export type CollectionPhotography = {
   edition: string;
   // Ordered; the first is what opens. Front and back today, and whatever else
@@ -42,6 +52,7 @@ export type CollectionPhotography = {
   feelies?: string;
   map?: string;
   manual?: string;
+  condition?: CollectionConditionAssessment;
   note: string;
 };
 
@@ -57,19 +68,31 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     feelies: 'https://gallery.guetech.org/seastalker/seastalker.html',
     map: 'https://gallery.guetech.org/seastalker/nautical-chart.jpg',
     manual: 'https://infodoc.plover.net/manuals/temp/seastalk.pdf',
+    condition: {
+      grade: 'G',
+      label: 'Good',
+      modifiers: ['Sealed', 'Compressed back'],
+      note: 'A sealed copy with clear visible wear; the compressed back panel is the documented condition defect.',
+    },
     note: 'Front and back photographs document Michael’s sealed Apple II copy—including its original store sticker and the beautifully imperfect shrink-wrap that kept this world unopened. Historical materials remain with the preservation projects that made them available.',
   },
   moonmist: {
     edition: 'Michael’s sealed IBM PC copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/moonmist-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/moonmist-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/moonmist-front.jpg', aspectRatio: '4424 / 5354' },
+      { id: 'back', label: 'Back', src: '/collection/moonmist-back.jpg', aspectRatio: '4413 / 5354' },
     ],
     thumbnail: '/collection/moonmist-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/moonmist/moonmist.html',
     feelies: 'https://gallery.guetech.org/moonmist/moonmist.html',
     map: 'https://www.mocagh.org/infocom/moonmist-map.pdf',
     manual: 'https://www.mocagh.org/infocom/moonmist-manual.pdf',
+    condition: {
+      grade: 'VG',
+      label: 'Very Good',
+      modifiers: ['Sealed'],
+      note: 'A well-preserved sealed copy with modest visible wear; original retail labels are documented as provenance.',
+    },
     note: 'Front and back photographs document Michael’s sealed IBM PC copy—including two layers of original store pricing and the creases, glare, and shrink-wrap seams that make this particular unopened world unmistakably its own. Historical materials remain with the preservation projects that made them available.',
   },
   'lurking-horror': {
@@ -83,6 +106,12 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     feelies: 'https://gallery.guetech.org/lurking/lurking.html',
     map: 'https://www.mocagh.org/infocom/lurkinghorror-map.pdf',
     manual: 'https://www.mocagh.org/infocom/lurkinghorror-manual.pdf',
+    condition: {
+      grade: 'NM',
+      label: 'Near Mint',
+      modifiers: ['Sealed'],
+      note: 'Exceptionally clean, with ordinary shrink-wrap texture but no condition defects reported.',
+    },
     note: 'Front and back photographs document Michael’s sealed Commodore 64/128 copy—including its visible shrink-wrap seams and original ISBN label. Historical materials remain with the preservation projects that made them available.',
   },
   bureaucracy: {
@@ -139,8 +168,8 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
   planetfall: {
     edition: 'Michael’s sealed IBM PC copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/planetfall-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/planetfall-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/planetfall-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/planetfall-back.jpg', aspectRatio: '4424 / 5360' },
       { id: 'folio-front', label: 'Folio front', src: '/collection/planetfall-folio-front.jpg', caption: 'The 1983 folio edition' },
       { id: 'folio-back', label: 'Folio back', src: '/collection/planetfall-folio-back.jpg', caption: 'The 1983 folio edition' },
       { id: 'solid-gold-front', label: 'Solid Gold front', src: '/collection/planetfall-solid-gold-front.jpg', caption: 'The Solid Gold reissue, Apple II' },
@@ -197,6 +226,17 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     manual: 'https://www.mocagh.org/infocom/starcross-manual.pdf',
     note: 'Front photograph of Michael’s sealed IBM PC copy, with its original Babbage’s price label and the bright magenta-striped science-fiction border intact. Historical materials remain with the preservation projects that made them available.',
   },
+  'beyond-zork': {
+    edition: 'Michael’s sealed Macintosh copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/beyond-zork-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/beyond-zork-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/beyond-zork-front.jpg',
+    archivePage: 'https://gallery.guetech.org/beyond/beyond.html',
+    feelies: 'https://gallery.guetech.org/beyond/beyond.html',
+    note: 'Front and back photographs document Michael’s sealed Macintosh copy—including its intact shrink-wrap, the original Infocom Plus presentation, and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
   'zork-zero': {
     edition: 'Michael’s Amiga copy',
     photos: [
@@ -218,20 +258,181 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     archivePage: 'https://gallery.guetech.org/hollywood/hollywood.html',
     feelies: 'https://gallery.guetech.org/hollywood/hollywood.html',
     manual: 'https://www.mocagh.org/infocom/hhijinx-manual.pdf',
+    condition: {
+      grade: 'MS',
+      label: 'Mint',
+      modifiers: ['Sealed', 'Reference copy'],
+      note: 'A press-fresh benchmark: taut wrap, flat panels, and clean edges.',
+    },
     note: 'Front and back photographs document Michael’s sealed Atari ST copy—including the taut shrink-wrap and its glare across the cover, the platform banner naming the 3½-inch Atari ST release, and the intact ISBN panel on the back. Hollywood Hijinx shipped without a map; its feelies were a copy of TinselWorld, Aunt Hildegarde’s will, an autographed photo of Uncle Buddy, and a lucky palm tree swizzle stick. Historical materials remain with the preservation projects that made them available.',
   },
   'leather-goddesses': {
     edition: 'Michael’s Amiga copy',
     photos: [
-      { id: 'front', label: 'Front', src: '/collection/leather-goddesses-front.jpg' },
-      { id: 'back', label: 'Back', src: '/collection/leather-goddesses-back.jpg' },
+      { id: 'front', label: 'Front', src: '/collection/leather-goddesses-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/leather-goddesses-back.jpg', aspectRatio: '4424 / 5360' },
     ],
     thumbnail: '/collection/leather-goddesses-thumbnail.jpg',
     archivePage: 'https://gallery.guetech.org/leather/leather.html',
     feelies: 'https://gallery.guetech.org/leather/leather.html',
     map: 'https://www.mocagh.org/infocom/lgop-map.pdf',
     manual: 'https://www.mocagh.org/infocom/lgop-manual.pdf',
+    condition: {
+      grade: 'NM',
+      label: 'Near Mint',
+      modifiers: ['Sealed'],
+      note: 'A remarkably clean copy. Visible shrink-wrap texture is not treated as damage.',
+    },
     note: 'Front and back photographs document Michael’s Amiga copy—with its fluorescent-striped border, original shrink-wrap, and exuberant promise of three playing modes. Historical materials remain with the preservation projects that made them available.',
+  },
+  cutthroats: {
+    edition: 'Michael’s Commodore 64/Plus 4 copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/cutthroats-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/cutthroats-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/cutthroats-front.jpg',
+    archivePage: 'https://gallery.guetech.org/cutthroats/cutthroats.html',
+    feelies: 'https://gallery.guetech.org/cutthroats/cutthroats.html',
+    note: 'Front and back photographs document Michael’s Commodore 64/Plus 4 copy—including its later re-wrap, the well-travelled retail labels, and the original package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
+  'plundered-hearts': {
+    edition: 'Michael’s Commodore 64/128 copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/plundered-hearts-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/plundered-hearts-back.jpg', aspectRatio: '4417 / 5360' },
+    ],
+    thumbnail: '/collection/plundered-hearts-front.jpg',
+    archivePage: 'https://gallery.guetech.org/plundered/plundered.html',
+    feelies: 'https://gallery.guetech.org/plundered/plundered.html',
+    note: 'Front and back photographs document Michael’s Commodore 64/128 copy—including its original store label and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
+  suspect: {
+    edition: 'Michael’s sealed Apple II copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/suspect-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/suspect-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/suspect-front.jpg',
+    archivePage: 'https://gallery.guetech.org/suspect/suspect.html',
+    feelies: 'https://gallery.guetech.org/suspect/suspect.html',
+    note: 'Front and back photographs document Michael’s sealed Apple II copy—including its original retail label, shrink-wrap texture, and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
+  'zork-i': {
+    edition: 'Michael’s Atari ST copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/zork-i-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/zork-i-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/zork-i-front.jpg',
+    archivePage: 'https://gallery.guetech.org/zork1/zork1.html',
+    feelies: 'https://gallery.guetech.org/zork1/zork1.html',
+    note: 'Front and back photographs document Michael’s Atari ST copy—including its original wrap and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
+  'zork-ii': {
+    edition: 'Michael’s Commodore 64/128 copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/zork-ii-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/zork-ii-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/zork-ii-front.jpg',
+    archivePage: 'https://gallery.guetech.org/zork2/zork2.html',
+    feelies: 'https://gallery.guetech.org/zork2/zork2.html',
+    note: 'Front and back photographs document Michael’s Commodore 64/128 copy—including its original Babbage’s label and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
+  'zork-iii': {
+    edition: 'Michael’s Commodore 64/128 copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/zork-iii-front.jpg', aspectRatio: '4424 / 5360' },
+      { id: 'back', label: 'Back', src: '/collection/zork-iii-back.jpg', aspectRatio: '4424 / 5360' },
+    ],
+    thumbnail: '/collection/zork-iii-front.jpg',
+    archivePage: 'https://gallery.guetech.org/zork3/zork3.html',
+    feelies: 'https://gallery.guetech.org/zork3/zork3.html',
+    note: 'Front and back photographs document Michael’s Commodore 64/128 copy—including its original Babbage’s price label, the lightly worn wrap, and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
+  },
+};
+
+// Recorded separately so a condition assessment can exist before a copy has
+// been photographed for its exhibit.
+export const collectionConditionAssessments: Partial<Record<string, CollectionConditionAssessment>> = {
+  trinity: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
+  },
+  amfv: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
+  },
+  planetfall: {
+    grade: 'F',
+    label: 'Fine',
+    modifiers: ['Sealed'],
+    note: 'A sealed, attractive, sound copy with moderate visible wear.',
+  },
+  'plundered-hearts': {
+    grade: 'VG',
+    label: 'Very Good',
+    modifiers: ['Sealed'],
+    note: 'A well-preserved sealed copy with modest visible wear.',
+  },
+  stationfall: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'A sealed, very clean copy with only slight signs of age or handling.',
+  },
+  'zork-zero': {
+    grade: 'VG',
+    label: 'Very Good',
+    modifiers: ['Sealed'],
+    note: 'A well-preserved sealed copy with modest visible wear.',
+  },
+  'beyond-zork': {
+    grade: 'VG',
+    label: 'Very Good',
+    modifiers: ['Sealed'],
+    note: 'A well-preserved sealed copy with modest visible wear.',
+  },
+  suspect: {
+    grade: 'ED',
+    label: 'Excess Defects',
+    modifiers: ['Sealed'],
+    note: 'Sealed, but condition issues place it one grade below Good.',
+  },
+  cutthroats: {
+    grade: 'ED',
+    label: 'Excess Defects',
+    modifiers: ['Sealed', 'Re-wrap'],
+    note: 'A later re-wrap provides the seal; condition issues materially affect presentation.',
+  },
+  'zork-i': {
+    grade: 'MS',
+    label: 'Mint',
+    modifiers: ['Sealed'],
+    note: 'A press-fresh sealed copy with a clean, flat presentation.',
+  },
+  'zork-ii': {
+    grade: 'MS',
+    label: 'Mint',
+    modifiers: ['Sealed'],
+    note: 'A press-fresh sealed copy with a clean, flat presentation.',
+  },
+  'zork-iii': {
+    grade: 'F',
+    label: 'Fine',
+    modifiers: ['Sealed'],
+    note: 'A sealed, attractive, sound copy with wear that places it two grades below Mint.',
+  },
+  starcross: {
+    grade: 'NM',
+    label: 'Near Mint',
+    modifiers: ['Sealed'],
+    note: 'An exceptionally clean sealed copy with only slight signs of age or handling.',
   },
 };
 
