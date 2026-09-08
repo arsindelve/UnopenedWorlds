@@ -439,6 +439,17 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     feelies: 'https://gallery.guetech.org/suspect/suspect.html',
     note: 'Front and back photographs document Michael’s sealed Apple II copy—including its original retail label, shrink-wrap texture, and the package photograph on the reverse. Historical materials remain with the preservation projects that made them available.',
   },
+  sherlock: {
+    edition: 'Michael’s sealed Commodore 64/128 copy',
+    photos: [
+      { id: 'front', label: 'Front', src: '/collection/sherlock-front.jpg', aspectRatio: '4472 / 5388' },
+      { id: 'back', label: 'Back', src: '/collection/sherlock-back.jpg', aspectRatio: '4472 / 5388' },
+    ],
+    thumbnail: '/collection/sherlock-front.jpg',
+    archivePage: 'https://gallery.guetech.org/sherlock/sherlock.html',
+    feelies: 'https://gallery.guetech.org/sherlock/sherlock.html',
+    note: 'Front and back photographs document Michael’s sealed Commodore 64/128 copy in its full original proportions, including the impact damage along the left side. Historical materials remain with the preservation projects that made them available.',
+  },
   'zork-i': {
     edition: 'Michael’s Atari ST copy',
     photos: [
