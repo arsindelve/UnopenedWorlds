@@ -531,6 +531,12 @@ export const collectionConditionAssessments: Partial<Record<string, CollectionCo
     modifiers: ['Sealed'],
     note: 'A sealed, attractive, sound copy with moderate visible wear.',
   },
+  sherlock: {
+    grade: 'G',
+    label: 'Good',
+    modifiers: ['Sealed'],
+    note: 'A sound, presentable sealed copy with visible handling and shelf wear, including impact damage along the left side.',
+  },
   hitchhiker: {
     grade: 'NM',
     label: 'Near Mint',
