@@ -321,7 +321,7 @@ export const collectionPhotography: Record<string, CollectionPhotography> = {
     thumbnail: '/collection/thumbnails/starcross-front.webp',
     archivePage: 'https://gallery.guetech.org/starcross/starcross.html',
     feelies: 'https://gallery.guetech.org/starcross/starcross.html',
-    map: 'https://www.mocagh.org/infocom/starcross-map.pdf',
+    map: 'https://gallery.guetech.org/starcross/starcross-map.gif',
     manual: 'https://www.mocagh.org/infocom/starcross-manual.pdf',
     note: 'Front photograph of Michael’s sealed IBM PC copy, with its original Babbage’s price label and the bright magenta-striped science-fiction border intact. Historical materials remain with the preservation projects that made them available.',
   },
