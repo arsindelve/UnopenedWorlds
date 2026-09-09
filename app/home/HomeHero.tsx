@@ -1,5 +1,5 @@
+// oxlint-disable nextjs/no-html-link-for-pages -- Native navigation is required by the vinext static export.
 import {ArrowDown} from 'lucide-react';
-import Link from 'next/link';
 
 // HOMEPAGE COPY: Edit the collection introduction here.
 export function HomeHero() {
@@ -36,8 +36,8 @@ export function HomeHero() {
                     Even away from my computer, I was thinking
                     about the puzzles and trying to work out how to solve them. I recall sitting in the back of the room
                     in 7th grade
-                    trying to work out how to get past the mutants in <Link className="intro-game-link"
-                                                                            href="/planetfall"><i>Planetfall</i></Link>.
+                    trying to work out how to get past the mutants in <a className="intro-game-link"
+                                                                         href="/planetfall"><i>Planetfall</i></a>.
                     And when I finally did, it gave me a
                     sense of accomplishment and wonder
                     I’ll never forget.
@@ -58,9 +58,9 @@ export function HomeHero() {
                 <p className="intro-collection">
                     Not very many games from the 1980s remain as rewarding to play today.
                     These do. The stories are just as compelling, the puzzles just as challenging, and the worlds just
-                    as immersive. Games like <Link className="intro-game-link"
-                                                   href="/trinity"><i>Trinity</i></Link> and <Link
-                    className="intro-game-link" href="/amfv"><i>A Mind Forever Voyaging</i></Link> carry messages that
+                    as immersive. Games like <a className="intro-game-link"
+                                                href="/trinity"><i>Trinity</i></a> and <a
+                    className="intro-game-link" href="/amfv"><i>A Mind Forever Voyaging</i></a> carry messages that
                     remain just as poignant and relevant forty years on. Sadly, too few people remember Infocom today. I
                     want to change that. My collection and my work in
                     AI-enhanced interactive fiction aim to keep the games, their worlds and their characters alive.
