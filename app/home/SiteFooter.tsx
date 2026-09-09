@@ -5,7 +5,7 @@ export function SiteFooter() {
   return (
     <footer>
       <p>
-        Collected, preserved, and reimagined by Michael Lane—with gratitude and
+        Collected, preserved, and reimagined by Michael Lane, with gratitude and
         unreasonable affection.
       </p>
       <div className="footer-links">

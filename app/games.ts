@@ -191,7 +191,7 @@ export const games: Game[] = [
     author: 'Steve Meretzky',
     image: 'planetfall.jpg',
     tribute:
-      'Planetfall knows exactly what it is doing when it hands you a scrub brush. You begin as Ensign Seventh Class aboard the S.P.S. Feinstein, enduring the petty tyranny of Blather and wondering whether five generations of family service have brought you to this: polishing Deck Nine. Then the ship comes apart, the job stops being a joke, and a deserted planet asks everything of you. Steve Meretzky makes Resida funny, lonely, and increasingly desperate, but its great invention is Floyd: not a mechanism that assists the hero, but a companion who changes what being the hero means. This is the game that proved a parser could make a friendship feel real. For Michael, it is not merely an Infocom classic; it is one of the worlds that made this whole wall necessary.',
+      'You begin as Ensign Seventh Class aboard the S.P.S. Feinstein, enduring the petty tyranny of Blather and wondering whether five generations of family service have brought you to this: polishing Deck Nine. Then the ship comes apart, the job stops being a joke, and a deserted planet asks everything of you. Steve Meretzky makes Resida funny, lonely, and increasingly desperate, but its great invention is Floyd: not a mechanism that assists the hero, but a companion who changes what being the hero means. This is the game that proved a parser could make a friendship feel real. For Michael, it is not merely an Infocom classic; it is one of the worlds that made this whole wall necessary.',
   },
   {
     slug: 'stationfall',
@@ -210,7 +210,7 @@ export const games: Game[] = [
     author: 'Steve Meretzky',
     image: 'amfv.jpg',
     tribute:
-      'A machine raised rather than programmed: PRISM spent a simulated childhood as a boy named Perry Simm so that it would grow a self worth asking. Then its makers sent it into the future their policy would build—2041, 2051, 2071—and told it to report what it found. Steve Meretzky wrote that in 1985, and it reads now less like science fiction than like minutes from a meeting we are currently in: what we owe a mind we made, and whether the people who commissioned it will believe it when it tells them the truth. Of all thirty-two boxes on this wall, this is the one that got to Michael.',
+      'An AI raised rather than programmed: PRISM spent a simulated childhood as a boy named Perry Simm so that it would grow a self worth asking. Then its makers sent it into the future their policy would build — 2041, 2051, 2071 — and told it to report what it found. Steve Meretzky wrote that in 1985, and it reads now less like science fiction than like minutes from a meeting we are currently in: what we owe a mind we made, and whether the people who commissioned it will believe it when it tells them the truth. Of all thirty-two boxes on this wall, this is the one that got to Michael.',
   },
   {
     slug: 'hitchhiker',

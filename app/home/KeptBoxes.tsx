@@ -36,7 +36,7 @@ export function KeptBoxes() {
           Beyond the thirty-two worlds on the wall, I still have the original
           boxes of <em>Journey: The Quest Begins</em>,{' '}
           <em>ZorkQuest II: The Crystal of Doom</em>, and both{' '}
-          <em>Lost Treasures of Infocom</em> anthologies—four more survivors
+          <em>Lost Treasures of Infocom</em> anthologies: four more survivors
           from my Infocom years.
         </p>
       </div>

@@ -79,9 +79,7 @@ export function CollectionWall() {
       <div className="badge-key" aria-label="Collector badge key">
         <div className="badge-key-heading">
           <p>THE COLLECTOR’S KEY / PERSONAL HISTORY</p>
-          <span>
-            Each mark records Michael’s history without touching the cover art.
-          </span>
+          <span>Each mark records Michael’s history.</span>
         </div>
         <div className="badge-key-items">
           {collectionBadgeDefinitions.map(({ id }) => (
@@ -93,10 +91,6 @@ export function CollectionWall() {
         <p>
           <span>i</span> Select any box to bring the world closer. Follow the
           green signal to enter one.
-        </p>
-        <p>
-          Archival scans stand in while Michael’s collection photography is
-          added, box by box.
         </p>
       </div>
     </section>
