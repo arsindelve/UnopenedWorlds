@@ -40,7 +40,7 @@ a { color: inherit; }
 .collection-tally strong { color: var(--paper); font-weight: 500; }
 .collection-tally b { width: 24px; height: 1px; background: #564e41; }
 
-.wall-intro { min-height: 48vh; padding: clamp(62px, 7vw, 96px) clamp(22px, 5.5vw, 88px) clamp(58px, 6vw, 86px); display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(340px, .65fr); gap: clamp(36px, 4vw, 64px); align-items: end; background: radial-gradient(circle at 68% 24%, rgb(217 164 65 / 9%), transparent 27%), linear-gradient(180deg, #0d0c0a, #12100d); }
+.wall-intro { min-height: 48vh; padding: clamp(62px, 7vw, 96px) clamp(22px, 5.5vw, 88px) clamp(58px, 6vw, 86px); display: grid; grid-template-columns: 1fr; gap: clamp(48px, 5vw, 76px); align-items: start; background: radial-gradient(circle at 68% 24%, rgb(217 164 65 / 9%), transparent 27%), linear-gradient(180deg, #0d0c0a, #12100d); }
 .eyebrow, .room-number, .drawer-label { margin: 0 0 20px; color: var(--brass); font: 500 10px/1.4 var(--font-mono-custom), monospace; letter-spacing: .19em; text-transform: uppercase; }
 .wall-intro h1 { margin: 0; max-width: 930px; font: 500 clamp(62px, calc(6vw + 28px), 142px)/.9 var(--font-display), serif; letter-spacing: -.045em; }
 .wall-intro h1 em { color: var(--brass); font-weight: 400; }
@@ -51,12 +51,13 @@ a { color: inherit; }
 @keyframes hero-type { to { clip-path: inset(0 0 0 0); } }
 @keyframes hero-cursor-travel { to { left: 100%; } }
 @keyframes hero-unopened { to { opacity: 1; transform: translateY(0); } }
-.intro-copy { max-width: 480px; padding-bottom: 7px; }
+.intro-copy { width: 100%; max-width: 760px; justify-self: end; padding-bottom: 7px; }
 .intro-copy p { margin: 0 0 21px; color: #b8ae9e; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.7; }
 .intro-copy .intro-collection { color: #aaa194; font-size: clamp(14px, 1.05vw, 16px); line-height: 1.65; }
 .intro-copy .intro-live-note { display: flex; align-items: flex-start; gap: 9px; margin: 4px 0 31px; color: #839d70; font: 500 8px/1.65 var(--font-mono-custom), monospace; letter-spacing: .12em; text-transform: uppercase; }
 .intro-live-note span { width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--terminal); box-shadow: 0 0 12px rgb(167 203 124 / 70%); }
 .intro-copy a { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: var(--paper); font: 500 10px/1 var(--font-mono-custom), monospace; text-transform: uppercase; letter-spacing: .15em; border-bottom: 1px solid var(--brass); padding-bottom: 8px; }
+.intro-copy .intro-skip-link { margin: 2px 0 30px; }
 
 .work-room { padding: clamp(72px, 9vw, 126px) clamp(18px, 5.5vw, 86px); background: linear-gradient(180deg, #12100d, #0e0d0b); border-top: 1px solid #2b261e; }
 .work-heading { max-width: 1540px; margin: 0 auto 46px; display: grid; grid-template-columns: 1.3fr .7fr; gap: clamp(50px, 9vw, 150px); align-items: end; }
@@ -366,7 +367,10 @@ footer a { display: flex; align-items: center; gap: 7px; font: 9px/1 var(--font-
 
 @media (max-width: 1240px) {
   .wall-intro { min-height: auto; grid-template-columns: 1fr; gap: clamp(38px, 5vw, 52px); }
-  .intro-copy { max-width: 620px; justify-self: end; }
+  .intro-copy { max-width: 680px; }
+}
+@media (min-width: 1241px) and (max-width: 1500px) {
+  .wall-intro h1 { font-size: clamp(74px, 7vw, 96px); }
 }
 @media (max-width: 1050px) {
   .work-heading { grid-template-columns: 1fr; gap: 24px; }

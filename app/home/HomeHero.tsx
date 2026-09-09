@@ -17,28 +17,42 @@ export function HomeHero() {
       </div>
       <div className="intro-copy">
         <p className="intro-orientation">
-          In the 1980s, Infocom shipped worlds with no pictures in them. You
-          typed a sentence in plain English, and the machine wrote back—in prose
-          so good the pictures arrived anyway, assembled behind your eyes out of
-          nothing but nouns, verbs, and nerve.
+          In the 1980s, Infocom elevated and popularized the genre of “interactive fiction.” You
+          typed a sentence in plain English, and the game responded by telling you what happened next. The story
+          progressed as you explored and solved puzzles. Solving tricky puzzles took you deeper and deeper, until you
+          were completely immersed in those worlds and their mysteries.
+          Even as computer graphics became more sophisticated, Infocom continued to focus on the narrative and
+          storytelling aspects of interactive fiction, creating stories, not just games.
+        </p>
+        <a className="intro-skip-link" href="#collection">
+          <ArrowDown size={15} /> Enter the collection
+        </a>
+        <p className="intro-collection">
+          Between the ages of about eight and twelve, I had an Apple IIc that was my portal to these extraordinary games.
+          Even away from my computer, I was thinking
+          about the puzzles and trying to work out how to solve them. I recall sitting in the back of the room in 7th grade
+          trying to work out how to get past the mutants in Planetfall. And when I finally did, it gave me a sense of accomplishment and wonder
+          I’ll never forget.
         </p>
         <p className="intro-collection">
-          Between the ages of ten and twelve I had an Apple IIc, and I did not
-          play these games so much as live in them. The drive would chatter, the
-          screen would put me in an open field west of a white house, and the
-          evening was gone.
+          In the late 1980s, Infocom did eventually embrace graphics capabilities
+          to enhance the stories and pivoted away from purely word-based interactive fiction. This collection celebrates
+          and honors the thirty games before that pivot, often called “grey boxes.” These include their early games, such as Zork,
+          re-released after their initial “folio” releases, but do not include their graphical adventures, such as Shogun and Journey.
+          The exceptions in my collection
+          are Zork Zero and Beyond Zork, both of which feature limited graphics that enhance rather than compete
+          with the narrative. These are the thirty-two worlds of Infocom.
         </p>
         <p className="intro-collection">
-          Thirty-two grey boxes came out of that company. Every one of them is
-          on this wall—thirty-one still sealed, one unsealed.
+          Not very many games from the 1980s remain as rewarding to play today.
+          These do. The stories are just as compelling, the puzzles just as challenging, and the worlds just as immersive.
+          Games like <i>Trinity</i> and <i>A Mind Forever Voyaging</i> carry messages that remain just as poignant
+          and relevant forty years on.
         </p>
         <p className="intro-live-note">
           <span /> Two of those original worlds are being brought back to life
           with AI.
         </p>
-        <a href="#collection">
-          <ArrowDown size={15} /> Enter the collection
-        </a>
       </div>
     </section>
   );
