@@ -9,7 +9,8 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
-    "lint": "oxlint",
+    "lint": "oxlint app scripts",
+    "validate:collection-assets": "node scripts/validate-collection-assets.mjs",
     "format": "oxfmt"
   },
   "dependencies": {

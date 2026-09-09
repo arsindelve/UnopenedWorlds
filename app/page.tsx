@@ -1,7 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Code, Mail } from 'lucide-react';
 import { games } from './games';
 import { collectionBadgeDefinitions, collectionBadges, collectionPhotography } from './collection';
 import { BadgeMarks } from './BadgeMarks';
@@ -175,7 +175,10 @@ export default function Home() {
 
       <footer>
         <p>Collected, preserved, and reimagined by Michael Lane—with gratitude and unreasonable affection.</p>
-        <a href="https://gallery.guetech.org/" target="_blank" rel="noreferrer">Archival imagery: The Infocom Gallery <ArrowUpRight size={14} /></a>
+        <div className="footer-links">
+          <a href="mailto:hello@newzork.ai"><Mail size={14} /> Contact Michael</a>
+          <a href="https://github.com/arsindelve/ZorkAI" target="_blank" rel="noreferrer"><Code size={14} /> ZorkAI on GitHub <ArrowUpRight size={14} /></a>
+        </div>
       </footer>
 
     </main>

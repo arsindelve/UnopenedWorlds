@@ -43,9 +43,17 @@ public/collection/<slug>-front.jpg
 public/collection/<slug>-back.jpg
 ```
 
-The front and back files are the exhibit photographs. By default the front is
-also the wall thumbnail; add a separate thumbnail only when it is needed to
-match the wall frame cleanly, without changing either supplied exhibit scan.
+The front and back files are the full-size exhibit photographs. They are never
+modified. The site also requires two display-only derivatives for each source:
+
+```text
+public/collection/exhibits/<slug>-front.webp
+public/collection/thumbnails/<slug>-front.webp
+```
+
+The exhibit derivative is a proportion-preserving display copy; the thumbnail
+is the compact wall copy. Neither replaces the supplied scan, and both must
+show the complete box.
 
 ## Documentary-image rules
 
@@ -129,6 +137,8 @@ downloadable.
 - Each image has its native aspect ratio recorded and uses the native exhibit
   treatment.
 - The wall thumbnail is visually checked at the actual grid size.
+- `pnpm validate:collection-assets` passes. It verifies every configured source,
+  thumbnail, and exhibit derivative before the production build can deploy.
 - Packaging text and artwork match the source photograph.
 - Every archive link returns 200.
 - Front/back controls work with keyboard and pointer input.

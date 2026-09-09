@@ -1,12 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { type KeyboardEvent, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Camera, ChevronLeft, ChevronRight, Maximize2, PackageOpen, X } from 'lucide-react';
 import { games } from './games';
 import { collectionBadges, collectionConditionAssessments, collectionPhotography, galleryPages, type Photograph } from './collection';
 import { BadgeMarks } from './BadgeMarks';
 import { PlanetfallExhibit } from './PlanetfallExhibit';
 import { ZorkExhibit } from './ZorkExhibit';
+
+// The exhibit uses a generous display derivative; the untouched scan is
+// reserved for the viewer opened by “Look closer.”
+function exhibitImage(src: string) {
+  return src.startsWith('/collection/')
+    ? src.replace('/collection/', '/collection/exhibits/').replace(/\.(?:jpe?g|png)$/i, '.webp')
+    : src;
+}
 
 export function GameExhibit({ slug }: { slug: string }) {
   const index = games.findIndex((game) => game.slug === slug);
@@ -41,6 +50,7 @@ export function GameExhibit({ slug }: { slug: string }) {
   // Opens whole, so a map or an opened manual is legible at a glance; one click
   // goes to actual pixels, which is where the shrink-wrap and the print live.
   const [actualSize, setActualSize] = useState(false);
+  const zoomCloseRef = useRef<HTMLButtonElement>(null);
   const zoomSet = zoomed?.role ? photos.filter(({ role }) => role === zoomed.role) : [];
   const zoomAt = zoomSet.findIndex(({ id }) => id === zoomed?.id);
   const stepZoom = (by: number) => { setActualSize(false); setZoomed(zoomSet[(zoomAt + by + zoomSet.length) % zoomSet.length]); };
@@ -53,13 +63,42 @@ export function GameExhibit({ slug }: { slug: string }) {
   const next = games[(index + 1) % games.length];
   const isLivingWorld = slug === 'zork-i' || slug === 'planetfall';
 
+  useEffect(() => {
+    if (!zoomed) return undefined;
+    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    zoomCloseRef.current?.focus();
+    return () => previouslyFocused?.focus();
+  }, [zoomed]);
+
+  function closeZoom() {
+    setZoomed(null);
+    setActualSize(false);
+  }
+
+  function trapZoomFocus(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeZoom();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const focusable = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not([disabled])')];
+    if (focusable.length === 0) return;
+    const current = focusable.indexOf(document.activeElement as HTMLButtonElement);
+    const next = event.shiftKey
+      ? focusable[(current - 1 + focusable.length) % focusable.length]
+      : focusable[(current + 1) % focusable.length];
+    event.preventDefault();
+    next.focus();
+  }
+
   return (
     <main className="exhibit-page">
       <header className="site-header">
-        <a className="wordmark" href="/" aria-label="Unopened Worlds, home">
+        <Link className="wordmark" href="/" aria-label="Unopened Worlds, home">
           <span>&gt;</span> Unopened Worlds<i>_</i>
-        </a>
-        <a className="exhibit-back" href="/#collection"><ArrowLeft size={13} /> Back to the wall</a>
+        </Link>
+        <Link className="exhibit-back" href="/#collection"><ArrowLeft size={13} /> Back to the wall</Link>
       </header>
 
       <article className="exhibit-layout">
@@ -77,7 +116,7 @@ export function GameExhibit({ slug }: { slug: string }) {
                       aria-label={`Look closely at ${photo.label} of ${game.title}`}
                     >
                       <span className="photo-gallery-frame">
-                        <img src={photo.src} alt={photo.caption ?? `${photo.label} of ${game.title}`} loading="lazy" decoding="async" />
+                        <img src={exhibitImage(photo.src)} alt={photo.caption ?? `${photo.label} of ${game.title}`} loading="lazy" decoding="async" />
                       </span>
                       <span className="photo-gallery-label">{photo.label}</span>
                     </button>
@@ -93,7 +132,7 @@ export function GameExhibit({ slug }: { slug: string }) {
                 >
                   <img
                     className={`collection-photo collection-photo--${slug} collection-photo--${active.id}${active.aspectRatio ? ' collection-photo--native' : ''}`}
-                    src={active.src}
+                    src={exhibitImage(active.src)}
                     alt={`${active.label} of ${photography.edition}`}
                     decoding="async"
                   />
@@ -102,7 +141,7 @@ export function GameExhibit({ slug }: { slug: string }) {
               )}
               <div className="collection-photo-controls">
                 <p><Camera size={15} /><span>{caption}</span></p>
-                <div role="group" aria-label={`Choose what to look at for ${game.title}`}>
+                <div aria-label={`Choose what to look at for ${game.title}`}>
                   {front && <button type="button" aria-pressed={view === 'front'} onClick={() => setView('front')}>Front</button>}
                   {back && <button type="button" aria-pressed={view === 'back'} onClick={() => setView('back')}>Back</button>}
                   {others.length > 0 && <button type="button" aria-pressed={view === 'other'} onClick={() => setView('other')}>Other</button>}
@@ -189,13 +228,18 @@ export function GameExhibit({ slug }: { slug: string }) {
       )}
 
       <nav className="exhibit-nav" aria-label="Move along the wall">
-        <a href={`/${previous.slug}`}><ArrowLeft size={14} /><span><i>Previous on the wall</i><strong>{previous.shortTitle ?? previous.title}</strong></span></a>
-        <a href="/#collection">All thirty-two</a>
-        <a href={`/${next.slug}`}><span><i>Next on the wall</i><strong>{next.shortTitle ?? next.title}</strong></span><ArrowRight size={14} /></a>
+        <Link href={`/${previous.slug}`}><ArrowLeft size={14} /><span><i>Previous on the wall</i><strong>{previous.shortTitle ?? previous.title}</strong></span></Link>
+        <Link href="/#collection">All thirty-two</Link>
+        <Link href={`/${next.slug}`}><span><i>Next on the wall</i><strong>{next.shortTitle ?? next.title}</strong></span><ArrowRight size={14} /></Link>
       </nav>
 
       {zoomed && (
-        <div className="photo-zoom" role="dialog" aria-modal="true" aria-label={`${zoomed.label} of ${game.title}, full size`}>
+        <dialog
+          className="photo-zoom"
+          open
+          aria-label={`${zoomed.label} of ${game.title}, full size`}
+          onKeyDown={trapZoomFocus}
+        >
           <div className={`photo-zoom-scroll ${actualSize ? 'photo-zoom-scroll--actual' : ''}`}>
             <img
               src={zoomed.src}
@@ -216,11 +260,11 @@ export function GameExhibit({ slug }: { slug: string }) {
               </div>
             </>
           )}
-          <button type="button" className="photo-zoom-close" onClick={() => setZoomed(null)} aria-label="Close the full-size photograph">
+          <button ref={zoomCloseRef} type="button" className="photo-zoom-close" onClick={closeZoom} aria-label="Close the full-size photograph">
             <X size={16} />
           </button>
           <p className="photo-zoom-caption">{zoomed.caption ?? photography.edition} · {zoomed.label}</p>
-        </div>
+        </dialog>
       )}
     </main>
   );
