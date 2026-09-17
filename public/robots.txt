@@ -1,0 +1,13 @@
+# Until this file existed the request for it fell through to the distribution's
+# 404 rule and came back as the homepage with a 200, so crawlers asking for the
+# rules were handed a page of HTML instead.
+#
+# _next/ stays crawlable on purpose: Google renders the page and needs the CSS
+# and JS. The .rsc payloads are the client router's copy of each page, identical
+# in substance to the HTML and unreadable as a page, so they are kept out of the
+# index rather than left to compete with the pages they mirror.
+User-agent: *
+Allow: /
+Disallow: /*.rsc$
+
+Sitemap: https://unopenedworlds.com/sitemap.xml
