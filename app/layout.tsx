@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
+import { siteUrl } from './site';
 import './globals.css';
 
 const display = Cormorant_Garamond({ variable: '--font-display', subsets: ['latin'], weight: ['400', '500', '600'], style: ['normal', 'italic'] });
@@ -8,12 +9,12 @@ const mono = IBM_Plex_Mono({ variable: '--font-mono-custom', subsets: ['latin'],
 
 const title = 'Unopened Worlds — Infocom, Preserved and Reimagined';
 const description = 'All thirty-two of Infocom’s grey-box adventures on one wall—thirty-one still sealed and one unsealed—photographed copy by copy, with two of their worlds brought back to life by AI.';
-const siteUrl = 'https://unopenedworlds.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: siteUrl,
